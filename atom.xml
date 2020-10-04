@@ -6,7 +6,7 @@
   <link href="http://rye1024.gitee.io/atom.xml" rel="self"/>
   
   <link href="http://rye1024.gitee.io/"/>
-  <updated>2020-10-04T01:14:42.955Z</updated>
+  <updated>2020-10-04T14:11:05.688Z</updated>
   <id>http://rye1024.gitee.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于我</title>
+    <link href="http://rye1024.gitee.io/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/"/>
+    <id>http://rye1024.gitee.io/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</id>
+    <published>2020-10-04T14:11:05.000Z</published>
+    <updated>2020-10-04T14:11:05.688Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>去年的你也是这样躺在情人坡的草坪上</title>
@@ -131,6 +144,37 @@
   </entry>
   
   <entry>
+    <title>[HDU6754] Distinct Sub-palindromes</title>
+    <link href="http://rye1024.gitee.io/2020/07/31/HDU6754-Distinct-Sub-palindromes/"/>
+    <id>http://rye1024.gitee.io/2020/07/31/HDU6754-Distinct-Sub-palindromes/</id>
+    <published>2020-07-31T14:29:13.000Z</published>
+    <updated>2020-10-04T14:30:12.440Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;http://acm.hdu.edu.cn/showproblem.php?pid=6754&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDU6754&lt;/a&gt;&lt;br&gt;题意：&lt;br&gt;S是长度为n的字符串。</summary>
+        
+      
+    
+    
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="构造" scheme="http://rye1024.gitee.io/tags/%E6%9E%84%E9%80%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>南京扬州游记</title>
     <link href="http://rye1024.gitee.io/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/"/>
     <id>http://rye1024.gitee.io/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</id>
@@ -185,6 +229,66 @@
   </entry>
   
   <entry>
+    <title>[codeforces 1372C] Omkar and Baseball</title>
+    <link href="http://rye1024.gitee.io/2020/07/12/codeforces-1372C-Omkar-and-Baseball/"/>
+    <id>http://rye1024.gitee.io/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</id>
+    <published>2020-07-12T14:28:20.000Z</published>
+    <updated>2020-10-04T14:30:03.808Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;题目: &lt;a href=&quot;https://codeforces.com/problemset/problem/1372/C&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="数学" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="排序" scheme="http://rye1024.gitee.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[苏州大学C++]2020春第三次考试，及考前三个小练习</title>
+    <link href="http://rye1024.gitee.io/2020/07/05/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%80%83%E8%AF%95%EF%BC%8C%E5%8F%8A%E8%80%83%E5%89%8D%E4%B8%89%E4%B8%AA%E5%B0%8F%E7%BB%83%E4%B9%A0/"/>
+    <id>http://rye1024.gitee.io/2020/07/05/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%80%83%E8%AF%95%EF%BC%8C%E5%8F%8A%E8%80%83%E5%89%8D%E4%B8%89%E4%B8%AA%E5%B0%8F%E7%BB%83%E4%B9%A0/</id>
+    <published>2020-07-05T14:26:51.000Z</published>
+    <updated>2020-10-04T14:27:46.670Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;说明：CSDN不允许上传附件，所以&lt;strong&gt;我不会把题目放上来&lt;/strong&gt;。写这个博客的主要目的是为了&lt;strong&gt;让同校的学弟学妹们复习的时候有一个参考。当然，都是我自己写的，并不保证答案完全正确&lt;/strong&gt;对本次考试，会简单的做一个解析。其他三次小练</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="C++" scheme="http://rye1024.gitee.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>麦田的儿子和海的故事</title>
     <link href="http://rye1024.gitee.io/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/"/>
     <id>http://rye1024.gitee.io/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/</id>
@@ -218,254 +322,279 @@
   </entry>
   
   <entry>
-    <title>让平凡的日子也散发出光亮</title>
-    <link href="http://rye1024.gitee.io/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/"/>
-    <id>http://rye1024.gitee.io/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</id>
-    <published>2020-04-23T01:45:14.000Z</published>
-    <updated>2020-10-04T01:46:32.620Z</updated>
+    <title>[codeforces 559B] Equivalent Strings</title>
+    <link href="http://rye1024.gitee.io/2020/06/07/codeforces-559B-Equivalent-Strings/"/>
+    <id>http://rye1024.gitee.io/2020/06/07/codeforces-559B-Equivalent-Strings/</id>
+    <published>2020-06-07T14:25:55.000Z</published>
+    <updated>2020-10-04T14:26:33.329Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。&lt;/p&gt;
-&lt;p&gt;所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;https://codeforces.com/problemset/problem/559/B&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="排序" scheme="http://rye1024.gitee.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+    <category term="递归" scheme="http://rye1024.gitee.io/tags/%E9%80%92%E5%BD%92/"/>
     
   </entry>
   
   <entry>
-    <title>拉普拉斯妖，你知道吗？</title>
-    <link href="http://rye1024.gitee.io/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/"/>
-    <id>http://rye1024.gitee.io/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/</id>
-    <published>2020-03-30T01:47:54.000Z</published>
-    <updated>2020-10-04T01:49:15.306Z</updated>
+    <title>[codeforces 621C] Wet Shark and Flowers</title>
+    <link href="http://rye1024.gitee.io/2020/06/07/codeforces-621C-Wet-Shark-and-Flowers/"/>
+    <id>http://rye1024.gitee.io/2020/06/07/codeforces-621C-Wet-Shark-and-Flowers/</id>
+    <published>2020-06-07T14:25:00.000Z</published>
+    <updated>2020-10-04T14:25:20.842Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。&lt;/p&gt;
-&lt;p&gt;我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;https://codeforces.com/problemset/problem/621/C&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
     
-    <category term="哲思" scheme="http://rye1024.gitee.io/tags/%E5%93%B2%E6%80%9D/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="数学" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
-    <title>山石巴</title>
-    <link href="http://rye1024.gitee.io/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/"/>
-    <id>http://rye1024.gitee.io/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</id>
-    <published>2020-03-13T01:49:57.000Z</published>
-    <updated>2020-10-04T01:51:12.766Z</updated>
+    <title>[苏州大学C++] 2020春第二次考试</title>
+    <link href="http://rye1024.gitee.io/2020/06/07/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/"/>
+    <id>http://rye1024.gitee.io/2020/06/07/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</id>
+    <published>2020-06-07T14:23:31.000Z</published>
+    <updated>2020-10-04T14:27:49.747Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。&lt;/p&gt;
-&lt;p&gt;之所以叫山石巴，是取了“三十八”的谐音：自助餐，38元一位。这样的取名风格，大概是为了凸显出实惠吧。&lt;/p&gt;
-&lt;p&gt;第一次去那儿，是小乐乐带我去的。高中时候的我们，唯一有的空闲时间无疑是周日。那时在</summary>
+    <summary type="html">&lt;p&gt;题目描述：&lt;br&gt;*&lt;br&gt;请各位考生从课程教学群文件中下载数据文件 account.txt，然后将数据文件&lt;br&gt;手动保存在 D 盘根文件夹下。按要求编写一个 deposit 类，用于存储文件&lt;br&gt;account.txt 中的数据。该文件中每行记录一个账户的信息，包含</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="C++" scheme="http://rye1024.gitee.io/tags/C/"/>
     
   </entry>
   
   <entry>
-    <title>我与南园</title>
-    <link href="http://rye1024.gitee.io/2020/03/01/%E6%88%91%E4%B8%8E%E5%8D%97%E5%9B%AD/"/>
-    <id>http://rye1024.gitee.io/2020/03/01/%E6%88%91%E4%B8%8E%E5%8D%97%E5%9B%AD/</id>
-    <published>2020-03-01T02:05:16.000Z</published>
-    <updated>2020-10-04T02:09:09.901Z</updated>
+    <title>[codeforces 630K] Indivisibility</title>
+    <link href="http://rye1024.gitee.io/2020/06/07/codeforces-630K-Indivisibility/"/>
+    <id>http://rye1024.gitee.io/2020/06/07/codeforces-630K-Indivisibility/</id>
+    <published>2020-06-07T14:22:31.000Z</published>
+    <updated>2020-10-04T14:24:29.450Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic.imgdb.cn/item/5f788d2d160a154a671ab3f3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;https://codeforces.com/problemset/problem/630/K&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
     
-    <category term="旅行" scheme="http://rye1024.gitee.io/tags/%E6%97%85%E8%A1%8C/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="数学" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
-    <title>人生七年</title>
-    <link href="http://rye1024.gitee.io/2020/02/18/%E4%BA%BA%E7%94%9F%E4%B8%83%E5%B9%B4/"/>
-    <id>http://rye1024.gitee.io/2020/02/18/%E4%BA%BA%E7%94%9F%E4%B8%83%E5%B9%B4/</id>
-    <published>2020-02-18T02:02:53.000Z</published>
-    <updated>2020-10-04T02:03:31.419Z</updated>
+    <title>[苏州大学C++] 大一下C++第二次考试</title>
+    <link href="http://rye1024.gitee.io/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/"/>
+    <id>http://rye1024.gitee.io/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</id>
+    <published>2020-06-01T14:21:19.000Z</published>
+    <updated>2020-10-04T14:28:03.859Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;花了很长的时间，看完了MichaelApted导演团队制作的人生七年系列纪录片。有人评价说，在这部影片面前，所有真人秀都不配称为真人秀。&lt;/p&gt;
-&lt;p&gt;从1964年开始，影片记录了14个来自英国不同阶层的孩子每七年的成长足迹。导演的本意，大概是要彰显英国社会的阶级固化现象。</summary>
+    <summary type="html">&lt;p&gt;题目如下：&lt;br&gt;请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;包含圆形编号、圆心x坐标、圆心y坐标和半径等数据成员。圆形编号为整形。生成第1个圆形对象时编号为1，生成</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
     
-    <category term="影评" scheme="http://rye1024.gitee.io/tags/%E5%BD%B1%E8%AF%84/"/>
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="C++" scheme="http://rye1024.gitee.io/tags/C/"/>
     
   </entry>
   
   <entry>
-    <title>理查德·朱维尔的哀歌</title>
-    <link href="http://rye1024.gitee.io/2020/01/11/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%9C%B1%E7%BB%B4%E5%B0%94%E7%9A%84%E5%93%80%E6%AD%8C/"/>
-    <id>http://rye1024.gitee.io/2020/01/11/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%9C%B1%E7%BB%B4%E5%B0%94%E7%9A%84%E5%93%80%E6%AD%8C/</id>
-    <published>2020-01-11T02:00:28.000Z</published>
-    <updated>2020-10-04T02:01:51.252Z</updated>
+    <title>[位运算简单原理] 用点阵显示汉字</title>
+    <link href="http://rye1024.gitee.io/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/"/>
+    <id>http://rye1024.gitee.io/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</id>
+    <published>2020-05-30T14:19:18.000Z</published>
+    <updated>2020-10-04T14:23:19.277Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;人类的思考能力是造物者对这种生物施加的最大祝福。&lt;/p&gt;
-&lt;p&gt;也是诅咒。&lt;/p&gt;
-&lt;p&gt;一位朋友说，如果人际关系能够像时间一样可以量化就好了。&lt;/p&gt;
-&lt;p&gt;时间。&lt;/p&gt;
-&lt;p&gt;这是世界的第四维度，是作为三维生物的我们永远无法触及以及改变的概念。时间确实可以量化，从古时</summary>
+    <summary type="html">&lt;p&gt;参考：&lt;a href=&quot;https://www.cnblogs.com/hshy/articles/7839785.html&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="位运算" scheme="http://rye1024.gitee.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
     
-    <category term="哲思" scheme="http://rye1024.gitee.io/tags/%E5%93%B2%E6%80%9D/"/>
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title>当我拿起相机</title>
-    <link href="http://rye1024.gitee.io/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/"/>
-    <id>http://rye1024.gitee.io/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/</id>
-    <published>2020-01-11T01:57:33.000Z</published>
-    <updated>2020-10-04T01:58:48.325Z</updated>
+    <title>[codeforces 1360D] Buying Shovels</title>
+    <link href="http://rye1024.gitee.io/2020/05/28/codeforces-1360D-Buying-Shovels/"/>
+    <id>http://rye1024.gitee.io/2020/05/28/codeforces-1360D-Buying-Shovels/</id>
+    <published>2020-05-28T14:17:35.000Z</published>
+    <updated>2020-10-04T14:18:56.188Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。&lt;/p&gt;
-&lt;p&gt;曾向佳琪抱怨过这个问题</summary>
+    <summary type="html">&lt;p&gt;题目见: &lt;a href=&quot;https://codeforces.com/problemset/problem/1360/D&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
     
-    <category term="摄影" scheme="http://rye1024.gitee.io/tags/%E6%91%84%E5%BD%B1/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
     
-    <category term="哲思" scheme="http://rye1024.gitee.io/tags/%E5%93%B2%E6%80%9D/"/>
+    <category term="数学" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
-    <title>南昌杂记</title>
-    <link href="http://rye1024.gitee.io/2020/01/05/%E5%8D%97%E6%98%8C%E6%9D%82%E8%AE%B0/"/>
-    <id>http://rye1024.gitee.io/2020/01/05/%E5%8D%97%E6%98%8C%E6%9D%82%E8%AE%B0/</id>
-    <published>2020-01-05T01:51:35.000Z</published>
-    <updated>2020-10-04T01:57:09.529Z</updated>
+    <title>[HDU6536] Hello XTCPC</title>
+    <link href="http://rye1024.gitee.io/2020/05/24/HDU6536-Hello-XTCPC/"/>
+    <id>http://rye1024.gitee.io/2020/05/24/HDU6536-Hello-XTCPC/</id>
+    <published>2020-05-24T14:16:51.000Z</published>
+    <updated>2020-10-04T14:18:37.298Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;有的人带着思念回家，有的人陪着自己出走。&lt;/p&gt;
-&lt;p&gt;——记我的第一次独自旅行&lt;/p&gt;
-&lt;h2 id=&quot;1-绿皮火车&quot;&gt;&lt;a href=&quot;#1-绿皮火车&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://vjudge.net/problem/HDU-6536&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的旅行" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="摄影" scheme="http://rye1024.gitee.io/tags/%E6%91%84%E5%BD%B1/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
     
-    <category term="旅行" scheme="http://rye1024.gitee.io/tags/%E6%97%85%E8%A1%8C/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="数据结构" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
   <entry>
-    <title>黄昏之诗</title>
-    <link href="http://rye1024.gitee.io/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/"/>
-    <id>http://rye1024.gitee.io/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/</id>
-    <published>2020-01-01T01:36:31.000Z</published>
-    <updated>2020-10-04T01:44:21.889Z</updated>
+    <title>[codeforces 1355A] Sequence with Digits</title>
+    <link href="http://rye1024.gitee.io/2020/05/24/codeforces-1355A-Sequence-with-Digits/"/>
+    <id>http://rye1024.gitee.io/2020/05/24/codeforces-1355A-Sequence-with-Digits/</id>
+    <published>2020-05-24T14:14:43.000Z</published>
+    <updated>2020-10-04T14:18:48.123Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;题目见：&lt;a href=&quot;https://codeforces.com/problemset/problem/1355/A&quot; target=&quot;_blank&quot;</summary>
         
       
     
     
     
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="诗" scheme="http://rye1024.gitee.io/tags/%E8%AF%97/"/>
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
+    
+    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+    <category term="模拟" scheme="http://rye1024.gitee.io/tags/%E6%A8%A1%E6%8B%9F/"/>
     
   </entry>
   
