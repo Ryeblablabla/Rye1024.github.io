@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[codeforces 1355A] Sequence with Digits</title>
-    <url>/2020/05/24/codeforces-1355A-Sequence-with-Digits/</url>
-    <content><![CDATA[<p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>思维</tag>
-        <tag>模拟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[HDU6754] Distinct Sub-palindromes</title>
     <url>/2020/07/31/HDU6754-Distinct-Sub-palindromes/</url>
     <content><![CDATA[<p>题目：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6754" target="_blank" rel="noopener">HDU6754</a><br>题意：<br>S是长度为n的字符串。 S由小写英文字母组成。<br>您的任务是计算具有最少亚种回文数的不同S的数目。 亚种回文是回文的子字符串。<br>如果两个子回文式u和v的长度不同或对于某些i（0≤i≤length）ui≠vi，则它们是不同的。 例如，字符串“ aaaa”仅包含四个不同的子回文，即“ a”，“ aa”，“ aaa”和“ aaaa”。</p>
@@ -34,6 +18,39 @@
       </tags>
   </entry>
   <entry>
+    <title>[2019CCPC哈尔滨] F-Fixing Banners</title>
+    <url>/2020/10/07/2019CCPC%E5%93%88%E5%B0%94%E6%BB%A8-F-Fixing-Banners/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/gym/102394/problem/F" target="_blank" rel="noopener">F-Fixing Banners</a><br>题意：<br>每个测试用例给定6个字符串，看能否用这6个字符串各取1个字符组成“harbin”</p>
+<p>思路：<br>1.深度优先搜索</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> v[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> step)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(step == <span class="number">6</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i][step] &amp;&amp; !v[i])</span><br><span class="line">        &#123;</span><br><span class="line">            v[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(dfs(step+<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            v[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> s[<span class="number">7</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; s[i];</span><br><span class="line">        <span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; s[i].size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(s[i][j] == <span class="string">'h'</span>)</span><br><span class="line">                    vis[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'a'</span>)</span><br><span class="line">                    vis[i][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'r'</span>)</span><br><span class="line">                    vis[i][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'b'</span>)</span><br><span class="line">                    vis[i][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'i'</span>)</span><br><span class="line">                    vis[i][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'n'</span>)</span><br><span class="line">                    vis[i][<span class="number">5</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dfs(<span class="number">0</span>))</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>DFS</tag>
+        <tag>匈牙利匹配</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 1355A] Sequence with Digits</title>
+    <url>/2020/05/24/codeforces-1355A-Sequence-with-Digits/</url>
+    <content><![CDATA[<p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>思维</tag>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[HDU6536] Hello XTCPC</title>
     <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
     <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
@@ -47,26 +64,6 @@
         <tag>题解</tag>
         <tag>字符串</tag>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 559B] Equivalent Strings</title>
-    <url>/2020/06/07/codeforces-559B-Equivalent-Strings/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/559/B" target="_blank" rel="noopener">559B</a><br>题意：给定两个字符串，判断是不是一个神奇的字符串。<br>他们满足如下两个条件的其中之一：<br>1、 A与B相等。<br>2、 如果我们把字符串A分成两个长度相等的字符串A1,A2，并将字符串B分成两个长度相等的字符串B1,B2 然后他们满足以下的其中一项条件：<br>（1） A1与B1是一对神奇的字符串，并且A2与B2是一对神奇的字符串。<br>（2） A2与B1是一对神奇的字符串，并且A1与B2是一对神奇的字符串。<br>思路：<br>很显然用递归的思想，但是单纯的递归会TLE</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(len&amp;<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> n = len&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(n,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(<span class="number">0</span>,n),n))<span class="comment">///如果把这个和下面那个调换一下位置，就会TLE。很搞笑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(<span class="number">0</span>,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(n,n),n))</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>(judge(a,b,a.size())) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不过，这样就能过了……<br>……<br>……<br>正经思路是：<br>一个字符串可以拆成很多的小部分，这些小部分是可以任意排序的。（这个小部分的最小单位是2）（可以任意排序是因为条件2有两项。里面有很多种可能性的组合。）<br>按照字典顺序递归处理一下，再进行拼接。（具体是a&gt;b还是b&gt;a其实并不重要）<br>如果拼接之后的两个字符串相等，就可以了。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">handle</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.size()%<span class="number">2</span> == <span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">string</span> s1 = handle(s.substr(<span class="number">0</span>,s.size()/<span class="number">2</span>));</span><br><span class="line">    <span class="built_in">string</span> s2 = handle(s.substr(s.size()/<span class="number">2</span>,s.size()));</span><br><span class="line">    <span class="keyword">if</span>(s1 &gt; s2) <span class="keyword">return</span> s1 + s2;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> s2 + s1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    a = handle(a);</span><br><span class="line">    b = handle(b);</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>思维</tag>
-        <tag>字符串</tag>
-        <tag>递归</tag>
-        <tag>排序</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +101,8 @@
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>排序</tag>
         <tag>数学</tag>
+        <tag>排序</tag>
       </tags>
   </entry>
   <entry>
@@ -142,33 +139,6 @@
         <tag>题解</tag>
         <tag>思维</tag>
         <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[位运算简单原理] 用点阵显示汉字</title>
-    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
-<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
-<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
-<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
-<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这也是最开始定义key数组的原因。</p>
-<p>那么怎么在字库中找到这个汉字的位置呢？</p>
-<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
-<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这两种都是正确的。</p>
-<p>最后，注意字库文件应该用二进制形式打开。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -218,6 +188,79 @@
       </tags>
   </entry>
   <entry>
+    <title>[位运算简单原理] 用点阵显示汉字</title>
+    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
+<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
+<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
+<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
+<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这也是最开始定义key数组的原因。</p>
+<p>那么怎么在字库中找到这个汉字的位置呢？</p>
+<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
+<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这两种都是正确的。</p>
+<p>最后，注意字库文件应该用二进制形式打开。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 559B] Equivalent Strings</title>
+    <url>/2020/06/07/codeforces-559B-Equivalent-Strings/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/559/B" target="_blank" rel="noopener">559B</a><br>题意：给定两个字符串，判断是不是一个神奇的字符串。<br>他们满足如下两个条件的其中之一：<br>1、 A与B相等。<br>2、 如果我们把字符串A分成两个长度相等的字符串A1,A2，并将字符串B分成两个长度相等的字符串B1,B2 然后他们满足以下的其中一项条件：<br>（1） A1与B1是一对神奇的字符串，并且A2与B2是一对神奇的字符串。<br>（2） A2与B1是一对神奇的字符串，并且A1与B2是一对神奇的字符串。<br>思路：<br>很显然用递归的思想，但是单纯的递归会TLE</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(len&amp;<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> n = len&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(n,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(<span class="number">0</span>,n),n))<span class="comment">///如果把这个和下面那个调换一下位置，就会TLE。很搞笑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(<span class="number">0</span>,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(n,n),n))</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>(judge(a,b,a.size())) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，这样就能过了……<br>……<br>……<br>正经思路是：<br>一个字符串可以拆成很多的小部分，这些小部分是可以任意排序的。（这个小部分的最小单位是2）（可以任意排序是因为条件2有两项。里面有很多种可能性的组合。）<br>按照字典顺序递归处理一下，再进行拼接。（具体是a&gt;b还是b&gt;a其实并不重要）<br>如果拼接之后的两个字符串相等，就可以了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">handle</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.size()%<span class="number">2</span> == <span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">string</span> s1 = handle(s.substr(<span class="number">0</span>,s.size()/<span class="number">2</span>));</span><br><span class="line">    <span class="built_in">string</span> s2 = handle(s.substr(s.size()/<span class="number">2</span>,s.size()));</span><br><span class="line">    <span class="keyword">if</span>(s1 &gt; s2) <span class="keyword">return</span> s1 + s2;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> s2 + s1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    a = handle(a);</span><br><span class="line">    b = handle(b);</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>思维</tag>
+        <tag>排序</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于我</title>
+    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
+    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
+<p>所以这个人其实很好认。</p>
+<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
+<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
+<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
+<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
+<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
+<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
+<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
+<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
+<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
+<p>希望用自己的脚步丈量生命。</p>
+<p>希望用相机记录生活中的美。</p>
+<p>希望仰望星空能与伟大的灵魂沟通。</p>
+<p>联系方式：</p>
+<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
+<p>QQ：949662015</p>
+<p>微信：Rye65536<br>（65536是2的16次方）</p>
+]]></content>
+      <tags>
+        <tag>自我介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>南京扬州游记</title>
     <url>/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
@@ -261,32 +304,6 @@
       <tags>
         <tag>摄影</tag>
         <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于我</title>
-    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
-    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
-<p>所以这个人其实很好认。</p>
-<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
-<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
-<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
-<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
-<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
-<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
-<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
-<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
-<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
-<p>希望用自己的脚步丈量生命。</p>
-<p>希望用相机记录生活中的美。</p>
-<p>希望仰望星空能与伟大的灵魂沟通。</p>
-<p>联系方式：</p>
-<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
-<p>QQ：949662015</p>
-<p>微信：Rye65536<br>（65536是2的16次方）</p>
-]]></content>
-      <tags>
-        <tag>自我介绍</tag>
       </tags>
   </entry>
   <entry>
@@ -339,41 +356,6 @@
       </tags>
   </entry>
   <entry>
-    <title>去年的你也是这样躺在情人坡的草坪上</title>
-    <url>/2020/09/28/%E5%8E%BB%E5%B9%B4%E7%9A%84%E4%BD%A0%E4%B9%9F%E6%98%AF%E8%BF%99%E6%A0%B7%E8%BA%BA%E5%9C%A8%E6%83%85%E4%BA%BA%E5%9D%A1%E7%9A%84%E8%8D%89%E5%9D%AA%E4%B8%8A/</url>
-    <content><![CDATA[<p>去年的我走进苏大的校门，只觉得全世界没有一片云朵属于我。</p>
-<p>我的努力似乎并没能得到命运之神的青睐，而我梦寐以求的大学从高考分数揭晓的那一刻开始彻底成为梦中的泡影。</p>
-<p>站在“养天地正气，法古今完人”的校训面前我显得如此渺小。</p>
-<p>我不知道自己从哪里来，要到哪里去。我曾经想做的事情好像一下子落空了，而对未来的期待又太遥远触不可及。</p>
-<p>高中时候，我很喜欢这句话“成功不必在我，而功力必不唐捐。”</p>
-<p>虽然这种喜欢也是借来的。</p>
-<p>这句话的意思很好懂，是说你不要太着眼于当前的成功，你所有的努力都不会白费的。</p>
-<p>到今天我想，命运女神确实是自有安排。</p>
-<p>这一年变化可真是特别大，若写一封信给高考时的我：</p>
-<p>你绝对想不到自己是这样的：</p>
-<p><em>你参加了校园马拉松，竟然跑了个奖杯出来。在此之前你对所有的体育运动都是敬而远之的。那天你只是跟在别人的后面跑，有的人跑着跑着就停下了，但你没有；你觉得肺部像火烧一样，但你没有停下。冲过终点线的那一刻，你直到今天也不敢相信，你可以做到。</em></p>
-<p><em>你一个人坐上了开往千里之外的绿皮火车，在脏兮兮的卧铺上披着外套躺了一晚上。清晨看到南昌的晨光透过窗子照进来，你知道这是值得的。</em></p>
-<p><em>你真的带着相机走过了越来越多的地方，认识了不同的人，见识了远方的风景。走的越远，你心里对于远处的向往就越是强烈。你满心想着自由，想着用自己的脚步丈量生命。</em></p>
-<p><em>你和素昧平生的人写信，找寻灵魂的共鸣。在快节奏的网络时代你选择等待，就像你曾经为了等待日出枯坐在陌生的二十四层大楼里，饥渴交加但仍等着。而那样的人，你也确实遇到了。</em></p>
-<p><em>你还有好多的不足——</em></p>
-<p><em>懒惰。你可以在一天睡上十四个小时。</em></p>
-<p><em>高傲。你总是心高气傲而又能力有限。</em></p>
-<p><em>虚荣。你喜欢听到别人虚伪的赞美远胜于诚恳的批评。</em></p>
-<p><em>不够勇敢。你因此错过了很多机会。</em></p>
-<p><em>思想多过于行动。你始终做不到知行合一。</em></p>
-<p><em>去年的中秋你也是这样和舍友躺在情人坡的草坪上，看着月亮幻想着未来。尼采说“Eternal Return”，果然今年的我们也是这样，数着天上的星星。</em></p>
-<p><em>你说走下去吧，你还有无比胆量。</em></p>
-<p><strong>走下去吧，我们值得拥抱整片天空。</strong></p>
-<p><img src="https://pic.imgdb.cn/item/5f79202b160a154a6736b0a0.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787739160a154a6714bc53.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78758d160a154a67143e7f.jpg" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>夏天结束了</title>
     <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
     <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
@@ -400,41 +382,6 @@
 <p>我想尽量把这张照片拍得温柔。</p>
 <p><strong>“夏天结束了”</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的旅行</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-        <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小城过客</title>
-    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
-<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
-<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
-<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
-<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
-<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
-<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
-<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
-<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
-<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
-<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
-<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
-<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
-<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
-<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
-<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
-<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
-<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
-<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -478,6 +425,41 @@
       </tags>
   </entry>
   <entry>
+    <title>去年的你也是这样躺在情人坡的草坪上</title>
+    <url>/2020/09/28/%E5%8E%BB%E5%B9%B4%E7%9A%84%E4%BD%A0%E4%B9%9F%E6%98%AF%E8%BF%99%E6%A0%B7%E8%BA%BA%E5%9C%A8%E6%83%85%E4%BA%BA%E5%9D%A1%E7%9A%84%E8%8D%89%E5%9D%AA%E4%B8%8A/</url>
+    <content><![CDATA[<p>去年的我走进苏大的校门，只觉得全世界没有一片云朵属于我。</p>
+<p>我的努力似乎并没能得到命运之神的青睐，而我梦寐以求的大学从高考分数揭晓的那一刻开始彻底成为梦中的泡影。</p>
+<p>站在“养天地正气，法古今完人”的校训面前我显得如此渺小。</p>
+<p>我不知道自己从哪里来，要到哪里去。我曾经想做的事情好像一下子落空了，而对未来的期待又太遥远触不可及。</p>
+<p>高中时候，我很喜欢这句话“成功不必在我，而功力必不唐捐。”</p>
+<p>虽然这种喜欢也是借来的。</p>
+<p>这句话的意思很好懂，是说你不要太着眼于当前的成功，你所有的努力都不会白费的。</p>
+<p>到今天我想，命运女神确实是自有安排。</p>
+<p>这一年变化可真是特别大，若写一封信给高考时的我：</p>
+<p>你绝对想不到自己是这样的：</p>
+<p><em>你参加了校园马拉松，竟然跑了个奖杯出来。在此之前你对所有的体育运动都是敬而远之的。那天你只是跟在别人的后面跑，有的人跑着跑着就停下了，但你没有；你觉得肺部像火烧一样，但你没有停下。冲过终点线的那一刻，你直到今天也不敢相信，你可以做到。</em></p>
+<p><em>你一个人坐上了开往千里之外的绿皮火车，在脏兮兮的卧铺上披着外套躺了一晚上。清晨看到南昌的晨光透过窗子照进来，你知道这是值得的。</em></p>
+<p><em>你真的带着相机走过了越来越多的地方，认识了不同的人，见识了远方的风景。走的越远，你心里对于远处的向往就越是强烈。你满心想着自由，想着用自己的脚步丈量生命。</em></p>
+<p><em>你和素昧平生的人写信，找寻灵魂的共鸣。在快节奏的网络时代你选择等待，就像你曾经为了等待日出枯坐在陌生的二十四层大楼里，饥渴交加但仍等着。而那样的人，你也确实遇到了。</em></p>
+<p><em>你还有好多的不足——</em></p>
+<p><em>懒惰。你可以在一天睡上十四个小时。</em></p>
+<p><em>高傲。你总是心高气傲而又能力有限。</em></p>
+<p><em>虚荣。你喜欢听到别人虚伪的赞美远胜于诚恳的批评。</em></p>
+<p><em>不够勇敢。你因此错过了很多机会。</em></p>
+<p><em>思想多过于行动。你始终做不到知行合一。</em></p>
+<p><em>去年的中秋你也是这样和舍友躺在情人坡的草坪上，看着月亮幻想着未来。尼采说“Eternal Return”，果然今年的我们也是这样，数着天上的星星。</em></p>
+<p><em>你说走下去吧，你还有无比胆量。</em></p>
+<p><strong>走下去吧，我们值得拥抱整片天空。</strong></p>
+<p><img src="https://pic.imgdb.cn/item/5f79202b160a154a6736b0a0.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787739160a154a6714bc53.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78758d160a154a67143e7f.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>山石巴</title>
     <url>/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</url>
     <content><![CDATA[<p>山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。</p>
@@ -507,6 +489,41 @@
       </categories>
       <tags>
         <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小城过客</title>
+    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
+<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
+<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
+<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
+<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
+<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
+<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
+<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
+<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
+<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
+<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
+<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
+<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
+<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
+<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
+<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
+<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
+<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
+<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -596,91 +613,15 @@
       </tags>
   </entry>
   <entry>
-    <title>理查德·朱维尔的哀歌</title>
-    <url>/2020/01/11/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%9C%B1%E7%BB%B4%E5%B0%94%E7%9A%84%E5%93%80%E6%AD%8C/</url>
-    <content><![CDATA[<p>人类的思考能力是造物者对这种生物施加的最大祝福。</p>
-<p>也是诅咒。</p>
-<p>一位朋友说，如果人际关系能够像时间一样可以量化就好了。</p>
-<p>时间。</p>
-<p>这是世界的第四维度，是作为三维生物的我们永远无法触及以及改变的概念。时间确实可以量化，从古时候的日晷到如今的各种精准设备，我们可以知道一秒，一分钟，一小时，一天，一年，到一辈子。</p>
-<p>但是我们永远无法掌控它改变它。即使有很多人提出了平行宇宙的概念，想要解决外祖母悖论这样的问题，然而时间旅行和TimeMachine仍然只存在于幻想的文学影视作品当中。</p>
-<p>或许正是因为我们是旁观者，时间才显得如此清晰。</p>
-<p>老太太前几天去世了。所有的亲朋好友都会在最后进行郑重地告别，直到棺材被重重地合上，这就是一生的完结。</p>
-<p>我们怀着再怎样沉痛的哀思也无能为力，这就是人的生老病死，这就是时间的力量。一辈子，就是一辈子。就像一秒就是一秒一样。</p>
-<p>古来多少有权势的人想要追求长生不死，从始皇帝到天可汗，明朝炼仙丹的嘉靖……而今，尘归尘土归土。</p>
-<p>这就是时间。我们实际上是置身于时间长河之外的，第四维度对于我们来说是一个“可读”而非“可写”的文件。</p>
-<p>情感不是，人际关系不是。在人与人的相处中，我们是中间的一环，不可动摇的一部分。置身其中，自然没有办法观其全貌。情感之不可量化，也就可以体谅了。</p>
-<p>《理查德·朱维尔的哀歌》讲的是一个以坚守执法人员的正义而自豪的保安，在1996年亚特兰大奥运会上发现奥林匹克公园有炸弹，疏散群众。被誉为英雄，一时风头无二。而不过短短三天后，他就被FBI列为第一怀疑对象，认为是想要出名而故意放置了炸弹。</p>
-<p>而理查德·朱维尔的哀歌最终没有奏响，FBI的探员们没有掌握一个具有说服力的证据，最终他得以洗清罪名。</p>
-<p>理查德·朱维尔在影片中对他的律师沃森·布莱恩特说，“我选择你，是因为只有你没有把我当做五岁小孩，而是当作一个人来看待。”</p>
-<p>他肥胖，激进，固执，曾有过不良记录。他一直以自己是一个“执法人员”而自傲，因此曾在高速公路上拦车查酒驾——即使他没有执法许可。然而他纯粹，善良，傻得可爱。即使FBI的探员想给他安上一个不属于他的罪名，他也仍然积极配合他们的调查工作，因为这是他所信仰的“正义”。</p>
-<p>这是这部影片给我带来最大感动的地方。</p>
-<p>他能有所坚持，哪怕在旁人看来那很傻。</p>
-<p>他非常坚定地做自己，哪怕被误解。</p>
-<p>前些天在诚品书店，买了一本赵钢老师的摄影作品集《我的大学》。他从高中开始就明确自己将来要从事摄影行业，他复读了一年，考上了大学，仅仅是想“这样做就对得起父母了”。“然后我就可以做我喜欢做的事情”。他也确实做了他喜欢做的事情并且获得了成功。这本作品就是最好的写照。</p>
-<p>二十世纪九十年代的大学生的生活，从他的作品中可以窥一斑而知全豹。而当今，二十一世纪二十年代的大学生，是怎么样的呢？这群00后的大学生，他们的人生是怎么样的呢？</p>
-<p>我想到自己，想到我身边的朋友。</p>
-<p>神的诅咒。</p>
-<p>思来想去，我们的情感脉络汇集在一个名词上。</p>
-<p>焦躁。</p>
-<p>焦虑而不得安宁，浮躁而惶惶不可终日。</p>
-<p>焦躁从何而来？</p>
-<p>源自，我们找不到自己；我们不像理查德·朱维尔一样，知道自己想做什么；我们一直是被告知要去怎么做，被推着走。</p>
-<p>说一个很残酷的现实吧。</p>
-<p>贫富差距在我们这一代急剧扩大。阶级跨越的难度在我们这一代急剧扩大。七十年代的时候，富人和穷人的界限并不那么明显，但是后来，一小部分人先富了起来。另一部分人，没有那么富。</p>
-<p>大多数人没那么幸运，生得一个可以坐吃等死的好家庭。当然，出生在那样的家庭里的孩子，必定会接受到很好的教育，也不会选择坐吃等死的生活方式。</p>
-<p>今天想要生活没有那么容易了。</p>
-<p>江苏2016年初中毕业生人数是六十二万，参加高考的人数是三十二万，考上苏州大学需要在省内排名前一万。这所省属211高校的学生是同龄人的前1.6%，他们的本科生毕业平均薪资是5488元。而太仓这样的十八线小县城的房价都已经两万一平。</p>
-<p>2019年的新生人口已经降到一千万，中国极有可能在五年之内迎来人口负增长。人口红利的消失必将带来经济的萧条，那正是我们这一代人将要面对的危机。</p>
-<p>我们焦躁。</p>
-<p>我们从小被教育要好好读书。吃得苦中苦，方为人上人。</p>
-<p>然后一路被推着走到了这里，却发现我们仍然很难取得所谓的“成功”。生活，仍然很难。读书学习，到底有没有意义？</p>
-<p>然后仔细想想，其实自己什么都不知道，不知道自己是怎么样的人，不知道自己想做什么样的人。</p>
-<p>我的大多数同学在上大学之前并不了解自己的专业，没有想过自己以后要干什么。我们只是在应试教育优胜劣汰的残酷竞争中胜出，然后倒下。</p>
-<p>有时候我真的在想我到底为什么要好好读书。</p>
-<p>我开始质疑自己来到这人间的动机。</p>
-<p>老师告诉我，我可以多一个选择。工程师可以去做快递员，但是快递员做不了工程师。</p>
-<p>冰雪奇缘中有一句台词，“Do the next right thing.”读书就是“the next right thing.”</p>
-<p>又或许只是为了让父母满意。</p>
-<p>这些都是答案，但都是别人的答案。</p>
-<p>我们习惯了这样的竞争，而作为其中的佼佼者，又有着不安于人后的好胜心。当这样的好胜心，说得好听点叫上进，没有被满足的时候，就会产生焦躁。</p>
-<p>因为无论如何都有人比你更强。</p>
-<p>因为你不能捶过全世界。</p>
-<p>平凡一生也是过，精彩一生也是过。</p>
-<p>你无法改变时间的长度，一辈子就是一辈子。</p>
-<p>就像老太太的一辈子，结束了就是结束了。</p>
-<p>许多年后，很可能没有人会再记得你。你的墓碑上写着“王氏先祖”，或是张氏，李氏。然后下面放着你的骨灰盒。那就是你存在过的痕迹。</p>
-<p>时间无法改变，在生命的尽头我们会删除所有“差异”，生命本无高低贵贱。</p>
-<p>可是生命不是虚无的啊。</p>
-<p>那么，你为什么要读书，你为什么要学习？</p>
-<p>在这样，哪怕你名列同龄人的前3%，都很难凭借自己的薪资买房的世道下？</p>
-<p>在这个竞争愈发激烈而残酷的社会里？</p>
-<p>一开始读书是为了取悦父母，赢得赞誉。</p>
-<p>后来我觉得读书并不快乐。你有太多太多的压力要承受，有很多夜里你挑灯夜战而无人知你孤独，你也许很努力但是你的结果并不一定如意。</p>
-<p>我为什么要读书？</p>
-<p>为了实现我的理想。我所说的理想不是单单“理想大学”这样一个概念，而是真正想去做的事。是你，生来必须为之的使命。</p>
-<p>那如果我没有呢？那种名为理想的东西？</p>
-<p>是的，你说得对。并不一定每个人都有着自己非常非常想要去做的事情，知道去从事的事业去成为什么样的人。不是所有人都像赵钢、理查德·朱维尔那样坚定。</p>
-<p>你不知道怎么做，那你应该去读书。</p>
-<p>因为你将在充实自己的过程中探索未知的可能性。你懂得了更多的道理，你明白了更多的知识，渐渐地不再会被事情的表象所迷惑。然后渐渐地你了解到自己是一个怎么样的人，最终你找到了，你的理想。</p>
-<p>这不是很浪漫吗？因为，非你不可。</p>
-<p>是的，你要读书，不一定为了实现理想，更是为了找到理想。</p>
-<p>这是我思考之后的答案。</p>
-<p>我仍然不明晓生死之意义，史铁生曾经在地坛思考了十数年找到了答案。在书里，他告诉了我他的答案。但是那不是我的答案，每个人都有自己的答案。</p>
-<p>我也仍然没有找到和我的焦虑泰然处之的方案。我越是学习越是焦虑，因为我不甘于平庸。这是必然存在的情感。</p>
-<p>但我并不因为我的那些偶尔有的挫败和恐惧，焦躁，忧愁，烦恼，统而言之负能量的东西，而停下我的脚步。</p>
-<p>无知的人不焦虑，因为他什么都不懂。似懂非懂的人焦虑，因为他懂得不够多。</p>
-<p>我相信有一天当我们足够智慧，能够洞察世间的迷雾，能辨别黑白是非，通晓万物的道理，那时候我们不会焦虑。我们会得到由衷的快乐。</p>
-<p>正如理查德·朱维尔一样，你要有所坚持。哪怕在旁人看来很傻。</p>
-<p>如果你有理想，那就坚持理想。如果你没有理想，那就坚持自己。</p>
-<p>你来人间一趟，生命必须怒放。</p>
+    <title>扬州旅行计划书</title>
+    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
+    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
 ]]></content>
       <categories>
-        <category>我们的思念</category>
+        <category>旅行</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
-        <tag>哲思</tag>
+        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -800,6 +741,94 @@
         <tag>题解</tag>
         <tag>学习笔记</tag>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理查德·朱维尔的哀歌</title>
+    <url>/2020/01/11/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%9C%B1%E7%BB%B4%E5%B0%94%E7%9A%84%E5%93%80%E6%AD%8C/</url>
+    <content><![CDATA[<p>人类的思考能力是造物者对这种生物施加的最大祝福。</p>
+<p>也是诅咒。</p>
+<p>一位朋友说，如果人际关系能够像时间一样可以量化就好了。</p>
+<p>时间。</p>
+<p>这是世界的第四维度，是作为三维生物的我们永远无法触及以及改变的概念。时间确实可以量化，从古时候的日晷到如今的各种精准设备，我们可以知道一秒，一分钟，一小时，一天，一年，到一辈子。</p>
+<p>但是我们永远无法掌控它改变它。即使有很多人提出了平行宇宙的概念，想要解决外祖母悖论这样的问题，然而时间旅行和TimeMachine仍然只存在于幻想的文学影视作品当中。</p>
+<p>或许正是因为我们是旁观者，时间才显得如此清晰。</p>
+<p>老太太前几天去世了。所有的亲朋好友都会在最后进行郑重地告别，直到棺材被重重地合上，这就是一生的完结。</p>
+<p>我们怀着再怎样沉痛的哀思也无能为力，这就是人的生老病死，这就是时间的力量。一辈子，就是一辈子。就像一秒就是一秒一样。</p>
+<p>古来多少有权势的人想要追求长生不死，从始皇帝到天可汗，明朝炼仙丹的嘉靖……而今，尘归尘土归土。</p>
+<p>这就是时间。我们实际上是置身于时间长河之外的，第四维度对于我们来说是一个“可读”而非“可写”的文件。</p>
+<p>情感不是，人际关系不是。在人与人的相处中，我们是中间的一环，不可动摇的一部分。置身其中，自然没有办法观其全貌。情感之不可量化，也就可以体谅了。</p>
+<p>《理查德·朱维尔的哀歌》讲的是一个以坚守执法人员的正义而自豪的保安，在1996年亚特兰大奥运会上发现奥林匹克公园有炸弹，疏散群众。被誉为英雄，一时风头无二。而不过短短三天后，他就被FBI列为第一怀疑对象，认为是想要出名而故意放置了炸弹。</p>
+<p>而理查德·朱维尔的哀歌最终没有奏响，FBI的探员们没有掌握一个具有说服力的证据，最终他得以洗清罪名。</p>
+<p>理查德·朱维尔在影片中对他的律师沃森·布莱恩特说，“我选择你，是因为只有你没有把我当做五岁小孩，而是当作一个人来看待。”</p>
+<p>他肥胖，激进，固执，曾有过不良记录。他一直以自己是一个“执法人员”而自傲，因此曾在高速公路上拦车查酒驾——即使他没有执法许可。然而他纯粹，善良，傻得可爱。即使FBI的探员想给他安上一个不属于他的罪名，他也仍然积极配合他们的调查工作，因为这是他所信仰的“正义”。</p>
+<p>这是这部影片给我带来最大感动的地方。</p>
+<p>他能有所坚持，哪怕在旁人看来那很傻。</p>
+<p>他非常坚定地做自己，哪怕被误解。</p>
+<p>前些天在诚品书店，买了一本赵钢老师的摄影作品集《我的大学》。他从高中开始就明确自己将来要从事摄影行业，他复读了一年，考上了大学，仅仅是想“这样做就对得起父母了”。“然后我就可以做我喜欢做的事情”。他也确实做了他喜欢做的事情并且获得了成功。这本作品就是最好的写照。</p>
+<p>二十世纪九十年代的大学生的生活，从他的作品中可以窥一斑而知全豹。而当今，二十一世纪二十年代的大学生，是怎么样的呢？这群00后的大学生，他们的人生是怎么样的呢？</p>
+<p>我想到自己，想到我身边的朋友。</p>
+<p>神的诅咒。</p>
+<p>思来想去，我们的情感脉络汇集在一个名词上。</p>
+<p>焦躁。</p>
+<p>焦虑而不得安宁，浮躁而惶惶不可终日。</p>
+<p>焦躁从何而来？</p>
+<p>源自，我们找不到自己；我们不像理查德·朱维尔一样，知道自己想做什么；我们一直是被告知要去怎么做，被推着走。</p>
+<p>说一个很残酷的现实吧。</p>
+<p>贫富差距在我们这一代急剧扩大。阶级跨越的难度在我们这一代急剧扩大。七十年代的时候，富人和穷人的界限并不那么明显，但是后来，一小部分人先富了起来。另一部分人，没有那么富。</p>
+<p>大多数人没那么幸运，生得一个可以坐吃等死的好家庭。当然，出生在那样的家庭里的孩子，必定会接受到很好的教育，也不会选择坐吃等死的生活方式。</p>
+<p>今天想要生活没有那么容易了。</p>
+<p>江苏2016年初中毕业生人数是六十二万，参加高考的人数是三十二万，考上苏州大学需要在省内排名前一万。这所省属211高校的学生是同龄人的前1.6%，他们的本科生毕业平均薪资是5488元。而太仓这样的十八线小县城的房价都已经两万一平。</p>
+<p>2019年的新生人口已经降到一千万，中国极有可能在五年之内迎来人口负增长。人口红利的消失必将带来经济的萧条，那正是我们这一代人将要面对的危机。</p>
+<p>我们焦躁。</p>
+<p>我们从小被教育要好好读书。吃得苦中苦，方为人上人。</p>
+<p>然后一路被推着走到了这里，却发现我们仍然很难取得所谓的“成功”。生活，仍然很难。读书学习，到底有没有意义？</p>
+<p>然后仔细想想，其实自己什么都不知道，不知道自己是怎么样的人，不知道自己想做什么样的人。</p>
+<p>我的大多数同学在上大学之前并不了解自己的专业，没有想过自己以后要干什么。我们只是在应试教育优胜劣汰的残酷竞争中胜出，然后倒下。</p>
+<p>有时候我真的在想我到底为什么要好好读书。</p>
+<p>我开始质疑自己来到这人间的动机。</p>
+<p>老师告诉我，我可以多一个选择。工程师可以去做快递员，但是快递员做不了工程师。</p>
+<p>冰雪奇缘中有一句台词，“Do the next right thing.”读书就是“the next right thing.”</p>
+<p>又或许只是为了让父母满意。</p>
+<p>这些都是答案，但都是别人的答案。</p>
+<p>我们习惯了这样的竞争，而作为其中的佼佼者，又有着不安于人后的好胜心。当这样的好胜心，说得好听点叫上进，没有被满足的时候，就会产生焦躁。</p>
+<p>因为无论如何都有人比你更强。</p>
+<p>因为你不能捶过全世界。</p>
+<p>平凡一生也是过，精彩一生也是过。</p>
+<p>你无法改变时间的长度，一辈子就是一辈子。</p>
+<p>就像老太太的一辈子，结束了就是结束了。</p>
+<p>许多年后，很可能没有人会再记得你。你的墓碑上写着“王氏先祖”，或是张氏，李氏。然后下面放着你的骨灰盒。那就是你存在过的痕迹。</p>
+<p>时间无法改变，在生命的尽头我们会删除所有“差异”，生命本无高低贵贱。</p>
+<p>可是生命不是虚无的啊。</p>
+<p>那么，你为什么要读书，你为什么要学习？</p>
+<p>在这样，哪怕你名列同龄人的前3%，都很难凭借自己的薪资买房的世道下？</p>
+<p>在这个竞争愈发激烈而残酷的社会里？</p>
+<p>一开始读书是为了取悦父母，赢得赞誉。</p>
+<p>后来我觉得读书并不快乐。你有太多太多的压力要承受，有很多夜里你挑灯夜战而无人知你孤独，你也许很努力但是你的结果并不一定如意。</p>
+<p>我为什么要读书？</p>
+<p>为了实现我的理想。我所说的理想不是单单“理想大学”这样一个概念，而是真正想去做的事。是你，生来必须为之的使命。</p>
+<p>那如果我没有呢？那种名为理想的东西？</p>
+<p>是的，你说得对。并不一定每个人都有着自己非常非常想要去做的事情，知道去从事的事业去成为什么样的人。不是所有人都像赵钢、理查德·朱维尔那样坚定。</p>
+<p>你不知道怎么做，那你应该去读书。</p>
+<p>因为你将在充实自己的过程中探索未知的可能性。你懂得了更多的道理，你明白了更多的知识，渐渐地不再会被事情的表象所迷惑。然后渐渐地你了解到自己是一个怎么样的人，最终你找到了，你的理想。</p>
+<p>这不是很浪漫吗？因为，非你不可。</p>
+<p>是的，你要读书，不一定为了实现理想，更是为了找到理想。</p>
+<p>这是我思考之后的答案。</p>
+<p>我仍然不明晓生死之意义，史铁生曾经在地坛思考了十数年找到了答案。在书里，他告诉了我他的答案。但是那不是我的答案，每个人都有自己的答案。</p>
+<p>我也仍然没有找到和我的焦虑泰然处之的方案。我越是学习越是焦虑，因为我不甘于平庸。这是必然存在的情感。</p>
+<p>但我并不因为我的那些偶尔有的挫败和恐惧，焦躁，忧愁，烦恼，统而言之负能量的东西，而停下我的脚步。</p>
+<p>无知的人不焦虑，因为他什么都不懂。似懂非懂的人焦虑，因为他懂得不够多。</p>
+<p>我相信有一天当我们足够智慧，能够洞察世间的迷雾，能辨别黑白是非，通晓万物的道理，那时候我们不会焦虑。我们会得到由衷的快乐。</p>
+<p>正如理查德·朱维尔一样，你要有所坚持。哪怕在旁人看来很傻。</p>
+<p>如果你有理想，那就坚持理想。如果你没有理想，那就坚持自己。</p>
+<p>你来人间一趟，生命必须怒放。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+        <tag>哲思</tag>
       </tags>
   </entry>
   <entry>
