@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[HDU6536] Hello XTCPC</title>
+    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
+    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[2019CCPC哈尔滨] F-Fixing Banners</title>
     <url>/2020/10/07/2019CCPC%E5%93%88%E5%B0%94%E6%BB%A8-F-Fixing-Banners/</url>
     <content><![CDATA[<p>题目：<a href="https://codeforces.com/gym/102394/problem/F" target="_blank" rel="noopener">F-Fixing Banners</a><br>题意：<br>每个测试用例给定6个字符串，看能否用这6个字符串各取1个字符组成“harbin”</p>
@@ -18,10 +34,10 @@
       </tags>
   </entry>
   <entry>
-    <title>[HDU6536] Hello XTCPC</title>
-    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
-    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>[codeforces 1355A] Sequence with Digits</title>
+    <url>/2020/05/24/codeforces-1355A-Sequence-with-Digits/</url>
+    <content><![CDATA[<p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>题解</category>
@@ -29,8 +45,25 @@
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>数据结构</tag>
+        <tag>思维</tag>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 1360D] Buying Shovels</title>
+    <url>/2020/05/28/codeforces-1360D-Buying-Shovels/</url>
+    <content><![CDATA[<p>题目见: <a href="https://codeforces.com/problemset/problem/1360/D" target="_blank" rel="noopener">1360D</a><br>题意：给n把铁锹和一个数k，可以选择任意一个数1&lt;= t &lt;= k，每次都购买t个铁锹，求最少的购买次数。<br>思路：求n的最大的但不大于k的因数,n除以这个因数就是答案。可以想到的是：1.在k&gt;=n的情况下，只需要购买1次。2.正常来说，为了找到1到k范围内n的最大的因数，我们需要遍历1到k，但是这样很容易导致超时。优化的方法是：遍历1<del>√k，如果能找到一个数x被n整除，这说明它是其因数。并且，n/x也是其因数。<br>例如第一组样例n=8,k=7<br>如果遍历1</del>7则是：<br>x=1, n%1=0, 8/1=8;<br>x=2, n%2=0, 8/2=4;<br>x=3..<br>x=4, n%4=0, 8/4=2;<br>n=5..6..7..<br>其中最大的因数是4,故而ans = 2;<br>但是如果遍历1~√7则是<br>x=1, n%1=0, 8/1=8, 8/(8/1)=1 (8&gt;7 不成立);<br>x=2, n%2=0, 8/2=4, 8/(8/2)=2;<br>可以看到，当我们遍历到最小的因数的时候，其实也获得了对应的最大的因数。<br>只要这个相对小的因数对应的相对大的因数不大于k，我们就可以认为它对应的相对大的因数是最终的答案。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(b &gt;= a )&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i * i &lt;= a; i++)&#123;</span><br><span class="line"><span class="comment">//                cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                <span class="keyword">if</span>(a % i == <span class="number">0</span> )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt;= b)</span><br><span class="line">                        ans = min(a/i,ans);</span><br><span class="line">                    <span class="keyword">if</span>(a / i &lt;= b)</span><br><span class="line">                        ans = min(ans, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>思维</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -51,22 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 1355A] Sequence with Digits</title>
-    <url>/2020/05/24/codeforces-1355A-Sequence-with-Digits/</url>
-    <content><![CDATA[<p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>思维</tag>
-        <tag>模拟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[codeforces 1372C] Omkar and Baseball</title>
     <url>/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</url>
     <content><![CDATA[<p>题目: <a href="https://codeforces.com/problemset/problem/1372/C" target="_blank" rel="noopener">1372C</a><br>题意：给定一个从1~n的顺序不定的数组，定义一种排序操作：区间[L,R]，操作后里面的所有数都不在原来的位置上。求几次操作可以把数组变成1,2,3,..n的顺序。<br>思路：<br>没有经过严格的论证，但是造了几个数据发现如下规律：</p>
@@ -84,8 +101,8 @@
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>排序</tag>
         <tag>数学</tag>
+        <tag>排序</tag>
       </tags>
   </entry>
   <entry>
@@ -121,11 +138,14 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 1360D] Buying Shovels</title>
-    <url>/2020/05/28/codeforces-1360D-Buying-Shovels/</url>
-    <content><![CDATA[<p>题目见: <a href="https://codeforces.com/problemset/problem/1360/D" target="_blank" rel="noopener">1360D</a><br>题意：给n把铁锹和一个数k，可以选择任意一个数1&lt;= t &lt;= k，每次都购买t个铁锹，求最少的购买次数。<br>思路：求n的最大的但不大于k的因数,n除以这个因数就是答案。可以想到的是：1.在k&gt;=n的情况下，只需要购买1次。2.正常来说，为了找到1到k范围内n的最大的因数，我们需要遍历1到k，但是这样很容易导致超时。优化的方法是：遍历1<del>√k，如果能找到一个数x被n整除，这说明它是其因数。并且，n/x也是其因数。<br>例如第一组样例n=8,k=7<br>如果遍历1</del>7则是：<br>x=1, n%1=0, 8/1=8;<br>x=2, n%2=0, 8/2=4;<br>x=3..<br>x=4, n%4=0, 8/4=2;<br>n=5..6..7..<br>其中最大的因数是4,故而ans = 2;<br>但是如果遍历1~√7则是<br>x=1, n%1=0, 8/1=8, 8/(8/1)=1 (8&gt;7 不成立);<br>x=2, n%2=0, 8/2=4, 8/(8/2)=2;<br>可以看到，当我们遍历到最小的因数的时候，其实也获得了对应的最大的因数。<br>只要这个相对小的因数对应的相对大的因数不大于k，我们就可以认为它对应的相对大的因数是最终的答案。</p>
-<p>代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(b &gt;= a )&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i * i &lt;= a; i++)&#123;</span><br><span class="line"><span class="comment">//                cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                <span class="keyword">if</span>(a % i == <span class="number">0</span> )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt;= b)</span><br><span class="line">                        ans = min(a/i,ans);</span><br><span class="line">                    <span class="keyword">if</span>(a / i &lt;= b)</span><br><span class="line">                        ans = min(ans, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>[codeforces 621C] Wet Shark and Flowers</title>
+    <url>/2020/06/07/codeforces-621C-Wet-Shark-and-Flowers/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/621/C" target="_blank" rel="noopener">621C</a><br>题意：<br>n个人围坐一圈，每个人有从l到r范围内的一个数，如果他和旁边的那个人手里的数字的乘积是质数p的倍数，两个人都获得1000元。求所有人得到的钱的数学期望。<br>思路：<br>很多人都做出来的一道题目。比赛的时候因为先开了A题，写的心态炸裂，剩下半个小时就没做这道题。</p>
+<p>首先我们要知道的是，求1<del>n中有几个数能被k整除，只要求n/k取整就可以了。<br>所以，一个人手里的数的范围l</del>r中，能被p整除的数的个数是：r/p-(l-1)/p 有的人可能会想化简成(r-l+1)/p 这是不对的 因为那个除号是整除运算<br>为什么不是l-r?区间长度。就像1~n不是(n-1)/k而是(n-1+1)/k=n/k一样</p>
+<p>拿个数除以区间长度，我们就可以得到：<br>一个人手里的数字是p的倍数的概率 = (r/p-(l-1)/p)/(r-l+1)<br>设这个概率为P1，他相邻的人手里的数字是p的倍数的概率也这么求，设为P2<br>他俩手里数字的乘积也是p的倍数，也就等价于：<br>P3 = 1-(1-P1)(1-P2)</p>
+<p>那么如果这个人的坐标是i，他相邻的人，我们可以认为是(i+1)%n。围成一圈，利用取余操作，如果他是最后一个人，那么取了余数之后就知道他相邻的人是第一个人。</p>
+<p>求和，乘以2000，得到最终答案。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">double</span> pp[<span class="number">100005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,p;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; p;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> l,r;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        pp[i] = (<span class="keyword">double</span>)(r/p-(l<span class="number">-1</span>)/p)/(r-l+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//        cout &lt;&lt; pp[i] &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        ans += <span class="number">1.0</span> - (<span class="number">1.0</span> - pp[i]) * (<span class="number">1.0</span> - pp[(i+<span class="number">1</span>)%n]);</span><br><span class="line"><span class="comment">//        cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.10f\n"</span>,ans * <span class="number">2000</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>题解</category>
@@ -162,26 +182,6 @@
     <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
     <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>思维</tag>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 621C] Wet Shark and Flowers</title>
-    <url>/2020/06/07/codeforces-621C-Wet-Shark-and-Flowers/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/621/C" target="_blank" rel="noopener">621C</a><br>题意：<br>n个人围坐一圈，每个人有从l到r范围内的一个数，如果他和旁边的那个人手里的数字的乘积是质数p的倍数，两个人都获得1000元。求所有人得到的钱的数学期望。<br>思路：<br>很多人都做出来的一道题目。比赛的时候因为先开了A题，写的心态炸裂，剩下半个小时就没做这道题。</p>
-<p>首先我们要知道的是，求1<del>n中有几个数能被k整除，只要求n/k取整就可以了。<br>所以，一个人手里的数的范围l</del>r中，能被p整除的数的个数是：r/p-(l-1)/p 有的人可能会想化简成(r-l+1)/p 这是不对的 因为那个除号是整除运算<br>为什么不是l-r?区间长度。就像1~n不是(n-1)/k而是(n-1+1)/k=n/k一样</p>
-<p>拿个数除以区间长度，我们就可以得到：<br>一个人手里的数字是p的倍数的概率 = (r/p-(l-1)/p)/(r-l+1)<br>设这个概率为P1，他相邻的人手里的数字是p的倍数的概率也这么求，设为P2<br>他俩手里数字的乘积也是p的倍数，也就等价于：<br>P3 = 1-(1-P1)(1-P2)</p>
-<p>那么如果这个人的坐标是i，他相邻的人，我们可以认为是(i+1)%n。围成一圈，利用取余操作，如果他是最后一个人，那么取了余数之后就知道他相邻的人是第一个人。</p>
-<p>求和，乘以2000，得到最终答案。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">double</span> pp[<span class="number">100005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,p;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; p;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> l,r;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        pp[i] = (<span class="keyword">double</span>)(r/p-(l<span class="number">-1</span>)/p)/(r-l+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//        cout &lt;&lt; pp[i] &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        ans += <span class="number">1.0</span> - (<span class="number">1.0</span> - pp[i]) * (<span class="number">1.0</span> - pp[(i+<span class="number">1</span>)%n]);</span><br><span class="line"><span class="comment">//        cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.10f\n"</span>,ans * <span class="number">2000</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>题解</category>
@@ -266,33 +266,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[位运算简单原理] 用点阵显示汉字</title>
-    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
-<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
-<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
-<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
-<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这也是最开始定义key数组的原因。</p>
-<p>那么怎么在字库中找到这个汉字的位置呢？</p>
-<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
-<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这两种都是正确的。</p>
-<p>最后，注意字库文件应该用二进制形式打开。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>南京扬州游记</title>
     <url>/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
@@ -336,6 +309,33 @@
       <tags>
         <tag>摄影</tag>
         <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[位运算简单原理] 用点阵显示汉字</title>
+    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
+<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
+<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
+<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
+<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这也是最开始定义key数组的原因。</p>
+<p>那么怎么在字库中找到这个汉字的位置呢？</p>
+<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
+<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这两种都是正确的。</p>
+<p>最后，注意字库文件应该用二进制形式打开。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -456,6 +456,41 @@
       </tags>
   </entry>
   <entry>
+    <title>小城过客</title>
+    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
+<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
+<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
+<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
+<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
+<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
+<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
+<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
+<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
+<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
+<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
+<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
+<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
+<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
+<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
+<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
+<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
+<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
+<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>夏天结束了</title>
     <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
     <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
@@ -482,41 +517,6 @@
 <p>我想尽量把这张照片拍得温柔。</p>
 <p><strong>“夏天结束了”</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的旅行</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-        <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小城过客</title>
-    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
-<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
-<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
-<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
-<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
-<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
-<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
-<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
-<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
-<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
-<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
-<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
-<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
-<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
-<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
-<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
-<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
-<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
-<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -556,18 +556,6 @@
       </categories>
       <tags>
         <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扬州旅行计划书</title>
-    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
-    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
-]]></content>
-      <categories>
-        <category>我们的旅行</category>
-      </categories>
-      <tags>
-        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -653,6 +641,18 @@
       </categories>
       <tags>
         <tag>杂感</tag>
+        <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扬州旅行计划书</title>
+    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
+    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
+]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
+      <tags>
         <tag>旅行</tag>
       </tags>
   </entry>
@@ -864,6 +864,27 @@
       </tags>
   </entry>
   <entry>
+    <title>让平凡的日子也散发出光亮</title>
+    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
+    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
+<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
+<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
+<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
+<p>诗意的世界就借由仪式感来创造。</p>
+<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
+<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
+<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
+<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
+<p>让平凡的日子也散发出光亮。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[苏州大学C++] 大一下C++第二次考试</title>
     <url>/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
     <content><![CDATA[<p>题目如下：<br>请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：</p>
@@ -892,64 +913,6 @@
         <tag>题解</tag>
         <tag>学习笔记</tag>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>让平凡的日子也散发出光亮</title>
-    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
-    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
-<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
-<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
-<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
-<p>诗意的世界就借由仪式感来创造。</p>
-<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
-<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
-<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
-<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
-<p>让平凡的日子也散发出光亮。</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>麦田的儿子和海的故事</title>
-    <url>/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/</url>
-    <content><![CDATA[<p>他把灵魂压在锄头底下</p>
-<p>丰收和饥饿、都埋葬在麦地里</p>
-<p>他站在破晓之前的田垄上</p>
-<p>守望着东方</p>
-<p>等待着白天的生长</p>
-<p>有一天</p>
-<p>羽毛落到了他的窗前</p>
-<p>第一次</p>
-<p>他看到了鼓动的船帆</p>
-<p>听到了海上、孤勇的波浪</p>
-<p>他把海螺扣在耳朵上</p>
-<p>那不是大海在歌唱</p>
-<p>是他的鲜血在热烈地流动</p>
-<p>沙子闪烁着群星</p>
-<p>海面翻涌着月光</p>
-<p>大海的一切完美无缺</p>
-<p>却没有一处能让他敲下锄头</p>
-<p>他把麦穗洒向大海</p>
-<p>风停下了，羽毛飘走了</p>
-<p>所有的潮水都退去了</p>
-<p>山石依然屹立</p>
-<p>他死在了海里</p>
-<p>你走了之后</p>
-<p>麦田里、下了大雪</p>
-<p>月亮不再落下</p>
-<p>云朵，还保持在那一刻的模样</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
       </tags>
   </entry>
   <entry>
@@ -1003,6 +966,43 @@
 <p>然后让我的肉体埋葬在秋的落叶下</p>
 <p>土地里，浇筑着我的心头血</p>
 <p>春天的樱花还会开得绚烂</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>诗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>麦田的儿子和海的故事</title>
+    <url>/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/</url>
+    <content><![CDATA[<p>他把灵魂压在锄头底下</p>
+<p>丰收和饥饿、都埋葬在麦地里</p>
+<p>他站在破晓之前的田垄上</p>
+<p>守望着东方</p>
+<p>等待着白天的生长</p>
+<p>有一天</p>
+<p>羽毛落到了他的窗前</p>
+<p>第一次</p>
+<p>他看到了鼓动的船帆</p>
+<p>听到了海上、孤勇的波浪</p>
+<p>他把海螺扣在耳朵上</p>
+<p>那不是大海在歌唱</p>
+<p>是他的鲜血在热烈地流动</p>
+<p>沙子闪烁着群星</p>
+<p>海面翻涌着月光</p>
+<p>大海的一切完美无缺</p>
+<p>却没有一处能让他敲下锄头</p>
+<p>他把麦穗洒向大海</p>
+<p>风停下了，羽毛飘走了</p>
+<p>所有的潮水都退去了</p>
+<p>山石依然屹立</p>
+<p>他死在了海里</p>
+<p>你走了之后</p>
+<p>麦田里、下了大雪</p>
+<p>月亮不再落下</p>
+<p>云朵，还保持在那一刻的模样</p>
 ]]></content>
       <categories>
         <category>我们的思念</category>
