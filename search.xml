@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[2019CCPC哈尔滨] F-Fixing Banners</title>
+    <url>/2020/10/07/2019CCPC%E5%93%88%E5%B0%94%E6%BB%A8-F-Fixing-Banners/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/gym/102394/problem/F" target="_blank" rel="noopener">F-Fixing Banners</a><br>题意：<br>每个测试用例给定6个字符串，看能否用这6个字符串各取1个字符组成“harbin”</p>
+<p>思路：<br>1.深度优先搜索</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> v[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> step)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(step == <span class="number">6</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i][step] &amp;&amp; !v[i])</span><br><span class="line">        &#123;</span><br><span class="line">            v[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(dfs(step+<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            v[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> s[<span class="number">7</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; s[i];</span><br><span class="line">        <span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; s[i].size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(s[i][j] == <span class="string">'h'</span>)</span><br><span class="line">                    vis[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'a'</span>)</span><br><span class="line">                    vis[i][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'r'</span>)</span><br><span class="line">                    vis[i][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'b'</span>)</span><br><span class="line">                    vis[i][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'i'</span>)</span><br><span class="line">                    vis[i][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'n'</span>)</span><br><span class="line">                    vis[i][<span class="number">5</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dfs(<span class="number">0</span>))</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>DFS</tag>
+        <tag>匈牙利匹配</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[HDU6536] Hello XTCPC</title>
+    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
+    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[HDU6754] Distinct Sub-palindromes</title>
     <url>/2020/07/31/HDU6754-Distinct-Sub-palindromes/</url>
     <content><![CDATA[<p>题目：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6754" target="_blank" rel="noopener">HDU6754</a><br>题意：<br>S是长度为n的字符串。 S由小写英文字母组成。<br>您的任务是计算具有最少亚种回文数的不同S的数目。 亚种回文是回文的子字符串。<br>如果两个子回文式u和v的长度不同或对于某些i（0≤i≤length）ui≠vi，则它们是不同的。 例如，字符串“ aaaa”仅包含四个不同的子回文，即“ a”，“ aa”，“ aaa”和“ aaaa”。</p>
@@ -34,56 +67,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[HDU6536] Hello XTCPC</title>
-    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
-    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 1360D] Buying Shovels</title>
-    <url>/2020/05/28/codeforces-1360D-Buying-Shovels/</url>
-    <content><![CDATA[<p>题目见: <a href="https://codeforces.com/problemset/problem/1360/D" target="_blank" rel="noopener">1360D</a><br>题意：给n把铁锹和一个数k，可以选择任意一个数1&lt;= t &lt;= k，每次都购买t个铁锹，求最少的购买次数。<br>思路：求n的最大的但不大于k的因数,n除以这个因数就是答案。可以想到的是：1.在k&gt;=n的情况下，只需要购买1次。2.正常来说，为了找到1到k范围内n的最大的因数，我们需要遍历1到k，但是这样很容易导致超时。优化的方法是：遍历1<del>√k，如果能找到一个数x被n整除，这说明它是其因数。并且，n/x也是其因数。<br>例如第一组样例n=8,k=7<br>如果遍历1</del>7则是：<br>x=1, n%1=0, 8/1=8;<br>x=2, n%2=0, 8/2=4;<br>x=3..<br>x=4, n%4=0, 8/4=2;<br>n=5..6..7..<br>其中最大的因数是4,故而ans = 2;<br>但是如果遍历1~√7则是<br>x=1, n%1=0, 8/1=8, 8/(8/1)=1 (8&gt;7 不成立);<br>x=2, n%2=0, 8/2=4, 8/(8/2)=2;<br>可以看到，当我们遍历到最小的因数的时候，其实也获得了对应的最大的因数。<br>只要这个相对小的因数对应的相对大的因数不大于k，我们就可以认为它对应的相对大的因数是最终的答案。</p>
-<p>代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(b &gt;= a )&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i * i &lt;= a; i++)&#123;</span><br><span class="line"><span class="comment">//                cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                <span class="keyword">if</span>(a % i == <span class="number">0</span> )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt;= b)</span><br><span class="line">                        ans = min(a/i,ans);</span><br><span class="line">                    <span class="keyword">if</span>(a / i &lt;= b)</span><br><span class="line">                        ans = min(ans, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>思维</tag>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[2019CCPC哈尔滨] F-Fixing Banners</title>
-    <url>/2020/10/07/2019CCPC%E5%93%88%E5%B0%94%E6%BB%A8-F-Fixing-Banners/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/gym/102394/problem/F" target="_blank" rel="noopener">F-Fixing Banners</a><br>题意：<br>每个测试用例给定6个字符串，看能否用这6个字符串各取1个字符组成“harbin”</p>
-<p>思路：<br>1.深度优先搜索</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> v[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> step)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(step == <span class="number">6</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i][step] &amp;&amp; !v[i])</span><br><span class="line">        &#123;</span><br><span class="line">            v[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(dfs(step+<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            v[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> s[<span class="number">7</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; s[i];</span><br><span class="line">        <span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; s[i].size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(s[i][j] == <span class="string">'h'</span>)</span><br><span class="line">                    vis[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'a'</span>)</span><br><span class="line">                    vis[i][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'r'</span>)</span><br><span class="line">                    vis[i][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'b'</span>)</span><br><span class="line">                    vis[i][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'i'</span>)</span><br><span class="line">                    vis[i][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i][j] == <span class="string">'n'</span>)</span><br><span class="line">                    vis[i][<span class="number">5</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dfs(<span class="number">0</span>))</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>DFS</tag>
-        <tag>匈牙利匹配</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[codeforces 1372C] Omkar and Baseball</title>
     <url>/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</url>
     <content><![CDATA[<p>题目: <a href="https://codeforces.com/problemset/problem/1372/C" target="_blank" rel="noopener">1372C</a><br>题意：给定一个从1~n的顺序不定的数组，定义一种排序操作：区间[L,R]，操作后里面的所有数都不在原来的位置上。求几次操作可以把数组变成1,2,3,..n的顺序。<br>思路：<br>没有经过严格的论证，但是造了几个数据发现如下规律：</p>
@@ -101,8 +84,21 @@
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>数学</tag>
         <tag>排序</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 1417C] k-Amazing Numbers</title>
+    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -125,23 +121,11 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 1417C] k-Amazing Numbers</title>
-    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 630K] Indivisibility</title>
-    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>[codeforces 1360D] Buying Shovels</title>
+    <url>/2020/05/28/codeforces-1360D-Buying-Shovels/</url>
+    <content><![CDATA[<p>题目见: <a href="https://codeforces.com/problemset/problem/1360/D" target="_blank" rel="noopener">1360D</a><br>题意：给n把铁锹和一个数k，可以选择任意一个数1&lt;= t &lt;= k，每次都购买t个铁锹，求最少的购买次数。<br>思路：求n的最大的但不大于k的因数,n除以这个因数就是答案。可以想到的是：1.在k&gt;=n的情况下，只需要购买1次。2.正常来说，为了找到1到k范围内n的最大的因数，我们需要遍历1到k，但是这样很容易导致超时。优化的方法是：遍历1<del>√k，如果能找到一个数x被n整除，这说明它是其因数。并且，n/x也是其因数。<br>例如第一组样例n=8,k=7<br>如果遍历1</del>7则是：<br>x=1, n%1=0, 8/1=8;<br>x=2, n%2=0, 8/2=4;<br>x=3..<br>x=4, n%4=0, 8/4=2;<br>n=5..6..7..<br>其中最大的因数是4,故而ans = 2;<br>但是如果遍历1~√7则是<br>x=1, n%1=0, 8/1=8, 8/(8/1)=1 (8&gt;7 不成立);<br>x=2, n%2=0, 8/2=4, 8/(8/2)=2;<br>可以看到，当我们遍历到最小的因数的时候，其实也获得了对应的最大的因数。<br>只要这个相对小的因数对应的相对大的因数不大于k，我们就可以认为它对应的相对大的因数是最终的答案。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(b &gt;= a )&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i * i &lt;= a; i++)&#123;</span><br><span class="line"><span class="comment">//                cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                <span class="keyword">if</span>(a % i == <span class="number">0</span> )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt;= b)</span><br><span class="line">                        ans = min(a/i,ans);</span><br><span class="line">                    <span class="keyword">if</span>(a / i &lt;= b)</span><br><span class="line">                        ans = min(ans, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>题解</category>
@@ -171,6 +155,22 @@
         <tag>思维</tag>
         <tag>排序</tag>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 630K] Indivisibility</title>
+    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>思维</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -388,6 +388,39 @@
       </tags>
   </entry>
   <entry>
+    <title>夏末的浪子</title>
+    <url>/2020/08/26/%E5%A4%8F%E6%9C%AB%E7%9A%84%E6%B5%AA%E5%AD%90/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这辆车足足在苏州城里绕行了两个小时，不断地上来那些说着同一个口音的人们。它甚至经过了学校旁边的一条路，看见苏大的凌云楼仅在一墙之隔。和熟悉的风景不期而遇，这种体验是奇妙的，我很想和谁说说，只是说不得。</p>
+<p>直到六点钟，我的耐心几乎被消耗殆尽，它才驶离了苏州。</p>
+<p>路过南京时，停在了一个服务站。但是那里实在是太老旧，而又太偏僻，仅仅停泊了这一辆大巴。餐厅，是二十年前风格的建筑；厕所，和苏大文成楼里的厕所一样老旧，甚至有甚之：小便池是用水泥浇筑的，洗手池下面放了一个大缸来储水。</p>
+<p>所有人都下车，在那片空旷的场地上休憩。他们自在的样子，显示出这趟旅途走过不止一次。即使是半大的孩童，也知道下一站停靠在哪儿，我一无所知，也查不到这些，这大概是当地人一种习以为常的默契吧。</p>
+<p>我意识到我似乎闯入了一片不属于我的领地。</p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>我在路上看着月亮，今天的月亮是半残的，月光不是很亮。</p>
+<p>我看了两个小时多的月亮，看着它从山后移到云后，从树木丛林掩映到被高楼大厦遮挡，从左边转到右边，然后又转到左边——这是因为路的朝向不同。</p>
+<p>我总觉得夜晚的城市比白天的漂亮些，或许是因为那些灯光的缘故。眯着眼睛看，就像是看见了星河，那是自然的伟力而非人类的壮举。而定睛望去，拖出残影的光点并不是流星而是车辆，是活在这个世界上的芸芸众生。</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>这辆车上的人们从头到尾都在用他们的方言交流。</p>
+<p>我曾经听人说，江浙的土话很难懂，但我从小生活在这里，自然而然会说吴语，体会不到身处异乡时那种语言不通的痛苦；再去别的城市旅行时，多是去一些大都市，现代化水平很高了，人们多说普通话。唯独在这个车辆上我明白了那种感受。</p>
+<p>除了我，所有的乘客，甚至包括乘务员，司机，他们说的都是方言。我虽然并不想加入他们的交流，但也难免尴尬。</p>
+<p>下车时，这车不是直接停到车站里。进入了桐城，它摇身一变，成为一辆公交车，在不同的站点停留。乘务员问乘客们，在哪下。近乎把人送到家门口的行为固然令人感动，然而语言不通而又人生地不熟，我实在无法描述我要在哪里下车。</p>
+<p>当他问到我时，我匆匆地说，那就在这里下吧。落荒之中听见车上不耐的嘲笑，这几句话我倒是大概听明白了，许是说我被人卖了都不知道云云。</p>
+<p>我想他并非出于恶意，但也缺乏理解，这是人们的常态。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>但是当我下车走在这街头时，我仍然感受到一种快意和自由。</p>
+<p>这里的人们习以为常的风景，在我看来却是稀奇而有趣的。而此行不必迁就他人，也不必刻意安排一个满满的日程表，只是行我所行，听从我心。</p>
+<p>张开双臂拥抱一片陌生的土地，这里的空气在过去一刻都没有属于我。关于这里的记忆在此刻终于有了色彩，而后有了时间，有了历史，有了我们心心念念期待着的故事。</p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>同等价位的酒店都大同小异。</p>
+<p>步入房间，迎面一股不知是什么味道。房间还算干净整洁，只是有些角落显得出来，有些破旧了。怀念起南京住的酒店了，不过在这里住三晚也仅仅抵得上那里一晚上的价格，想到这儿也就释怀了。</p>
+<p>终于洗了个澡，洗去了一身的疲惫。</p>
+<p>晚安，好梦。<br><img src="https://pic.imgdb.cn/item/5f7877a2160a154a6714d210.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>去年的你也是这样躺在情人坡的草坪上</title>
     <url>/2020/09/28/%E5%8E%BB%E5%B9%B4%E7%9A%84%E4%BD%A0%E4%B9%9F%E6%98%AF%E8%BF%99%E6%A0%B7%E8%BA%BA%E5%9C%A8%E6%83%85%E4%BA%BA%E5%9D%A1%E7%9A%84%E8%8D%89%E5%9D%AA%E4%B8%8A/</url>
     <content><![CDATA[<p>去年的我走进苏大的校门，只觉得全世界没有一片云朵属于我。</p>
@@ -459,29 +492,31 @@
       </tags>
   </entry>
   <entry>
-    <title>夏末的浪子</title>
-    <url>/2020/08/26/%E5%A4%8F%E6%9C%AB%E7%9A%84%E6%B5%AA%E5%AD%90/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这辆车足足在苏州城里绕行了两个小时，不断地上来那些说着同一个口音的人们。它甚至经过了学校旁边的一条路，看见苏大的凌云楼仅在一墙之隔。和熟悉的风景不期而遇，这种体验是奇妙的，我很想和谁说说，只是说不得。</p>
-<p>直到六点钟，我的耐心几乎被消耗殆尽，它才驶离了苏州。</p>
-<p>路过南京时，停在了一个服务站。但是那里实在是太老旧，而又太偏僻，仅仅停泊了这一辆大巴。餐厅，是二十年前风格的建筑；厕所，和苏大文成楼里的厕所一样老旧，甚至有甚之：小便池是用水泥浇筑的，洗手池下面放了一个大缸来储水。</p>
-<p>所有人都下车，在那片空旷的场地上休憩。他们自在的样子，显示出这趟旅途走过不止一次。即使是半大的孩童，也知道下一站停靠在哪儿，我一无所知，也查不到这些，这大概是当地人一种习以为常的默契吧。</p>
-<p>我意识到我似乎闯入了一片不属于我的领地。</p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>我在路上看着月亮，今天的月亮是半残的，月光不是很亮。</p>
-<p>我看了两个小时多的月亮，看着它从山后移到云后，从树木丛林掩映到被高楼大厦遮挡，从左边转到右边，然后又转到左边——这是因为路的朝向不同。</p>
-<p>我总觉得夜晚的城市比白天的漂亮些，或许是因为那些灯光的缘故。眯着眼睛看，就像是看见了星河，那是自然的伟力而非人类的壮举。而定睛望去，拖出残影的光点并不是流星而是车辆，是活在这个世界上的芸芸众生。</p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>这辆车上的人们从头到尾都在用他们的方言交流。</p>
-<p>我曾经听人说，江浙的土话很难懂，但我从小生活在这里，自然而然会说吴语，体会不到身处异乡时那种语言不通的痛苦；再去别的城市旅行时，多是去一些大都市，现代化水平很高了，人们多说普通话。唯独在这个车辆上我明白了那种感受。</p>
-<p>除了我，所有的乘客，甚至包括乘务员，司机，他们说的都是方言。我虽然并不想加入他们的交流，但也难免尴尬。</p>
-<p>下车时，这车不是直接停到车站里。进入了桐城，它摇身一变，成为一辆公交车，在不同的站点停留。乘务员问乘客们，在哪下。近乎把人送到家门口的行为固然令人感动，然而语言不通而又人生地不熟，我实在无法描述我要在哪里下车。</p>
-<p>当他问到我时，我匆匆地说，那就在这里下吧。落荒之中听见车上不耐的嘲笑，这几句话我倒是大概听明白了，许是说我被人卖了都不知道云云。</p>
-<p>我想他并非出于恶意，但也缺乏理解，这是人们的常态。</p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>但是当我下车走在这街头时，我仍然感受到一种快意和自由。</p>
-<p>这里的人们习以为常的风景，在我看来却是稀奇而有趣的。而此行不必迁就他人，也不必刻意安排一个满满的日程表，只是行我所行，听从我心。</p>
-<p>张开双臂拥抱一片陌生的土地，这里的空气在过去一刻都没有属于我。关于这里的记忆在此刻终于有了色彩，而后有了时间，有了历史，有了我们心心念念期待着的故事。</p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>同等价位的酒店都大同小异。</p>
-<p>步入房间，迎面一股不知是什么味道。房间还算干净整洁，只是有些角落显得出来，有些破旧了。怀念起南京住的酒店了，不过在这里住三晚也仅仅抵得上那里一晚上的价格，想到这儿也就释怀了。</p>
-<p>终于洗了个澡，洗去了一身的疲惫。</p>
-<p>晚安，好梦。<br><img src="https://pic.imgdb.cn/item/5f7877a2160a154a6714d210.jpg" alt=""></p>
+    <title>小城过客</title>
+    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
+<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
+<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
+<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
+<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
+<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
+<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
+<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
+<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
+<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
+<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
+<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
+<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
+<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
+<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
+<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
+<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
+<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
+<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -524,37 +559,14 @@
       </tags>
   </entry>
   <entry>
-    <title>小城过客</title>
-    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
-<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
-<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
-<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
-<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
-<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
-<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
-<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
-<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
-<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
-<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
-<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
-<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
-<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
-<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
-<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
-<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
-<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
-<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
+    <title>扬州旅行计划书</title>
+    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
+    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
       </categories>
       <tags>
-        <tag>摄影</tag>
         <tag>旅行</tag>
       </tags>
   </entry>
@@ -645,15 +657,45 @@
       </tags>
   </entry>
   <entry>
-    <title>扬州旅行计划书</title>
-    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
-    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
+    <title>拉普拉斯妖，你知道吗？</title>
+    <url>/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/</url>
+    <content><![CDATA[<p>世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。</p>
+<p>我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中最冷的时候。这样的论点当然在今天看来很可笑，但于当时的我，已经是穷尽所有想象力能为这个世界找到的最科学解释了。</p>
+<p>如果一个小球的抛出点和初速度是固定的，力是固定的，重力已知，方向已知……在这样的情况下，小球的运动轨迹是可以计算的。那么，是否一切活动，都是遵循一定的规律的呢？是否只要知道所有的参数，就可以了解过去，现在，和未来呢？</p>
+<p>相信一切是被决定着的，这种观点被称作决定论。由此而诞生的一个概念就是拉普拉斯妖，一位全知全能的妖精。说远了，不提。</p>
+<p>哲学上而言，我并非不支持自由意志的观点，我认为人的主观能动性是客观存在的。但是，了解一定的规律仍然有利于我们做出更好的选择。</p>
+<p>就像我二年级时认为太阳的远近是导致温度差异的原因一样，我只能用自己有限的知识在这个无垠的世界里寻找答案，或许永不可即，但追求知识的脚步是不会停下的。</p>
+<p>由最近的学习内容产生了一些感想，记录如下。</p>
+<p>本人才疏学浅，言论如有不当之处，还请各位多多包涵。</p>
+<p>电影《美丽心灵》介绍了博弈论的奠基人，二十世纪伟大的数学家、经济学家约翰·纳什的一生。纳什因为其对博弈论的贡献，获得了诺贝尔经济学奖。他最重要的理论之一就是提出了纳什均衡，通俗的来说，就是指在一场博弈中的两个当事人都停留在对自己最有利的一个位置的平衡状态。这两个人如果做任何的决策，都会导致局面对自己不利。</p>
+<p>这个理论的提出意味着博弈问题是有解的，因此博弈论才有了研究的价值。</p>
+<p>在我们计算机算法设计的领域，最著名也是最简单的算法莫过于贪心算法。也即是每次行动都作出目前条件下的最优解，那么将得到最好的效果。显而易见，不是什么情况都能应用贪心算法的，因此，是否能运用贪心是需要证明的。（当然，实际运用的时候，我们并不会去证明，只是觉得好像可以用，然后敲一遍看看答案对不对。）</p>
+<p>贪心算法当然和博弈论搭不着边，但是贪心策略却是很重要的一环。</p>
+<p>生物的本性是自私的，生物的本能会促使我们做出对自己最有利的选择。</p>
+<p>经济学中的“理性人”是指，每次行动都追求自身最大的利益而不管别人的死活。这是合理的。</p>
+<p>那么设想一下这样一个情况：两个囚徒被关在监狱里，互相隔离。他们都是理性人。狱警和他们说，如果他们都不检举对方的罪行，他们都会被关押一年。如果一位检举而另一位不检举，那么检举的将被释放，另一位被关押十年；如果两位都坦白，他们各自被关押五年。</p>
+<p>这种情况下，对于囚徒A来说，检举对方是最优解。</p>
+<p>如果B不检举，那么A就溜之大吉了。如果B检举了而他不检举，那么他将被关押十年。如果B也检举了，那么他被关押五年——也比十年更好。</p>
+<p>于是，两个人达成的纳什平衡是互相背叛。此时，任何一个人作出合作的举动都会导致他陷入更差的境地。然而，这并不是最优解。最优解是两个人互相合作。</p>
+<p>在电影《少年的你》中小北和陈念被审问的时候，他们没有承认。这就是合作的一种行为。这是感性的一种行为。</p>
+<p>如果人们不去考虑对自己的利益最大化，始终抱着合作意愿，那么反而将得到囚徒困境的最优解。</p>
+<p>再设想这样一种情况，让人们从1~100报一个数，最接近平均数的三分之二那个人将得到奖品，最优解是多少？首先设想所有人的数均匀分布，那么均值是50，答案是33。显然，你不应该猜超过33的数。如果所有人都这么想，那么你不该猜超过22的数……继续，继续，继续……最后，你应该猜1。如果所有人都是这样理性驱动，猜1，大家都有奖品。</p>
+<p>但是如果其中有一个人没有考虑这么多，胡乱猜了一个数字呢？</p>
+<p>美好的局面就被破坏掉了。最美的结局建立在所有人都是绝对理性的情况下，这样的情况是不稳定的。感性会破坏最优解。</p>
+<p>生物的进化正源自于此。如果所有人都是怀揣着恶意的，那么这个族群就会在互相攻讦中毁灭。如果所有人都是利他的，他们通过合作可以取得更大的利益，但是一旦这个族群中突变出了一个利己主义者，那么所有的利他行为者都会变成待宰的小白羊被收割。</p>
+<p>如何破解囚徒困境？说来很简单，一报还一报。</p>
+<p>先尝试合作，接下来每次行为都模仿对方上次的行为。这样需多次重复之后，即使对方的行为是不确定的，坐牢的年数总和也是最少的。</p>
+<p>利他和利己，感性和理性，二者之间都是彼此不可分割的。</p>
+<p>贪心算法是有助于解决实际问题的，因为对象只有一个。</p>
+<p>而当问题变成非零和博弈的时候，即使是最理性的人作出的最理性的选择也未必是最优解。人与人之间交互的神奇之处就在于此了。</p>
+<p>今天上课的时候讲到人工智能，绝对理性的人工智能能摆脱囚徒困境吗？恐怕未必比小北和陈念做得更好吧。人们的相处，是不能用什么理论去预料的呀。拉普拉斯妖，你能知道吗？</p>
 ]]></content>
       <categories>
-        <category>我们的旅行</category>
+        <category>我们的思念</category>
       </categories>
       <tags>
-        <tag>旅行</tag>
+        <tag>杂感</tag>
+        <tag>哲思</tag>
       </tags>
   </entry>
   <entry>
@@ -735,48 +777,6 @@
 <p>正如理查德·朱维尔一样，你要有所坚持。哪怕在旁人看来很傻。</p>
 <p>如果你有理想，那就坚持理想。如果你没有理想，那就坚持自己。</p>
 <p>你来人间一趟，生命必须怒放。</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-        <tag>哲思</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯妖，你知道吗？</title>
-    <url>/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/</url>
-    <content><![CDATA[<p>世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。</p>
-<p>我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中最冷的时候。这样的论点当然在今天看来很可笑，但于当时的我，已经是穷尽所有想象力能为这个世界找到的最科学解释了。</p>
-<p>如果一个小球的抛出点和初速度是固定的，力是固定的，重力已知，方向已知……在这样的情况下，小球的运动轨迹是可以计算的。那么，是否一切活动，都是遵循一定的规律的呢？是否只要知道所有的参数，就可以了解过去，现在，和未来呢？</p>
-<p>相信一切是被决定着的，这种观点被称作决定论。由此而诞生的一个概念就是拉普拉斯妖，一位全知全能的妖精。说远了，不提。</p>
-<p>哲学上而言，我并非不支持自由意志的观点，我认为人的主观能动性是客观存在的。但是，了解一定的规律仍然有利于我们做出更好的选择。</p>
-<p>就像我二年级时认为太阳的远近是导致温度差异的原因一样，我只能用自己有限的知识在这个无垠的世界里寻找答案，或许永不可即，但追求知识的脚步是不会停下的。</p>
-<p>由最近的学习内容产生了一些感想，记录如下。</p>
-<p>本人才疏学浅，言论如有不当之处，还请各位多多包涵。</p>
-<p>电影《美丽心灵》介绍了博弈论的奠基人，二十世纪伟大的数学家、经济学家约翰·纳什的一生。纳什因为其对博弈论的贡献，获得了诺贝尔经济学奖。他最重要的理论之一就是提出了纳什均衡，通俗的来说，就是指在一场博弈中的两个当事人都停留在对自己最有利的一个位置的平衡状态。这两个人如果做任何的决策，都会导致局面对自己不利。</p>
-<p>这个理论的提出意味着博弈问题是有解的，因此博弈论才有了研究的价值。</p>
-<p>在我们计算机算法设计的领域，最著名也是最简单的算法莫过于贪心算法。也即是每次行动都作出目前条件下的最优解，那么将得到最好的效果。显而易见，不是什么情况都能应用贪心算法的，因此，是否能运用贪心是需要证明的。（当然，实际运用的时候，我们并不会去证明，只是觉得好像可以用，然后敲一遍看看答案对不对。）</p>
-<p>贪心算法当然和博弈论搭不着边，但是贪心策略却是很重要的一环。</p>
-<p>生物的本性是自私的，生物的本能会促使我们做出对自己最有利的选择。</p>
-<p>经济学中的“理性人”是指，每次行动都追求自身最大的利益而不管别人的死活。这是合理的。</p>
-<p>那么设想一下这样一个情况：两个囚徒被关在监狱里，互相隔离。他们都是理性人。狱警和他们说，如果他们都不检举对方的罪行，他们都会被关押一年。如果一位检举而另一位不检举，那么检举的将被释放，另一位被关押十年；如果两位都坦白，他们各自被关押五年。</p>
-<p>这种情况下，对于囚徒A来说，检举对方是最优解。</p>
-<p>如果B不检举，那么A就溜之大吉了。如果B检举了而他不检举，那么他将被关押十年。如果B也检举了，那么他被关押五年——也比十年更好。</p>
-<p>于是，两个人达成的纳什平衡是互相背叛。此时，任何一个人作出合作的举动都会导致他陷入更差的境地。然而，这并不是最优解。最优解是两个人互相合作。</p>
-<p>在电影《少年的你》中小北和陈念被审问的时候，他们没有承认。这就是合作的一种行为。这是感性的一种行为。</p>
-<p>如果人们不去考虑对自己的利益最大化，始终抱着合作意愿，那么反而将得到囚徒困境的最优解。</p>
-<p>再设想这样一种情况，让人们从1~100报一个数，最接近平均数的三分之二那个人将得到奖品，最优解是多少？首先设想所有人的数均匀分布，那么均值是50，答案是33。显然，你不应该猜超过33的数。如果所有人都这么想，那么你不该猜超过22的数……继续，继续，继续……最后，你应该猜1。如果所有人都是这样理性驱动，猜1，大家都有奖品。</p>
-<p>但是如果其中有一个人没有考虑这么多，胡乱猜了一个数字呢？</p>
-<p>美好的局面就被破坏掉了。最美的结局建立在所有人都是绝对理性的情况下，这样的情况是不稳定的。感性会破坏最优解。</p>
-<p>生物的进化正源自于此。如果所有人都是怀揣着恶意的，那么这个族群就会在互相攻讦中毁灭。如果所有人都是利他的，他们通过合作可以取得更大的利益，但是一旦这个族群中突变出了一个利己主义者，那么所有的利他行为者都会变成待宰的小白羊被收割。</p>
-<p>如何破解囚徒困境？说来很简单，一报还一报。</p>
-<p>先尝试合作，接下来每次行为都模仿对方上次的行为。这样需多次重复之后，即使对方的行为是不确定的，坐牢的年数总和也是最少的。</p>
-<p>利他和利己，感性和理性，二者之间都是彼此不可分割的。</p>
-<p>贪心算法是有助于解决实际问题的，因为对象只有一个。</p>
-<p>而当问题变成非零和博弈的时候，即使是最理性的人作出的最理性的选择也未必是最优解。人与人之间交互的神奇之处就在于此了。</p>
-<p>今天上课的时候讲到人工智能，绝对理性的人工智能能摆脱囚徒困境吗？恐怕未必比小北和陈念做得更好吧。人们的相处，是不能用什么理论去预料的呀。拉普拉斯妖，你能知道吗？</p>
 ]]></content>
       <categories>
         <category>我们的思念</category>
