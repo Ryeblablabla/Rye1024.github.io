@@ -84,6 +84,19 @@
       </tags>
   </entry>
   <entry>
+    <title>[codeforces 1417C] k-Amazing Numbers</title>
+    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[codeforces 1372C] Omkar and Baseball</title>
     <url>/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</url>
     <content><![CDATA[<p>题目: <a href="https://codeforces.com/problemset/problem/1372/C" target="_blank" rel="noopener">1372C</a><br>题意：给定一个从1~n的顺序不定的数组，定义一种排序操作：区间[L,R]，操作后里面的所有数都不在原来的位置上。求几次操作可以把数组变成1,2,3,..n的顺序。<br>思路：<br>没有经过严格的论证，但是造了几个数据发现如下规律：</p>
@@ -103,38 +116,6 @@
         <tag>题解</tag>
         <tag>数学</tag>
         <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 1430D] String Deletion</title>
-    <url>/2020/10/14/codeforces-1430D-String-Deletion/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/1430/D" target="_blank" rel="noopener">1430D</a><br>题意：<br>给定一个由0和1组成的字符串，每次你必须执行如下两步操作：<br>1.选择一个位置i并且删除这个位置上面的字符<br>2.由相同字符组成的最大长度的连续前缀会被删除<br>要求最大化操作次数</p>
-<p>思路：<br>题目要求我们最大化操作次数，不难发现：<br>当由相同字符组成的前缀的长度&gt;=2的时候，不管选不选它，这段前缀都会被删除；<br>而如果不选择它，我们就需要删除后面的一个字符，这样的话可能会减少操作次数。<br>因此我们应该贪心地选择它，以便增多操作次数。<br>当由相同字符组成的前缀的长度为1，即开头不出现连续字符的时候，我们应该从最前面的有至少两个相同字符组成的块中删除一个字符。<br>否则，我们的操作次数可能就会变少。</p>
-<p>当字符串全部是左右不相同的字符组成的时候，比如10101010，我们可以确定删除的次数必定是[n/2]</p>
-<p>我们可以给每一段由相同字符组成的字符子串打上标记，<br>比如1110010110<br>标记为0001123445<br>使用队列储存，以方便确认最前面的数据。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>,ans = <span class="number">0</span>,deleted = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]!=s[i<span class="number">-1</span>])</span><br><span class="line">                cur++;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]==s[i<span class="number">-1</span>])</span><br><span class="line">                q.push(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            q.pop();</span><br><span class="line">            deleted++;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty()&amp;&amp;i==q.front())</span><br><span class="line">            &#123;</span><br><span class="line">                q.pop();</span><br><span class="line">                deleted++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            deleted++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += (n - deleted + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>贪心</tag>
-        <tag>双指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 1417C] k-Amazing Numbers</title>
-    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -158,6 +139,49 @@
       </tags>
   </entry>
   <entry>
+    <title>[codeforces 630K] Indivisibility</title>
+    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>数学</tag>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[位运算简单原理] 用点阵显示汉字</title>
+    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
+<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
+<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
+<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
+<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这也是最开始定义key数组的原因。</p>
+<p>那么怎么在字库中找到这个汉字的位置呢？</p>
+<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
+<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这两种都是正确的。</p>
+<p>最后，注意字库文件应该用二进制形式打开。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[codeforces 559B] Equivalent Strings</title>
     <url>/2020/06/07/codeforces-559B-Equivalent-Strings/</url>
     <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/559/B" target="_blank" rel="noopener">559B</a><br>题意：给定两个字符串，判断是不是一个神奇的字符串。<br>他们满足如下两个条件的其中之一：<br>1、 A与B相等。<br>2、 如果我们把字符串A分成两个长度相等的字符串A1,A2，并将字符串B分成两个长度相等的字符串B1,B2 然后他们满足以下的其中一项条件：<br>（1） A1与B1是一对神奇的字符串，并且A2与B2是一对神奇的字符串。<br>（2） A2与B1是一对神奇的字符串，并且A1与B2是一对神奇的字符串。<br>思路：<br>很显然用递归的思想，但是单纯的递归会TLE</p>
@@ -178,19 +202,22 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 630K] Indivisibility</title>
-    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>[codeforces 1430D] String Deletion</title>
+    <url>/2020/10/14/codeforces-1430D-String-Deletion/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/1430/D" target="_blank" rel="noopener">1430D</a><br>题意：<br>给定一个由0和1组成的字符串，每次你必须执行如下两步操作：<br>1.选择一个位置i并且删除这个位置上面的字符<br>2.由相同字符组成的最大长度的连续前缀会被删除<br>要求最大化操作次数</p>
+<p>思路：<br>题目要求我们最大化操作次数，不难发现：<br>当由相同字符组成的前缀的长度&gt;=2的时候，不管选不选它，这段前缀都会被删除；<br>而如果不选择它，我们就需要删除后面的一个字符，这样的话可能会减少操作次数。<br>因此我们应该贪心地选择它，以便增多操作次数。<br>当由相同字符组成的前缀的长度为1，即开头不出现连续字符的时候，我们应该从最前面的有至少两个相同字符组成的块中删除一个字符。<br>否则，我们的操作次数可能就会变少。</p>
+<p>当字符串全部是左右不相同的字符组成的时候，比如10101010，我们可以确定删除的次数必定是[n/2]</p>
+<p>我们可以给每一段由相同字符组成的字符子串打上标记，<br>比如1110010110<br>标记为0001123445<br>使用队列储存，以方便确认最前面的数据。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>,ans = <span class="number">0</span>,deleted = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]!=s[i<span class="number">-1</span>])</span><br><span class="line">                cur++;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]==s[i<span class="number">-1</span>])</span><br><span class="line">                q.push(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            q.pop();</span><br><span class="line">            deleted++;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty()&amp;&amp;i==q.front())</span><br><span class="line">            &#123;</span><br><span class="line">                q.pop();</span><br><span class="line">                deleted++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            deleted++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += (n - deleted + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>数学</tag>
-        <tag>思维</tag>
+        <tag>字符串</tag>
+        <tag>贪心</tag>
+        <tag>双指针</tag>
       </tags>
   </entry>
   <entry>
@@ -240,59 +267,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[位运算简单原理] 用点阵显示汉字</title>
-    <url>/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
-<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
-<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
-<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
-<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这也是最开始定义key数组的原因。</p>
-<p>那么怎么在字库中找到这个汉字的位置呢？</p>
-<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
-<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这两种都是正确的。</p>
-<p>最后，注意字库文件应该用二进制形式打开。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于我</title>
-    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
-    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
-<p>所以这个人其实很好认。</p>
-<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
-<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
-<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
-<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
-<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
-<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
-<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
-<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
-<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
-<p>希望用自己的脚步丈量生命。</p>
-<p>希望用相机记录生活中的美。</p>
-<p>希望仰望星空能与伟大的灵魂沟通。</p>
-<p>联系方式：</p>
-<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
-<p>QQ：949662015</p>
-<p>微信：Rye65536<br>（65536是2的16次方）</p>
-]]></content>
-      <tags>
-        <tag>自我介绍</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>南京扬州游记</title>
     <url>/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
@@ -329,42 +303,6 @@
 <p>288.6米，是观光层的高度。</p>
 <p>于是玄武湖、紫金山尽收眼底。在陆地上要走很久的路，变得近如咫尺；飞驰的汽车，如同蚂蚁爬行；层叠的楼房，像是土地上生长出的钢铁植物；云雾缭绕间，隐约看到远方的长江大桥……</p>
 <p>人生当如鸿鹄鸟，不临九天不丈夫。<br><img src="https://pic.imgdb.cn/item/5f787d70160a154a67166886.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787f5d160a154a6716f252.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787df8160a154a67168c5a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787c9d160a154a67162dba.jpg" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的旅行</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-        <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>夏天结束了</title>
-    <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
-    <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
-<p>这是一种对于世事无常的真情流露。</p>
-<p>今日，沿着龙眠河走了许多回。</p>
-<p>下午烈日高悬的时候，我走到了龙眠山脚下。</p>
-<p>河岸的道路于是而终止了，再往前是泥土和杂草。</p>
-<p>最后的桥洞，墙壁如同一面留言板。</p>
-<p>“这个世界会好吗？”</p>
-<p>“好你妈X”</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/71dbbaab69f93ae91fd0745d41be18ef.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/22f48f4608ed2a0f32ab7e76c5704e66.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/58c9bea7370d951d0f44c993bd30eab8.png" alt=""></p>
-<p>天色渐暗时，我瘫在房间里看《哈利波特》。影片看到一半，忽然瞥见外面淡青色的天空，几朵带着点红色的云彩。</p>
-<p>看看时间，是时候要日落了。</p>
-<p>于是出门，又一次沿着龙眠河畔走着。</p>
-<p>河是蜿蜒的，走很远的路，才看见山的踪影。</p>
-<p>背着个大大的摄影包，竟然觉得脚步愈发轻快了。</p>
-<p>是了，我追逐着落日。这时候，我有一种预感：只要我不断地向前走，一定能见到令我感动的景色。</p>
-<p>有的时候你就是有这样的预感。有的时候正是这样的非理性让你，凭着一腔孤勇向前走。</p>
-<p>是了，我看见远山如黛，近水如烟。我看见漫天红霞，飞舞的白鹭。我看见两岸的游人说说笑笑，车辆川流不息，灯光渐渐亮起，夜色笼罩天地……</p>
-<p>直到月亮升起，我知道我是时候向回走了。想象中，我就该是在这个时候往回走的。映照在河水里的霓虹荡漾，破碎。</p>
-<p>我最爱的是在黄昏和黑夜的交际，在山和水，云和天空的交际，在夏天和秋天的交际，拍下的这张照片。</p>
-<p>尤其是在日落时，那种“物哀”的感情无比真切。</p>
-<p>你终于感受到一种消逝，美好而短暂。</p>
-<p>我想尽量把这张照片拍得温柔。</p>
-<p><strong>“夏天结束了”</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -424,29 +362,93 @@
       </tags>
   </entry>
   <entry>
-    <title>夏末的浪子</title>
-    <url>/2020/08/26/%E5%A4%8F%E6%9C%AB%E7%9A%84%E6%B5%AA%E5%AD%90/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这辆车足足在苏州城里绕行了两个小时，不断地上来那些说着同一个口音的人们。它甚至经过了学校旁边的一条路，看见苏大的凌云楼仅在一墙之隔。和熟悉的风景不期而遇，这种体验是奇妙的，我很想和谁说说，只是说不得。</p>
-<p>直到六点钟，我的耐心几乎被消耗殆尽，它才驶离了苏州。</p>
-<p>路过南京时，停在了一个服务站。但是那里实在是太老旧，而又太偏僻，仅仅停泊了这一辆大巴。餐厅，是二十年前风格的建筑；厕所，和苏大文成楼里的厕所一样老旧，甚至有甚之：小便池是用水泥浇筑的，洗手池下面放了一个大缸来储水。</p>
-<p>所有人都下车，在那片空旷的场地上休憩。他们自在的样子，显示出这趟旅途走过不止一次。即使是半大的孩童，也知道下一站停靠在哪儿，我一无所知，也查不到这些，这大概是当地人一种习以为常的默契吧。</p>
-<p>我意识到我似乎闯入了一片不属于我的领地。</p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>我在路上看着月亮，今天的月亮是半残的，月光不是很亮。</p>
-<p>我看了两个小时多的月亮，看着它从山后移到云后，从树木丛林掩映到被高楼大厦遮挡，从左边转到右边，然后又转到左边——这是因为路的朝向不同。</p>
-<p>我总觉得夜晚的城市比白天的漂亮些，或许是因为那些灯光的缘故。眯着眼睛看，就像是看见了星河，那是自然的伟力而非人类的壮举。而定睛望去，拖出残影的光点并不是流星而是车辆，是活在这个世界上的芸芸众生。</p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>这辆车上的人们从头到尾都在用他们的方言交流。</p>
-<p>我曾经听人说，江浙的土话很难懂，但我从小生活在这里，自然而然会说吴语，体会不到身处异乡时那种语言不通的痛苦；再去别的城市旅行时，多是去一些大都市，现代化水平很高了，人们多说普通话。唯独在这个车辆上我明白了那种感受。</p>
-<p>除了我，所有的乘客，甚至包括乘务员，司机，他们说的都是方言。我虽然并不想加入他们的交流，但也难免尴尬。</p>
-<p>下车时，这车不是直接停到车站里。进入了桐城，它摇身一变，成为一辆公交车，在不同的站点停留。乘务员问乘客们，在哪下。近乎把人送到家门口的行为固然令人感动，然而语言不通而又人生地不熟，我实在无法描述我要在哪里下车。</p>
-<p>当他问到我时，我匆匆地说，那就在这里下吧。落荒之中听见车上不耐的嘲笑，这几句话我倒是大概听明白了，许是说我被人卖了都不知道云云。</p>
-<p>我想他并非出于恶意，但也缺乏理解，这是人们的常态。</p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>但是当我下车走在这街头时，我仍然感受到一种快意和自由。</p>
-<p>这里的人们习以为常的风景，在我看来却是稀奇而有趣的。而此行不必迁就他人，也不必刻意安排一个满满的日程表，只是行我所行，听从我心。</p>
-<p>张开双臂拥抱一片陌生的土地，这里的空气在过去一刻都没有属于我。关于这里的记忆在此刻终于有了色彩，而后有了时间，有了历史，有了我们心心念念期待着的故事。</p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>同等价位的酒店都大同小异。</p>
-<p>步入房间，迎面一股不知是什么味道。房间还算干净整洁，只是有些角落显得出来，有些破旧了。怀念起南京住的酒店了，不过在这里住三晚也仅仅抵得上那里一晚上的价格，想到这儿也就释怀了。</p>
-<p>终于洗了个澡，洗去了一身的疲惫。</p>
-<p>晚安，好梦。<br><img src="https://pic.imgdb.cn/item/5f7877a2160a154a6714d210.jpg" alt=""></p>
+    <title>关于我</title>
+    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
+    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
+<p>所以这个人其实很好认。</p>
+<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
+<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
+<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
+<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
+<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
+<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
+<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
+<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
+<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
+<p>希望用自己的脚步丈量生命。</p>
+<p>希望用相机记录生活中的美。</p>
+<p>希望仰望星空能与伟大的灵魂沟通。</p>
+<p>联系方式：</p>
+<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
+<p>QQ：949662015</p>
+<p>微信：Rye65536<br>（65536是2的16次方）</p>
+]]></content>
+      <tags>
+        <tag>自我介绍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小城过客</title>
+    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
+<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
+<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
+<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
+<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
+<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
+<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
+<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
+<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
+<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
+<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
+<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
+<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
+<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
+<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
+<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
+<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
+<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
+<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>夏天结束了</title>
+    <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
+    <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
+<p>这是一种对于世事无常的真情流露。</p>
+<p>今日，沿着龙眠河走了许多回。</p>
+<p>下午烈日高悬的时候，我走到了龙眠山脚下。</p>
+<p>河岸的道路于是而终止了，再往前是泥土和杂草。</p>
+<p>最后的桥洞，墙壁如同一面留言板。</p>
+<p>“这个世界会好吗？”</p>
+<p>“好你妈X”</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/71dbbaab69f93ae91fd0745d41be18ef.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/22f48f4608ed2a0f32ab7e76c5704e66.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/58c9bea7370d951d0f44c993bd30eab8.png" alt=""></p>
+<p>天色渐暗时，我瘫在房间里看《哈利波特》。影片看到一半，忽然瞥见外面淡青色的天空，几朵带着点红色的云彩。</p>
+<p>看看时间，是时候要日落了。</p>
+<p>于是出门，又一次沿着龙眠河畔走着。</p>
+<p>河是蜿蜒的，走很远的路，才看见山的踪影。</p>
+<p>背着个大大的摄影包，竟然觉得脚步愈发轻快了。</p>
+<p>是了，我追逐着落日。这时候，我有一种预感：只要我不断地向前走，一定能见到令我感动的景色。</p>
+<p>有的时候你就是有这样的预感。有的时候正是这样的非理性让你，凭着一腔孤勇向前走。</p>
+<p>是了，我看见远山如黛，近水如烟。我看见漫天红霞，飞舞的白鹭。我看见两岸的游人说说笑笑，车辆川流不息，灯光渐渐亮起，夜色笼罩天地……</p>
+<p>直到月亮升起，我知道我是时候向回走了。想象中，我就该是在这个时候往回走的。映照在河水里的霓虹荡漾，破碎。</p>
+<p>我最爱的是在黄昏和黑夜的交际，在山和水，云和天空的交际，在夏天和秋天的交际，拍下的这张照片。</p>
+<p>尤其是在日落时，那种“物哀”的感情无比真切。</p>
+<p>你终于感受到一种消逝，美好而短暂。</p>
+<p>我想尽量把这张照片拍得温柔。</p>
+<p><strong>“夏天结束了”</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -492,31 +494,29 @@
       </tags>
   </entry>
   <entry>
-    <title>小城过客</title>
-    <url>/2020/08/26/%E5%B0%8F%E5%9F%8E%E8%BF%87%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我住在龙眠河畔。</p>
-<p>下游的水变得细长清澈，那些没有水流过的地方就长出了丰茂的野草。清晨走过这里，看见当地的人们用那河水洗菜，看见白鹭捕食河里的小鱼。龙眠河被誉为桐城人的母亲河，由是可窥见一些。</p>
-<p>走到中游和下游交界的位置，有一座古色古香的长桥。走近，发现桥上坐满了人，有卖菜的，有下棋的，有打牌的，有闲聊吹风的，甚至还有剪头发的……在这样的地方你最能感受到人间烟火气。<br><img src="https://pic.imgdb.cn/item/5f78792d160a154a67152fba.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787a26160a154a67156a9d.jpg" alt=""></p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>六尺巷实在平平无奇，但有了那一段故事，便觉得别有一番风趣了。</p>
-<p> “张文端公居宅旁有隙地，与吴氏邻，吴氏越用之。家人驰书于都，公批书于后寄归。家人得书，遂撤让三尺，故六尺巷遂以为名焉。”<br>书曰：“千里家书只为墙，让他三尺又何妨。长城万里今犹存，不见当年秦始皇”。</p>
-<p>她的外婆家离这很近。似乎，她的外婆家就在附近的一条小巷子里，而院子里有一棵很大的树，可以给整座宅院提供阴凉。我已记不清当时是如何描述的了。</p>
-<p>印象里，老太太家里也有一棵大树。老宅院早已变成了光鲜亮丽的新房，那些我曾经度过的夏天也终于无迹可寻。今年年初，老太太也走了。<br><img src="https://pic.imgdb.cn/item/5f787af7160a154a67159f63.jpg" alt=""></p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>文庙的瓦有着历史的痕迹，但墙壁却是新刷的漆。</p>
-<p>文庙里有座状元桥，在过去只有取得功名的举子才能从这里走过，其他人都要绕泮池而行。桐城是文都，在过去文化是很昌盛的，出过不少文人，也不乏拜相的人才。六尺巷故事里的张英的儿子张廷玉就做过清朝内阁首辅。</p>
-<p>在近代，桐城中学也出过很多有名的大家，比如朱光潜。前几日，读过他的“给青年的十二封信”。印象最深的是，觉得里面最有趣的是朱光潸，不必多说，懂的人自然懂了。</p>
-<p>文庙外面有两座极具现代化气息的博物馆建筑，但是没有开放。</p>
-<p>这座城市处处都在施工，推土机，塔吊，水泥匠，楼房外面绿色的防护网……即使在文庙里，也能找到正在劳作的工人。<br><img src="https://pic.imgdb.cn/item/5f787b0b160a154a6715a4a2.jpg" alt=""></p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我去拜访孔城老街，绕了不少路。</p>
-<p>上个月大雨演了这座古镇，最深的积水到达了两米。四天前，孔城老街才刚恢复开放。</p>
-<p>原是要买票的，在门口看守的人望了望，大概是卖票的人也还没有上班，挥一挥手让我进去了。</p>
-<p>冷清，实在冷清。没有游人，也没有商户。开门的店铺大约十一之数，有些地方还见得到大水冲刷后晾晒东西的痕迹。</p>
-<p>斑驳的马头墙，脚下有些打滑的青砖，疯长的野草，笔记淡漠的牌匾。走了两步路，开始下起细雨。</p>
-<p>这样的清净为我所喜。江浙一带的古镇，大多商业化气息严重，少了几分古镇的清雅，多了几分市侩。在孔城的老街，寻得了几分安宁。<br><img src="https://pic.imgdb.cn/item/5f787b2b160a154a6715ae45.jpg" alt=""></p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>在檐下躲雨，换镜头时，一时急了，卡口插不进去。一位大叔耐心地指导我，萍水相逢，颇为感动。</p>
-<p>原来，遇上了几位中国摄影家协会的“老法师”。</p>
-<p>中国摄影家协会是很难进的，会员大多已在摄影界有所建树，或是发表过很多作品，或者举办过个人展览，或是参与编写教材……</p>
-<p>老街的门口摆了很多作品，在我看来，都是拍得很好的。我猜想这几位摄影家，或许就是它们的作者。</p>
-<p>摄影最需要发现美的眼睛。寻找生活中，别人不能发现的美，这是一种浪漫。<br><img src="https://pic.imgdb.cn/item/5f787b59160a154a6715bd5f.jpg" alt=""></p>
+    <title>夏末的浪子</title>
+    <url>/2020/08/26/%E5%A4%8F%E6%9C%AB%E7%9A%84%E6%B5%AA%E5%AD%90/</url>
+    <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这辆车足足在苏州城里绕行了两个小时，不断地上来那些说着同一个口音的人们。它甚至经过了学校旁边的一条路，看见苏大的凌云楼仅在一墙之隔。和熟悉的风景不期而遇，这种体验是奇妙的，我很想和谁说说，只是说不得。</p>
+<p>直到六点钟，我的耐心几乎被消耗殆尽，它才驶离了苏州。</p>
+<p>路过南京时，停在了一个服务站。但是那里实在是太老旧，而又太偏僻，仅仅停泊了这一辆大巴。餐厅，是二十年前风格的建筑；厕所，和苏大文成楼里的厕所一样老旧，甚至有甚之：小便池是用水泥浇筑的，洗手池下面放了一个大缸来储水。</p>
+<p>所有人都下车，在那片空旷的场地上休憩。他们自在的样子，显示出这趟旅途走过不止一次。即使是半大的孩童，也知道下一站停靠在哪儿，我一无所知，也查不到这些，这大概是当地人一种习以为常的默契吧。</p>
+<p>我意识到我似乎闯入了一片不属于我的领地。</p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>我在路上看着月亮，今天的月亮是半残的，月光不是很亮。</p>
+<p>我看了两个小时多的月亮，看着它从山后移到云后，从树木丛林掩映到被高楼大厦遮挡，从左边转到右边，然后又转到左边——这是因为路的朝向不同。</p>
+<p>我总觉得夜晚的城市比白天的漂亮些，或许是因为那些灯光的缘故。眯着眼睛看，就像是看见了星河，那是自然的伟力而非人类的壮举。而定睛望去，拖出残影的光点并不是流星而是车辆，是活在这个世界上的芸芸众生。</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>这辆车上的人们从头到尾都在用他们的方言交流。</p>
+<p>我曾经听人说，江浙的土话很难懂，但我从小生活在这里，自然而然会说吴语，体会不到身处异乡时那种语言不通的痛苦；再去别的城市旅行时，多是去一些大都市，现代化水平很高了，人们多说普通话。唯独在这个车辆上我明白了那种感受。</p>
+<p>除了我，所有的乘客，甚至包括乘务员，司机，他们说的都是方言。我虽然并不想加入他们的交流，但也难免尴尬。</p>
+<p>下车时，这车不是直接停到车站里。进入了桐城，它摇身一变，成为一辆公交车，在不同的站点停留。乘务员问乘客们，在哪下。近乎把人送到家门口的行为固然令人感动，然而语言不通而又人生地不熟，我实在无法描述我要在哪里下车。</p>
+<p>当他问到我时，我匆匆地说，那就在这里下吧。落荒之中听见车上不耐的嘲笑，这几句话我倒是大概听明白了，许是说我被人卖了都不知道云云。</p>
+<p>我想他并非出于恶意，但也缺乏理解，这是人们的常态。</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>但是当我下车走在这街头时，我仍然感受到一种快意和自由。</p>
+<p>这里的人们习以为常的风景，在我看来却是稀奇而有趣的。而此行不必迁就他人，也不必刻意安排一个满满的日程表，只是行我所行，听从我心。</p>
+<p>张开双臂拥抱一片陌生的土地，这里的空气在过去一刻都没有属于我。关于这里的记忆在此刻终于有了色彩，而后有了时间，有了历史，有了我们心心念念期待着的故事。</p>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>同等价位的酒店都大同小异。</p>
+<p>步入房间，迎面一股不知是什么味道。房间还算干净整洁，只是有些角落显得出来，有些破旧了。怀念起南京住的酒店了，不过在这里住三晚也仅仅抵得上那里一晚上的价格，想到这儿也就释怀了。</p>
+<p>终于洗了个澡，洗去了一身的疲惫。</p>
+<p>晚安，好梦。<br><img src="https://pic.imgdb.cn/item/5f7877a2160a154a6714d210.jpg" alt=""></p>
 ]]></content>
       <categories>
         <category>我们的旅行</category>
@@ -527,58 +527,15 @@
       </tags>
   </entry>
   <entry>
-    <title>山石巴</title>
-    <url>/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</url>
-    <content><![CDATA[<p>山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。</p>
-<p>之所以叫山石巴，是取了“三十八”的谐音：自助餐，38元一位。这样的取名风格，大概是为了凸显出实惠吧。</p>
-<p>第一次去那儿，是小乐乐带我去的。高中时候的我们，唯一有的空闲时间无疑是周日。那时在学校中自习，上午和晚上都是埋头在书本里暗无天日的学习时间，但也得益于此，同学们一起出去吃饭很方便。中午打个车或者坐个公交，去南洋或是万达，总是有几家心仪的实惠小店。在夕阳西下之前优哉游哉地转回来，这就是我们在那些单调乏味的日子里最大的欢乐了。</p>
-<p>十八岁时的我没有顾虑和忧愁，不担心未来和过去。</p>
-<p>小乐乐说，王雨，要不要陪我去吃饭。</p>
-<p>我说，好。</p>
-<p>于是我们就出发了。周末中午时候的112总是拥挤的，我们常把这班车次戏称为校车，因为上面都是被关了一个星期迫不及待出去放风的太高学生。</p>
-<p>小乐乐第一次带我去时，我被震惊到了。你能想象吗？一家餐厅建在二楼，而通上去的楼梯竟然是塌的，布满了钢筋和灰尘，像是被强拆的钉子户一样不堪。他尴尬地笑了笑，说：“这里卖相确实不怎么好，但是你一定不会后悔的。“</p>
-<p>跟着他绕来绕去，原来不是走楼梯上去的，在颓圮的房间里藏着一扇电梯门，通过电梯，就可以上去了。正式进入了餐厅，眼前一亮。人出乎意料地多，沙发上坐满了排队等候的顾客。房间里面热气腾腾的，氤氲着温暖的人间烟火气。</p>
-<p>三十八元一位，对于自助餐来说，确实是很实惠的价格了。可供选择的菜品还真是不少，种类齐全。至于味道？至少比食堂的饭菜更容易下口。</p>
-<p>来了一次，就想来第二次。然后我们又挟上了其他的小伙伴。</p>
-<p>旺哥被我们带来的时候，也被楼梯口的破败吓到了。他一脸怀疑地看着我们俩，怀疑是在耍他。与后来他大快朵颐的样子形成了强烈的反差。</p>
-<p>有一块灰黑色的饼，我不知道那是什么，因为我至今不敢下口。我们仨那时看着这个不明物体，面面相觑。</p>
-<p>“猜拳吧，谁输了谁吃。“</p>
-<p>于是张道旺哭丧着脸把它塞进嘴里。<br>我狂笑。</p>
-<p>看他的表情，整个脸都皱到一块去了。好不容易咀嚼了几下，就捂住嘴巴，一脸要吐的样子。其浮夸的颜艺，堪比城之内。</p>
-<p>而我和小乐乐，丝毫没有一点愧疚之情。</p>
-<p>因为他真的太好笑了。</p>
-<p>后来，我们常来这里。一起的同学越来越多，有的时候甚至一桌子坐不下。小乐乐一直在不遗余力地推广着这家餐厅，即使他们不会给他广告费。然后，这里就留下了我们的许多回忆。</p>
-<p>说起来也没有过很长时间，却让人好怀念。</p>
-<p>真想和你们再聚一聚，即使那些时光已经消失不见。</p>
+    <title>扬州旅行计划书</title>
+    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
+    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
 ]]></content>
       <categories>
-        <category>我们的思念</category>
+        <category>我们的旅行</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>当我拿起相机</title>
-    <url>/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/</url>
-    <content><![CDATA[<p>从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。</p>
-<p>曾向佳琪抱怨过这个问题，说，自己拍照片的举动始终是无意识的。佳琪安慰我说“你学摄影才多久呀，就想拍出多好的照片。”我深以为然。但是现在看来，这段时间其实已经不短了。在这期间，我进步了多少呢，我学习了多少呢？我在2019年之初定下一年目标的时候，曾经写下“按下第五千次快门”。这个目标现在已经达到了，但是这五千次快门中真正能被称作是看的过去的照片不超过两百张，而这两百张具有审美意义的，在我看来不超过两张。而这两张勉强可以称之为作品的照片，亦是缺乏内涵的。为什么缺乏内涵呢？因为拍下他们时，相机背后的我是无意识而被动地拍照，我缺乏主观的表达意愿也缺乏用相机表达我意愿的能力。</p>
-<p>我们不应该否认相机作为相机本来的功能，也即是“记录”的功效，但是摄影不同于拍照的最大一个特点，也正是摄影之所以可以自诩为艺术的原因，和绘画，和音乐，和雕塑和其他一切美学意义上的途径相同，摄影应该作为一种“表达”创作者想法的途径。</p>
-<p>我的作品缺乏这种表达。</p>
-<p>即使这一年半以来我看了很多很多的书，我了解了构图，我学会了后期，我知道前期的各种参数，我知道什么条件下该使用怎么样的快门速度曝光度和光圈，我可以使用三脚架和滤镜，但是我依然称不上得其门道。说到底，我缺乏系统化的学习，但是这不是问题的关键。我看了很多很多的照片，从糖水片到大师的作品，或多或少确实提升了一定的审美能力，但仍然缺乏本质上对美的敏锐，否则我又为何对于创造美这一件事感到无力呢？</p>
-<p>我买了第二个镜头，可正如人们所说，摄影重要的不是相机前面那个头，而是相机后面那个头。造成这一切的根本原因是因为我在按下快门的时候缺乏思考。</p>
-<p>也有摄影师说过，“我拍照片只是想看看这些东西拍成照片是什么样子。”但是这不是按下快门的时候不经过脑子的理由。摄影之不同于拍照就在于它不是看到了什么就拍，而是想好了拍成什么样才拍，所谓胸有成竹是也。没有思考，这个相机的感光原件与光线反应的瞬间就不配称之为摄影。没有思考，相机后面的那个脑袋的主人就不配被称为摄影师。</p>
-<p>在今天，手机的拍照性能越来越强大，在光线好的时候，因为其像素高，甚至可以媲美微单。我想起我最开始，也正是因为我用手机随手拍的几张夕阳，被妈妈盛赞，于是便自傲不已地认为自己有摄影上的天赋。那时的照片是无意识的，而到今天，我拍的照片仍然没有摆脱这样的范畴，这一年半以来，我的长进寥寥。在圈外人看来，或许可以冠绝朋友圈，收获一大批赞赏和好评，但是在真正懂摄影的人看来，却是太过乏味而无趣了。</p>
-<p>正如安塞尔亚当斯所说，“You don’t make a photograph just with a camera.You bring to the act of photography all the pictures you have seen,the books you have read,the music you have heard,the people you have loved.”安塞尔亚当斯以其风光摄影作品而闻名，并不是只有人文主题的照片可以拍出思想的，风光，或是其他，也照样可以。我始终没有以靠摄影为生的想法，只是把它当做一个兴趣爱好，虽说与此，但我的初衷并不单单是为了“记录”和拍照。在我眼里相机不应该只是用来截取时间以供回忆，因为回忆是太私人化的体验。它还要让时间长河里那些独属于我的美好变得熠熠生辉，让它人能感知到其美和其珍贵，这样，那个瞬间才能真正变为永恒，对于这个多彩的世界的爱才能被真正传达到。</p>
-<p>以此自勉，我将用一生追逐光透过叶子的缝隙洒在地上的影子的瞬间，追逐西边的太阳把云彩映成橘红色的瞬间，追逐水滴落下溅起浪花和涟漪的瞬间，追逐美，自由和爱。</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-        <tag>摄影</tag>
-        <tag>哲思</tag>
+        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -645,15 +602,26 @@
       </tags>
   </entry>
   <entry>
-    <title>扬州旅行计划书</title>
-    <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
-    <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
+    <title>当我拿起相机</title>
+    <url>/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/</url>
+    <content><![CDATA[<p>从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。</p>
+<p>曾向佳琪抱怨过这个问题，说，自己拍照片的举动始终是无意识的。佳琪安慰我说“你学摄影才多久呀，就想拍出多好的照片。”我深以为然。但是现在看来，这段时间其实已经不短了。在这期间，我进步了多少呢，我学习了多少呢？我在2019年之初定下一年目标的时候，曾经写下“按下第五千次快门”。这个目标现在已经达到了，但是这五千次快门中真正能被称作是看的过去的照片不超过两百张，而这两百张具有审美意义的，在我看来不超过两张。而这两张勉强可以称之为作品的照片，亦是缺乏内涵的。为什么缺乏内涵呢？因为拍下他们时，相机背后的我是无意识而被动地拍照，我缺乏主观的表达意愿也缺乏用相机表达我意愿的能力。</p>
+<p>我们不应该否认相机作为相机本来的功能，也即是“记录”的功效，但是摄影不同于拍照的最大一个特点，也正是摄影之所以可以自诩为艺术的原因，和绘画，和音乐，和雕塑和其他一切美学意义上的途径相同，摄影应该作为一种“表达”创作者想法的途径。</p>
+<p>我的作品缺乏这种表达。</p>
+<p>即使这一年半以来我看了很多很多的书，我了解了构图，我学会了后期，我知道前期的各种参数，我知道什么条件下该使用怎么样的快门速度曝光度和光圈，我可以使用三脚架和滤镜，但是我依然称不上得其门道。说到底，我缺乏系统化的学习，但是这不是问题的关键。我看了很多很多的照片，从糖水片到大师的作品，或多或少确实提升了一定的审美能力，但仍然缺乏本质上对美的敏锐，否则我又为何对于创造美这一件事感到无力呢？</p>
+<p>我买了第二个镜头，可正如人们所说，摄影重要的不是相机前面那个头，而是相机后面那个头。造成这一切的根本原因是因为我在按下快门的时候缺乏思考。</p>
+<p>也有摄影师说过，“我拍照片只是想看看这些东西拍成照片是什么样子。”但是这不是按下快门的时候不经过脑子的理由。摄影之不同于拍照就在于它不是看到了什么就拍，而是想好了拍成什么样才拍，所谓胸有成竹是也。没有思考，这个相机的感光原件与光线反应的瞬间就不配称之为摄影。没有思考，相机后面的那个脑袋的主人就不配被称为摄影师。</p>
+<p>在今天，手机的拍照性能越来越强大，在光线好的时候，因为其像素高，甚至可以媲美微单。我想起我最开始，也正是因为我用手机随手拍的几张夕阳，被妈妈盛赞，于是便自傲不已地认为自己有摄影上的天赋。那时的照片是无意识的，而到今天，我拍的照片仍然没有摆脱这样的范畴，这一年半以来，我的长进寥寥。在圈外人看来，或许可以冠绝朋友圈，收获一大批赞赏和好评，但是在真正懂摄影的人看来，却是太过乏味而无趣了。</p>
+<p>正如安塞尔亚当斯所说，“You don’t make a photograph just with a camera.You bring to the act of photography all the pictures you have seen,the books you have read,the music you have heard,the people you have loved.”安塞尔亚当斯以其风光摄影作品而闻名，并不是只有人文主题的照片可以拍出思想的，风光，或是其他，也照样可以。我始终没有以靠摄影为生的想法，只是把它当做一个兴趣爱好，虽说与此，但我的初衷并不单单是为了“记录”和拍照。在我眼里相机不应该只是用来截取时间以供回忆，因为回忆是太私人化的体验。它还要让时间长河里那些独属于我的美好变得熠熠生辉，让它人能感知到其美和其珍贵，这样，那个瞬间才能真正变为永恒，对于这个多彩的世界的爱才能被真正传达到。</p>
+<p>以此自勉，我将用一生追逐光透过叶子的缝隙洒在地上的影子的瞬间，追逐西边的太阳把云彩映成橘红色的瞬间，追逐水滴落下溅起浪花和涟漪的瞬间，追逐美，自由和爱。</p>
 ]]></content>
       <categories>
-        <category>我们的旅行</category>
+        <category>我们的思念</category>
       </categories>
       <tags>
-        <tag>旅行</tag>
+        <tag>杂感</tag>
+        <tag>摄影</tag>
+        <tag>哲思</tag>
       </tags>
   </entry>
   <entry>
@@ -696,6 +664,38 @@
       <tags>
         <tag>杂感</tag>
         <tag>哲思</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>山石巴</title>
+    <url>/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</url>
+    <content><![CDATA[<p>山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。</p>
+<p>之所以叫山石巴，是取了“三十八”的谐音：自助餐，38元一位。这样的取名风格，大概是为了凸显出实惠吧。</p>
+<p>第一次去那儿，是小乐乐带我去的。高中时候的我们，唯一有的空闲时间无疑是周日。那时在学校中自习，上午和晚上都是埋头在书本里暗无天日的学习时间，但也得益于此，同学们一起出去吃饭很方便。中午打个车或者坐个公交，去南洋或是万达，总是有几家心仪的实惠小店。在夕阳西下之前优哉游哉地转回来，这就是我们在那些单调乏味的日子里最大的欢乐了。</p>
+<p>十八岁时的我没有顾虑和忧愁，不担心未来和过去。</p>
+<p>小乐乐说，王雨，要不要陪我去吃饭。</p>
+<p>我说，好。</p>
+<p>于是我们就出发了。周末中午时候的112总是拥挤的，我们常把这班车次戏称为校车，因为上面都是被关了一个星期迫不及待出去放风的太高学生。</p>
+<p>小乐乐第一次带我去时，我被震惊到了。你能想象吗？一家餐厅建在二楼，而通上去的楼梯竟然是塌的，布满了钢筋和灰尘，像是被强拆的钉子户一样不堪。他尴尬地笑了笑，说：“这里卖相确实不怎么好，但是你一定不会后悔的。“</p>
+<p>跟着他绕来绕去，原来不是走楼梯上去的，在颓圮的房间里藏着一扇电梯门，通过电梯，就可以上去了。正式进入了餐厅，眼前一亮。人出乎意料地多，沙发上坐满了排队等候的顾客。房间里面热气腾腾的，氤氲着温暖的人间烟火气。</p>
+<p>三十八元一位，对于自助餐来说，确实是很实惠的价格了。可供选择的菜品还真是不少，种类齐全。至于味道？至少比食堂的饭菜更容易下口。</p>
+<p>来了一次，就想来第二次。然后我们又挟上了其他的小伙伴。</p>
+<p>旺哥被我们带来的时候，也被楼梯口的破败吓到了。他一脸怀疑地看着我们俩，怀疑是在耍他。与后来他大快朵颐的样子形成了强烈的反差。</p>
+<p>有一块灰黑色的饼，我不知道那是什么，因为我至今不敢下口。我们仨那时看着这个不明物体，面面相觑。</p>
+<p>“猜拳吧，谁输了谁吃。“</p>
+<p>于是张道旺哭丧着脸把它塞进嘴里。<br>我狂笑。</p>
+<p>看他的表情，整个脸都皱到一块去了。好不容易咀嚼了几下，就捂住嘴巴，一脸要吐的样子。其浮夸的颜艺，堪比城之内。</p>
+<p>而我和小乐乐，丝毫没有一点愧疚之情。</p>
+<p>因为他真的太好笑了。</p>
+<p>后来，我们常来这里。一起的同学越来越多，有的时候甚至一桌子坐不下。小乐乐一直在不遗余力地推广着这家餐厅，即使他们不会给他广告费。然后，这里就留下了我们的许多回忆。</p>
+<p>说起来也没有过很长时间，却让人好怀念。</p>
+<p>真想和你们再聚一聚，即使那些时光已经消失不见。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
       </tags>
   </entry>
   <entry>
@@ -787,6 +787,27 @@
       </tags>
   </entry>
   <entry>
+    <title>让平凡的日子也散发出光亮</title>
+    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
+    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
+<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
+<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
+<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
+<p>诗意的世界就借由仪式感来创造。</p>
+<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
+<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
+<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
+<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
+<p>让平凡的日子也散发出光亮。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>田野也消失了</title>
     <url>/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/</url>
     <content><![CDATA[<p>又是一年，回到太高，思绪已逐渐遥远。</p>
@@ -803,37 +824,6 @@
       </categories>
       <tags>
         <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[苏州大学C++] 大一下C++第二次考试</title>
-    <url>/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<p>题目如下：<br>请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：</p>
-<ol>
-<li>包含圆形编号、圆心x坐标、圆心y坐标和半径等数据成员。圆形编号为整形。生成第1个圆形对象时编号为1，生成第2个圆形对象时编号为2，以此类推。每构造一个新的圆形，对象编号为当前最大编号加1（如当前最大编号为5，则生成的这个新圆形的编号应该为6）。</li>
-<li>是否需要其它数据成员，可视情况自行决定。提示：建议使用两个静态变量。一个静态变量用于记录当前圆形对象的个数，此变量的值可增大或减小；另一个静态变量用于记录已经生成的圆形对象的最大编号，此变量的值只会增大不会减小。</li>
-<li>1个带有3个参数的构造函数。3个参数分别初始化圆形的圆心x坐标、圆心y坐标和半径等数据成员。提示：圆形对象的编号也需要初始化。</li>
-<li>1个拷贝构造函数。提示：圆形对象的编号不能简单复制。</li>
-<li>1个获取当前圆形对象数量的函数。提示：此函数建议为静态函数。</li>
-<li>前自增运算符，对半径自增1。</li>
-<li>后自增运算符，对半径自增1。</li>
-<li>+运算符，用于将两个圆形加在一起，得到一个新的圆形。新圆形的圆心坐标是两个圆形坐标连线的中点，面积是两个圆形面积的和。提示：需要根据面积反算半径。</li>
-<li>流输出运算，用于显示圆形的编号、圆心x坐标、圆心y坐标和半径、面积、周长。一个圆形的信息占1行。</li>
-<li>析构函数。圆形对象销毁时，需要将当前圆形对象的数量减去1。</li>
-<li>使用给定的main函数测试Circle类的功能。</li>
-</ol>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">///#Author:Rye</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_number;<span class="comment">//当前圆对象的数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_maxCount;<span class="comment">//最大编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m_count = <span class="number">0</span>;<span class="comment">//对象编号</span></span><br><span class="line">    <span class="keyword">double</span> m_x;</span><br><span class="line">    <span class="keyword">double</span> m_y;</span><br><span class="line">    <span class="keyword">double</span> m_r;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> x,<span class="keyword">double</span> y,<span class="keyword">double</span> r)&#123;</span><br><span class="line">        m_x = x;</span><br><span class="line">        m_y = y;</span><br><span class="line">        m_r = r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了构造函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number++;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle(<span class="keyword">const</span> Circle&amp;C)&#123;</span><br><span class="line">        m_x = C.m_x;</span><br><span class="line">        m_y = C.m_y;</span><br><span class="line">        m_r = C.m_r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了拷贝构造函数"&lt;&lt;C.m_count&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//        m_maxCount++;</span></span><br><span class="line">        m_number++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~Circle()&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了析构函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_num</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_number;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle&amp; <span class="keyword">operator</span>++()&#123;</span><br><span class="line">        m_r++;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"前置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;<span class="comment">//前置++</span></span><br><span class="line">    Circle <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"后置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="function">Circle <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;<span class="comment">//调用拷贝构造函数</span></span><br><span class="line">        temp.m_count = m_count;</span><br><span class="line">        m_r++;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;<span class="comment">//后置++</span></span><br><span class="line">    <span class="keyword">friend</span> Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b);</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t);<span class="comment">//流输出</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle&amp; operator++(Circle &amp;t)&#123;///友元函数重载</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return t;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle operator++(Circle &amp;t,int)&#123;</span></span><br><span class="line"><span class="comment">//    Circle temp(t);//调用拷贝构造函数</span></span><br><span class="line"><span class="comment">//    temp.m_count = t.m_count;</span></span><br><span class="line"><span class="comment">//    Circle::m_maxCount--;</span></span><br><span class="line"><span class="comment">//    Circle::m_number--;</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return temp;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b)&#123;</span><br><span class="line">    <span class="keyword">double</span> S = PI * (a.m_r * a.m_r + b.m_r * b.m_r);</span><br><span class="line">    <span class="keyword">double</span> R = <span class="built_in">pow</span>(S / PI, <span class="number">0.5</span>);</span><br><span class="line">    <span class="function">Circle <span class="title">NEW</span><span class="params">(a.m_x + b.m_x, a.m_y + b.m_y, R)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> NEW;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t)&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的编号"</span> &lt;&lt; t.m_count &lt;&lt; <span class="string">" x:"</span> &lt;&lt; t.m_x &lt;&lt; <span class="string">" y:"</span> &lt;&lt; t.m_y &lt;&lt; <span class="string">" 周长:"</span> &lt;&lt; <span class="number">2</span> * PI * t.m_r &lt;&lt; <span class="string">" 面积:"</span> &lt;&lt; PI * t.m_r * t.m_r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Circle::m_maxCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> Circle::m_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Circle c1( 1.12, 2.23, 3.34 ), c2( c1 );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1 &lt;&lt; c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Circle c3 = c1 + c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c3;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实很简单。<br>但是踩了一个坑，今天有同学来问我这道题，有关于静态变量。它的序号莫名其妙增加了。<br>我第一次写的时候也出现了这个问题，后来找到问题所在。<br>如果使用友元函数重载运算符，传入的参数没有使用常引用的时候，就会调用拷贝构造函数。<br>比如你把<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,const Circle &amp;t);</code>写成了<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,Circle t);</code><br><img src="https://img-blog.csdnimg.cn/2020060120410313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="调用拷贝构造函数"><br>那么cout &lt;&lt; c1 &lt;&lt; c2 就会调用2次拷贝构造函数和2次析构函数。在不涉及静态变量的时候，常引用和不写引用的方式是没有区别的。但是这道题目中，调用拷贝构造函数会使最大序号增加，而析构函数不会使最大序号减小，所以这种写法就错了。</p>
-<p>常引用能够提高程序运行的效率，也能保护传递给函数的数据不被改变。引用型参数如果可以被定义为const，应该尽量定义为const。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-        <tag>学习笔记</tag>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -932,24 +922,34 @@
       </tags>
   </entry>
   <entry>
-    <title>让平凡的日子也散发出光亮</title>
-    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
-    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
-<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
-<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
-<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
-<p>诗意的世界就借由仪式感来创造。</p>
-<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
-<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
-<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
-<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
-<p>让平凡的日子也散发出光亮。</p>
+    <title>[苏州大学C++] 大一下C++第二次考试</title>
+    <url>/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<p>题目如下：<br>请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：</p>
+<ol>
+<li>包含圆形编号、圆心x坐标、圆心y坐标和半径等数据成员。圆形编号为整形。生成第1个圆形对象时编号为1，生成第2个圆形对象时编号为2，以此类推。每构造一个新的圆形，对象编号为当前最大编号加1（如当前最大编号为5，则生成的这个新圆形的编号应该为6）。</li>
+<li>是否需要其它数据成员，可视情况自行决定。提示：建议使用两个静态变量。一个静态变量用于记录当前圆形对象的个数，此变量的值可增大或减小；另一个静态变量用于记录已经生成的圆形对象的最大编号，此变量的值只会增大不会减小。</li>
+<li>1个带有3个参数的构造函数。3个参数分别初始化圆形的圆心x坐标、圆心y坐标和半径等数据成员。提示：圆形对象的编号也需要初始化。</li>
+<li>1个拷贝构造函数。提示：圆形对象的编号不能简单复制。</li>
+<li>1个获取当前圆形对象数量的函数。提示：此函数建议为静态函数。</li>
+<li>前自增运算符，对半径自增1。</li>
+<li>后自增运算符，对半径自增1。</li>
+<li>+运算符，用于将两个圆形加在一起，得到一个新的圆形。新圆形的圆心坐标是两个圆形坐标连线的中点，面积是两个圆形面积的和。提示：需要根据面积反算半径。</li>
+<li>流输出运算，用于显示圆形的编号、圆心x坐标、圆心y坐标和半径、面积、周长。一个圆形的信息占1行。</li>
+<li>析构函数。圆形对象销毁时，需要将当前圆形对象的数量减去1。</li>
+<li>使用给定的main函数测试Circle类的功能。</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">///#Author:Rye</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_number;<span class="comment">//当前圆对象的数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_maxCount;<span class="comment">//最大编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m_count = <span class="number">0</span>;<span class="comment">//对象编号</span></span><br><span class="line">    <span class="keyword">double</span> m_x;</span><br><span class="line">    <span class="keyword">double</span> m_y;</span><br><span class="line">    <span class="keyword">double</span> m_r;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> x,<span class="keyword">double</span> y,<span class="keyword">double</span> r)&#123;</span><br><span class="line">        m_x = x;</span><br><span class="line">        m_y = y;</span><br><span class="line">        m_r = r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了构造函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number++;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle(<span class="keyword">const</span> Circle&amp;C)&#123;</span><br><span class="line">        m_x = C.m_x;</span><br><span class="line">        m_y = C.m_y;</span><br><span class="line">        m_r = C.m_r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了拷贝构造函数"&lt;&lt;C.m_count&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//        m_maxCount++;</span></span><br><span class="line">        m_number++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~Circle()&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了析构函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_num</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_number;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle&amp; <span class="keyword">operator</span>++()&#123;</span><br><span class="line">        m_r++;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"前置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;<span class="comment">//前置++</span></span><br><span class="line">    Circle <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"后置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="function">Circle <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;<span class="comment">//调用拷贝构造函数</span></span><br><span class="line">        temp.m_count = m_count;</span><br><span class="line">        m_r++;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;<span class="comment">//后置++</span></span><br><span class="line">    <span class="keyword">friend</span> Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b);</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t);<span class="comment">//流输出</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle&amp; operator++(Circle &amp;t)&#123;///友元函数重载</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return t;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle operator++(Circle &amp;t,int)&#123;</span></span><br><span class="line"><span class="comment">//    Circle temp(t);//调用拷贝构造函数</span></span><br><span class="line"><span class="comment">//    temp.m_count = t.m_count;</span></span><br><span class="line"><span class="comment">//    Circle::m_maxCount--;</span></span><br><span class="line"><span class="comment">//    Circle::m_number--;</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return temp;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b)&#123;</span><br><span class="line">    <span class="keyword">double</span> S = PI * (a.m_r * a.m_r + b.m_r * b.m_r);</span><br><span class="line">    <span class="keyword">double</span> R = <span class="built_in">pow</span>(S / PI, <span class="number">0.5</span>);</span><br><span class="line">    <span class="function">Circle <span class="title">NEW</span><span class="params">(a.m_x + b.m_x, a.m_y + b.m_y, R)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> NEW;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t)&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的编号"</span> &lt;&lt; t.m_count &lt;&lt; <span class="string">" x:"</span> &lt;&lt; t.m_x &lt;&lt; <span class="string">" y:"</span> &lt;&lt; t.m_y &lt;&lt; <span class="string">" 周长:"</span> &lt;&lt; <span class="number">2</span> * PI * t.m_r &lt;&lt; <span class="string">" 面积:"</span> &lt;&lt; PI * t.m_r * t.m_r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Circle::m_maxCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> Circle::m_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Circle c1( 1.12, 2.23, 3.34 ), c2( c1 );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1 &lt;&lt; c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Circle c3 = c1 + c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c3;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实很简单。<br>但是踩了一个坑，今天有同学来问我这道题，有关于静态变量。它的序号莫名其妙增加了。<br>我第一次写的时候也出现了这个问题，后来找到问题所在。<br>如果使用友元函数重载运算符，传入的参数没有使用常引用的时候，就会调用拷贝构造函数。<br>比如你把<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,const Circle &amp;t);</code>写成了<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,Circle t);</code><br><img src="https://img-blog.csdnimg.cn/2020060120410313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="调用拷贝构造函数"><br>那么cout &lt;&lt; c1 &lt;&lt; c2 就会调用2次拷贝构造函数和2次析构函数。在不涉及静态变量的时候，常引用和不写引用的方式是没有区别的。但是这道题目中，调用拷贝构造函数会使最大序号增加，而析构函数不会使最大序号减小，所以这种写法就错了。</p>
+<p>常引用能够提高程序运行的效率，也能保护传递给函数的数据不被改变。引用型参数如果可以被定义为const，应该尽量定义为const。</p>
 ]]></content>
       <categories>
-        <category>我们的思念</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
+        <tag>题解</tag>
+        <tag>学习笔记</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
