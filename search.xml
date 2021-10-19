@@ -18,22 +18,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[HDU6536] Hello XTCPC</title>
-    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
-    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[HDU6754] Distinct Sub-palindromes</title>
     <url>/2020/07/31/HDU6754-Distinct-Sub-palindromes/</url>
     <content><![CDATA[<p>题目：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6754" target="_blank" rel="noopener">HDU6754</a><br>题意：<br>S是长度为n的字符串。 S由小写英文字母组成。<br>您的任务是计算具有最少亚种回文数的不同S的数目。 亚种回文是回文的子字符串。<br>如果两个子回文式u和v的长度不同或对于某些i（0≤i≤length）ui≠vi，则它们是不同的。 例如，字符串“ aaaa”仅包含四个不同的子回文，即“ a”，“ aa”，“ aaa”和“ aaaa”。</p>
@@ -48,6 +32,22 @@
         <tag>题解</tag>
         <tag>字符串</tag>
         <tag>构造</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[HDU6536] Hello XTCPC</title>
+    <url>/2020/05/24/HDU6536-Hello-XTCPC/</url>
+    <content><![CDATA[<p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -84,19 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 1417C] k-Amazing Numbers</title>
-    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[codeforces 1372C] Omkar and Baseball</title>
     <url>/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</url>
     <content><![CDATA[<p>题目: <a href="https://codeforces.com/problemset/problem/1372/C" target="_blank" rel="noopener">1372C</a><br>题意：给定一个从1~n的顺序不定的数组，定义一种排序操作：区间[L,R]，操作后里面的所有数都不在原来的位置上。求几次操作可以把数组变成1,2,3,..n的顺序。<br>思路：<br>没有经过严格的论证，但是造了几个数据发现如下规律：</p>
@@ -116,6 +103,55 @@
         <tag>题解</tag>
         <tag>数学</tag>
         <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 559B] Equivalent Strings</title>
+    <url>/2020/06/07/codeforces-559B-Equivalent-Strings/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/559/B" target="_blank" rel="noopener">559B</a><br>题意：给定两个字符串，判断是不是一个神奇的字符串。<br>他们满足如下两个条件的其中之一：<br>1、 A与B相等。<br>2、 如果我们把字符串A分成两个长度相等的字符串A1,A2，并将字符串B分成两个长度相等的字符串B1,B2 然后他们满足以下的其中一项条件：<br>（1） A1与B1是一对神奇的字符串，并且A2与B2是一对神奇的字符串。<br>（2） A2与B1是一对神奇的字符串，并且A1与B2是一对神奇的字符串。<br>思路：<br>很显然用递归的思想，但是单纯的递归会TLE</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(len&amp;<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> n = len&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(n,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(<span class="number">0</span>,n),n))<span class="comment">///如果把这个和下面那个调换一下位置，就会TLE。很搞笑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(<span class="number">0</span>,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(n,n),n))</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>(judge(a,b,a.size())) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，这样就能过了……<br>……<br>……<br>正经思路是：<br>一个字符串可以拆成很多的小部分，这些小部分是可以任意排序的。（这个小部分的最小单位是2）（可以任意排序是因为条件2有两项。里面有很多种可能性的组合。）<br>按照字典顺序递归处理一下，再进行拼接。（具体是a&gt;b还是b&gt;a其实并不重要）<br>如果拼接之后的两个字符串相等，就可以了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">handle</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.size()%<span class="number">2</span> == <span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">string</span> s1 = handle(s.substr(<span class="number">0</span>,s.size()/<span class="number">2</span>));</span><br><span class="line">    <span class="built_in">string</span> s2 = handle(s.substr(s.size()/<span class="number">2</span>,s.size()));</span><br><span class="line">    <span class="keyword">if</span>(s1 &gt; s2) <span class="keyword">return</span> s1 + s2;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> s2 + s1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    a = handle(a);</span><br><span class="line">    b = handle(b);</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>字符串</tag>
+        <tag>思维</tag>
+        <tag>排序</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 1417C] k-Amazing Numbers</title>
+    <url>/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[codeforces 630K] Indivisibility</title>
+    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>题解</tag>
+        <tag>数学</tag>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -139,19 +175,22 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 630K] Indivisibility</title>
-    <url>/2020/06/07/codeforces-630K-Indivisibility/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/630/K" target="_blank" rel="noopener">630K</a><br>题意：给你一个整数n，输出1到n中不能被k整除的数字的数量，k可以是【2，10】中的任意一个整数。<br>思路：训练赛的B题，也是大部分人都做出来的一题。<br>涉及到了数论的一些知识，要用到容斥定理。<br>从1到n，不能被k整除的数的数量： <strong>n/k*(k-1)+n%k</strong><br>当然也可以反过来求能被k整除的数，再减，可能更方便。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">RT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n,<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n/a*(a<span class="number">-1</span>)+n%a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = RT(n,<span class="number">2</span>)+RT(n,<span class="number">3</span>)+RT(n,<span class="number">5</span>)+RT(n,<span class="number">7</span>)-RT(n,<span class="number">6</span>)-RT(n,<span class="number">10</span>)-RT(n,<span class="number">14</span>)-RT(n,<span class="number">15</span>)-RT(n,<span class="number">21</span>)-RT(n,<span class="number">35</span>)+RT(n,<span class="number">30</span>)+RT(n,<span class="number">42</span>)+RT(n,<span class="number">105</span>)+RT(n,<span class="number">70</span>)-RT(n,<span class="number">210</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>[codeforces 1430D] String Deletion</title>
+    <url>/2020/10/14/codeforces-1430D-String-Deletion/</url>
+    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/1430/D" target="_blank" rel="noopener">1430D</a><br>题意：<br>给定一个由0和1组成的字符串，每次你必须执行如下两步操作：<br>1.选择一个位置i并且删除这个位置上面的字符<br>2.由相同字符组成的最大长度的连续前缀会被删除<br>要求最大化操作次数</p>
+<p>思路：<br>题目要求我们最大化操作次数，不难发现：<br>当由相同字符组成的前缀的长度&gt;=2的时候，不管选不选它，这段前缀都会被删除；<br>而如果不选择它，我们就需要删除后面的一个字符，这样的话可能会减少操作次数。<br>因此我们应该贪心地选择它，以便增多操作次数。<br>当由相同字符组成的前缀的长度为1，即开头不出现连续字符的时候，我们应该从最前面的有至少两个相同字符组成的块中删除一个字符。<br>否则，我们的操作次数可能就会变少。</p>
+<p>当字符串全部是左右不相同的字符组成的时候，比如10101010，我们可以确定删除的次数必定是[n/2]</p>
+<p>我们可以给每一段由相同字符组成的字符子串打上标记，<br>比如1110010110<br>标记为0001123445<br>使用队列储存，以方便确认最前面的数据。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>,ans = <span class="number">0</span>,deleted = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]!=s[i<span class="number">-1</span>])</span><br><span class="line">                cur++;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]==s[i<span class="number">-1</span>])</span><br><span class="line">                q.push(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            q.pop();</span><br><span class="line">            deleted++;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty()&amp;&amp;i==q.front())</span><br><span class="line">            &#123;</span><br><span class="line">                q.pop();</span><br><span class="line">                deleted++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            deleted++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += (n - deleted + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>ACM</tag>
         <tag>题解</tag>
-        <tag>数学</tag>
-        <tag>思维</tag>
+        <tag>字符串</tag>
+        <tag>贪心</tag>
+        <tag>双指针</tag>
       </tags>
   </entry>
   <entry>
@@ -182,42 +221,49 @@
       </tags>
   </entry>
   <entry>
-    <title>[codeforces 559B] Equivalent Strings</title>
-    <url>/2020/06/07/codeforces-559B-Equivalent-Strings/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/559/B" target="_blank" rel="noopener">559B</a><br>题意：给定两个字符串，判断是不是一个神奇的字符串。<br>他们满足如下两个条件的其中之一：<br>1、 A与B相等。<br>2、 如果我们把字符串A分成两个长度相等的字符串A1,A2，并将字符串B分成两个长度相等的字符串B1,B2 然后他们满足以下的其中一项条件：<br>（1） A1与B1是一对神奇的字符串，并且A2与B2是一对神奇的字符串。<br>（2） A2与B1是一对神奇的字符串，并且A1与B2是一对神奇的字符串。<br>思路：<br>很显然用递归的思想，但是单纯的递归会TLE</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(len&amp;<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> n = len&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(n,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(<span class="number">0</span>,n),n))<span class="comment">///如果把这个和下面那个调换一下位置，就会TLE。很搞笑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(judge(a.substr(<span class="number">0</span>,n),b.substr(<span class="number">0</span>,n),n)&amp;&amp;judge(a.substr(n,n),b.substr(n,n),n))</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>(judge(a,b,a.size())) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不过，这样就能过了……<br>……<br>……<br>正经思路是：<br>一个字符串可以拆成很多的小部分，这些小部分是可以任意排序的。（这个小部分的最小单位是2）（可以任意排序是因为条件2有两项。里面有很多种可能性的组合。）<br>按照字典顺序递归处理一下，再进行拼接。（具体是a&gt;b还是b&gt;a其实并不重要）<br>如果拼接之后的两个字符串相等，就可以了。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">handle</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.size()%<span class="number">2</span> == <span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">string</span> s1 = handle(s.substr(<span class="number">0</span>,s.size()/<span class="number">2</span>));</span><br><span class="line">    <span class="built_in">string</span> s2 = handle(s.substr(s.size()/<span class="number">2</span>,s.size()));</span><br><span class="line">    <span class="keyword">if</span>(s1 &gt; s2) <span class="keyword">return</span> s1 + s2;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> s2 + s1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    a = handle(a);</span><br><span class="line">    b = handle(b);</span><br><span class="line">    <span class="keyword">if</span>(a==b) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>南京扬州游记</title>
+    <url>/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
+<p>沿着皮市街的小巷子走百米，转三个方向，才能寻到这处藏在闹市之中的小院子。</p>
+<p>院子虽小，五脏俱全。有一水池，游动着几只肥美的金鱼。有竹，簇拥在院子的东南角，一竹成林，在那角落里肆意地生长着。挂着几只常亮的红灯笼，在晚上便有微光。房主人爱茶，于是有茶室。大堂里摆放着古筝，红木的八仙桌和太师椅。</p>
+<p>寻到一处清净是难得的，唯独蚊虫蚂蚁实在过多，亦是不堪其扰了。<br><img src="https://pic.imgdb.cn/item/5f788062160a154a67173416.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78804c160a154a67172dcd.jpg" alt=""></p>
+<h2 id="二十四桥仍在"><a href="#二十四桥仍在" class="headerlink" title="二十四桥仍在"></a>二十四桥仍在</h2><p>去瘦西湖的那一天，天气并不好。阴云密布，已不见蓝天。闷热潮湿，却也盼不到落雨。五亭桥是最惹眼的景观，乘凉倒是不错。</p>
+<p>美自然是美的。扬州园林的精致小巧，在这里可见一斑了。</p>
+<p>只是斧凿的痕迹重了，为我不喜。</p>
+<p>扬大瘦西湖校区便在旁边，大学生进此处是免票的，扬州大学的学生，晚上来此漫步，岂不妙哉。</p>
+<p>高中同桌便在扬大读书。印象里，他是一个有些腼腆而温柔的男孩。我和他都不是擅长维系关系的人，毕业之后于是联系减少了。离别多是这样的。</p>
+<p>此去扬州，他已回家，便没能再见，也是有些可惜的。<br><img src="https://pic.imgdb.cn/item/5f787be8160a154a6715ed37.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787bc3160a154a6715e0be.jpg" alt=""></p>
+<h2 id="热闹喧嚣"><a href="#热闹喧嚣" class="headerlink" title="热闹喧嚣"></a>热闹喧嚣</h2><p>似乎每个城市都有这样一条仿古建筑的步行街。苏州之平江路、山塘街，北京的南锣鼓巷，成都的宽窄巷子，就连太仓都有沙溪、陆渡古镇。扬州的皮市街和东关街便是这样了。</p>
+<p>东关街的尽头是一处高大的城门，再往外便是古运河。古运河的一段，异常狭窄，见过了之后大失所望，比之太仓的新浏河或许还要不如。然而转念一想，一条河的历史意义，难道由宽窄而决定吗？于是释然了，转而心生敬佩了。</p>
+<p>河滩，有一位唱着民谣的流浪歌手。而他的词却与原作者有所不同。</p>
+<p>比如赵雷的《成都》，是这样唱的“你会挽着我的衣袖，我会把手揣进裤兜”，而他是这样唱的“你会挽着他的衣袖，我会把手揣进裤兜”。</p>
+<p>最是情字最伤人。</p>
+<p>我们竟回到闲云小院撸串喝酒，若是房东知道了，怕是要气的七窍生烟，这几个不懂风雅的俗人！</p>
+<p>酒未竟，心已醉。放声高歌，而四人都不在调子上，戏称“跑调合唱团”。</p>
+<p>热闹之后，在院子里喂鱼。向后走几步，便看见月亮从屋檐上跑了出来。</p>
+<p>扬州是赏月的好地方。<br><img src="https://pic.imgdb.cn/item/5f79252b160a154a67379d17.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792547160a154a6737a2be.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f7925a2160a154a6737b33e.jpg" alt=""></p>
+<h2 id="天下文枢"><a href="#天下文枢" class="headerlink" title="天下文枢"></a>天下文枢</h2><p>夫子庙是游客来南京必去的景点。南京本地的同学都说，此处商业化气息过重，十分坑人。</p>
+<p>在一处古色古香的街道看见美特斯邦威的灯箱确实有些煞风景。（没有看不起美特斯邦威的意思，我很喜欢买他家的衣服）</p>
+<p>然而只需花九元买一个讲解服务，忘掉那些购物，便能欣赏到夫子庙的另一面。</p>
+<p>走进夫子庙，便了解了孔子的一生。游历诸国，讲学天下……你会发现他其实和你想的不太一样。并不是一个冥顽的老学究，他相当幽默。并不是一个文弱的书生，他身高九尺六寸（换算成今天就是2米2），孔武有力。</p>
+<p>后人不仅神化了孔子，还把孔子的学说作为统治人民乃至奴役人民的工具。于是孔子成为封建文化的代言人，这是相当可悲的。<br><img src="https://pic.imgdb.cn/item/5f787fb5160a154a67170b4a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792593160a154a6737b04e.jpg" alt=""></p>
+<h2 id="秦淮"><a href="#秦淮" class="headerlink" title="秦淮"></a>秦淮</h2><p>夜游秦淮，秦淮两岸的灯光是精心布置的，称得上流光溢彩。水拍打着船，不知不觉心静下来了。听秦淮八艳的故事，感叹古时女子命运的悲戚。</p>
+<p>顾横波、董小宛、卞玉京、李香君、寇白门、马湘兰、柳如是，陈圆圆。</p>
+<p>色艺超群，德才双馨。侠肝义胆，忧国忧民。有的曾是明末将军的千金，有的做了青灯古佛的尼姑。秦淮八绝都是风尘女子，然而其民族气节比之位高权重的名门望族又如何呢？</p>
+<p>只是不见了两岸的才子佳人，听不到了商女《后庭花》。才知道过往种种已不可寻。<br><img src="https://pic.imgdb.cn/item/5f78802b160a154a67172625.jpg" alt=""></p>
+<h2 id="人生当如鸿鹄鸟"><a href="#人生当如鸿鹄鸟" class="headerlink" title="人生当如鸿鹄鸟"></a>人生当如鸿鹄鸟</h2><p>我最爱的是站在高楼俯瞰大地。</p>
+<p>以居高临下的角度，能用一种不同于平时的视野看这世界。《死亡诗社》中Caption就让他的学生站在讲台上看这教室，于是能有不同的感受。</p>
+<p>我在太仓拍过夜景，蹲在群星花园二十四楼的最高层，守候着日落。也去过苏大凌云楼最高处，发现古城的夜色朦胧和金鸡湖的流光溢彩。南京的紫峰大厦，是我去过的最高处。那电梯不是以楼层，而是以高度亮灯。</p>
+<p>288.6米，是观光层的高度。</p>
+<p>于是玄武湖、紫金山尽收眼底。在陆地上要走很久的路，变得近如咫尺；飞驰的汽车，如同蚂蚁爬行；层叠的楼房，像是土地上生长出的钢铁植物；云雾缭绕间，隐约看到远方的长江大桥……</p>
+<p>人生当如鸿鹄鸟，不临九天不丈夫。<br><img src="https://pic.imgdb.cn/item/5f787d70160a154a67166886.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787f5d160a154a6716f252.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787df8160a154a67168c5a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787c9d160a154a67162dba.jpg" alt=""></p>
 ]]></content>
       <categories>
-        <category>题解</category>
+        <category>我们的旅行</category>
       </categories>
       <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>思维</tag>
-        <tag>排序</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[codeforces 1430D] String Deletion</title>
-    <url>/2020/10/14/codeforces-1430D-String-Deletion/</url>
-    <content><![CDATA[<p>题目：<a href="https://codeforces.com/problemset/problem/1430/D" target="_blank" rel="noopener">1430D</a><br>题意：<br>给定一个由0和1组成的字符串，每次你必须执行如下两步操作：<br>1.选择一个位置i并且删除这个位置上面的字符<br>2.由相同字符组成的最大长度的连续前缀会被删除<br>要求最大化操作次数</p>
-<p>思路：<br>题目要求我们最大化操作次数，不难发现：<br>当由相同字符组成的前缀的长度&gt;=2的时候，不管选不选它，这段前缀都会被删除；<br>而如果不选择它，我们就需要删除后面的一个字符，这样的话可能会减少操作次数。<br>因此我们应该贪心地选择它，以便增多操作次数。<br>当由相同字符组成的前缀的长度为1，即开头不出现连续字符的时候，我们应该从最前面的有至少两个相同字符组成的块中删除一个字符。<br>否则，我们的操作次数可能就会变少。</p>
-<p>当字符串全部是左右不相同的字符组成的时候，比如10101010，我们可以确定删除的次数必定是[n/2]</p>
-<p>我们可以给每一段由相同字符组成的字符子串打上标记，<br>比如1110010110<br>标记为0001123445<br>使用队列储存，以方便确认最前面的数据。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>,ans = <span class="number">0</span>,deleted = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]!=s[i<span class="number">-1</span>])</span><br><span class="line">                cur++;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]==s[i<span class="number">-1</span>])</span><br><span class="line">                q.push(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            q.pop();</span><br><span class="line">            deleted++;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty()&amp;&amp;i==q.front())</span><br><span class="line">            &#123;</span><br><span class="line">                q.pop();</span><br><span class="line">                deleted++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            deleted++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += (n - deleted + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>题解</tag>
-        <tag>字符串</tag>
-        <tag>贪心</tag>
-        <tag>双指针</tag>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -267,49 +313,64 @@
       </tags>
   </entry>
   <entry>
-    <title>南京扬州游记</title>
-    <url>/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
-<p>沿着皮市街的小巷子走百米，转三个方向，才能寻到这处藏在闹市之中的小院子。</p>
-<p>院子虽小，五脏俱全。有一水池，游动着几只肥美的金鱼。有竹，簇拥在院子的东南角，一竹成林，在那角落里肆意地生长着。挂着几只常亮的红灯笼，在晚上便有微光。房主人爱茶，于是有茶室。大堂里摆放着古筝，红木的八仙桌和太师椅。</p>
-<p>寻到一处清净是难得的，唯独蚊虫蚂蚁实在过多，亦是不堪其扰了。<br><img src="https://pic.imgdb.cn/item/5f788062160a154a67173416.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78804c160a154a67172dcd.jpg" alt=""></p>
-<h2 id="二十四桥仍在"><a href="#二十四桥仍在" class="headerlink" title="二十四桥仍在"></a>二十四桥仍在</h2><p>去瘦西湖的那一天，天气并不好。阴云密布，已不见蓝天。闷热潮湿，却也盼不到落雨。五亭桥是最惹眼的景观，乘凉倒是不错。</p>
-<p>美自然是美的。扬州园林的精致小巧，在这里可见一斑了。</p>
-<p>只是斧凿的痕迹重了，为我不喜。</p>
-<p>扬大瘦西湖校区便在旁边，大学生进此处是免票的，扬州大学的学生，晚上来此漫步，岂不妙哉。</p>
-<p>高中同桌便在扬大读书。印象里，他是一个有些腼腆而温柔的男孩。我和他都不是擅长维系关系的人，毕业之后于是联系减少了。离别多是这样的。</p>
-<p>此去扬州，他已回家，便没能再见，也是有些可惜的。<br><img src="https://pic.imgdb.cn/item/5f787be8160a154a6715ed37.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787bc3160a154a6715e0be.jpg" alt=""></p>
-<h2 id="热闹喧嚣"><a href="#热闹喧嚣" class="headerlink" title="热闹喧嚣"></a>热闹喧嚣</h2><p>似乎每个城市都有这样一条仿古建筑的步行街。苏州之平江路、山塘街，北京的南锣鼓巷，成都的宽窄巷子，就连太仓都有沙溪、陆渡古镇。扬州的皮市街和东关街便是这样了。</p>
-<p>东关街的尽头是一处高大的城门，再往外便是古运河。古运河的一段，异常狭窄，见过了之后大失所望，比之太仓的新浏河或许还要不如。然而转念一想，一条河的历史意义，难道由宽窄而决定吗？于是释然了，转而心生敬佩了。</p>
-<p>河滩，有一位唱着民谣的流浪歌手。而他的词却与原作者有所不同。</p>
-<p>比如赵雷的《成都》，是这样唱的“你会挽着我的衣袖，我会把手揣进裤兜”，而他是这样唱的“你会挽着他的衣袖，我会把手揣进裤兜”。</p>
-<p>最是情字最伤人。</p>
-<p>我们竟回到闲云小院撸串喝酒，若是房东知道了，怕是要气的七窍生烟，这几个不懂风雅的俗人！</p>
-<p>酒未竟，心已醉。放声高歌，而四人都不在调子上，戏称“跑调合唱团”。</p>
-<p>热闹之后，在院子里喂鱼。向后走几步，便看见月亮从屋檐上跑了出来。</p>
-<p>扬州是赏月的好地方。<br><img src="https://pic.imgdb.cn/item/5f79252b160a154a67379d17.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792547160a154a6737a2be.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f7925a2160a154a6737b33e.jpg" alt=""></p>
-<h2 id="天下文枢"><a href="#天下文枢" class="headerlink" title="天下文枢"></a>天下文枢</h2><p>夫子庙是游客来南京必去的景点。南京本地的同学都说，此处商业化气息过重，十分坑人。</p>
-<p>在一处古色古香的街道看见美特斯邦威的灯箱确实有些煞风景。（没有看不起美特斯邦威的意思，我很喜欢买他家的衣服）</p>
-<p>然而只需花九元买一个讲解服务，忘掉那些购物，便能欣赏到夫子庙的另一面。</p>
-<p>走进夫子庙，便了解了孔子的一生。游历诸国，讲学天下……你会发现他其实和你想的不太一样。并不是一个冥顽的老学究，他相当幽默。并不是一个文弱的书生，他身高九尺六寸（换算成今天就是2米2），孔武有力。</p>
-<p>后人不仅神化了孔子，还把孔子的学说作为统治人民乃至奴役人民的工具。于是孔子成为封建文化的代言人，这是相当可悲的。<br><img src="https://pic.imgdb.cn/item/5f787fb5160a154a67170b4a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792593160a154a6737b04e.jpg" alt=""></p>
-<h2 id="秦淮"><a href="#秦淮" class="headerlink" title="秦淮"></a>秦淮</h2><p>夜游秦淮，秦淮两岸的灯光是精心布置的，称得上流光溢彩。水拍打着船，不知不觉心静下来了。听秦淮八艳的故事，感叹古时女子命运的悲戚。</p>
-<p>顾横波、董小宛、卞玉京、李香君、寇白门、马湘兰、柳如是，陈圆圆。</p>
-<p>色艺超群，德才双馨。侠肝义胆，忧国忧民。有的曾是明末将军的千金，有的做了青灯古佛的尼姑。秦淮八绝都是风尘女子，然而其民族气节比之位高权重的名门望族又如何呢？</p>
-<p>只是不见了两岸的才子佳人，听不到了商女《后庭花》。才知道过往种种已不可寻。<br><img src="https://pic.imgdb.cn/item/5f78802b160a154a67172625.jpg" alt=""></p>
-<h2 id="人生当如鸿鹄鸟"><a href="#人生当如鸿鹄鸟" class="headerlink" title="人生当如鸿鹄鸟"></a>人生当如鸿鹄鸟</h2><p>我最爱的是站在高楼俯瞰大地。</p>
-<p>以居高临下的角度，能用一种不同于平时的视野看这世界。《死亡诗社》中Caption就让他的学生站在讲台上看这教室，于是能有不同的感受。</p>
-<p>我在太仓拍过夜景，蹲在群星花园二十四楼的最高层，守候着日落。也去过苏大凌云楼最高处，发现古城的夜色朦胧和金鸡湖的流光溢彩。南京的紫峰大厦，是我去过的最高处。那电梯不是以楼层，而是以高度亮灯。</p>
-<p>288.6米，是观光层的高度。</p>
-<p>于是玄武湖、紫金山尽收眼底。在陆地上要走很久的路，变得近如咫尺；飞驰的汽车，如同蚂蚁爬行；层叠的楼房，像是土地上生长出的钢铁植物；云雾缭绕间，隐约看到远方的长江大桥……</p>
-<p>人生当如鸿鹄鸟，不临九天不丈夫。<br><img src="https://pic.imgdb.cn/item/5f787d70160a154a67166886.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787f5d160a154a6716f252.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787df8160a154a67168c5a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787c9d160a154a67162dba.jpg" alt=""></p>
+    <title>关于我</title>
+    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
+    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
+<p>所以这个人其实很好认。</p>
+<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
+<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
+<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
+<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
+<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
+<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
+<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
+<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
+<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
+<p>希望用自己的脚步丈量生命。</p>
+<p>希望用相机记录生活中的美。</p>
+<p>希望仰望星空能与伟大的灵魂沟通。</p>
+<p>联系方式：</p>
+<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
+<p>QQ：949662015</p>
+<p>微信：Rye65536<br>（65536是2的16次方）</p>
+]]></content>
+      <tags>
+        <tag>自我介绍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>去年的你也是这样躺在情人坡的草坪上</title>
+    <url>/2020/09/28/%E5%8E%BB%E5%B9%B4%E7%9A%84%E4%BD%A0%E4%B9%9F%E6%98%AF%E8%BF%99%E6%A0%B7%E8%BA%BA%E5%9C%A8%E6%83%85%E4%BA%BA%E5%9D%A1%E7%9A%84%E8%8D%89%E5%9D%AA%E4%B8%8A/</url>
+    <content><![CDATA[<p>去年的我走进苏大的校门，只觉得全世界没有一片云朵属于我。</p>
+<p>我的努力似乎并没能得到命运之神的青睐，而我梦寐以求的大学从高考分数揭晓的那一刻开始彻底成为梦中的泡影。</p>
+<p>站在“养天地正气，法古今完人”的校训面前我显得如此渺小。</p>
+<p>我不知道自己从哪里来，要到哪里去。我曾经想做的事情好像一下子落空了，而对未来的期待又太遥远触不可及。</p>
+<p>高中时候，我很喜欢这句话“成功不必在我，而功力必不唐捐。”</p>
+<p>虽然这种喜欢也是借来的。</p>
+<p>这句话的意思很好懂，是说你不要太着眼于当前的成功，你所有的努力都不会白费的。</p>
+<p>到今天我想，命运女神确实是自有安排。</p>
+<p>这一年变化可真是特别大，若写一封信给高考时的我：</p>
+<p>你绝对想不到自己是这样的：</p>
+<p><em>你参加了校园马拉松，竟然跑了个奖杯出来。在此之前你对所有的体育运动都是敬而远之的。那天你只是跟在别人的后面跑，有的人跑着跑着就停下了，但你没有；你觉得肺部像火烧一样，但你没有停下。冲过终点线的那一刻，你直到今天也不敢相信，你可以做到。</em></p>
+<p><em>你一个人坐上了开往千里之外的绿皮火车，在脏兮兮的卧铺上披着外套躺了一晚上。清晨看到南昌的晨光透过窗子照进来，你知道这是值得的。</em></p>
+<p><em>你真的带着相机走过了越来越多的地方，认识了不同的人，见识了远方的风景。走的越远，你心里对于远处的向往就越是强烈。你满心想着自由，想着用自己的脚步丈量生命。</em></p>
+<p><em>你和素昧平生的人写信，找寻灵魂的共鸣。在快节奏的网络时代你选择等待，就像你曾经为了等待日出枯坐在陌生的二十四层大楼里，饥渴交加但仍等着。而那样的人，你也确实遇到了。</em></p>
+<p><em>你还有好多的不足——</em></p>
+<p><em>懒惰。你可以在一天睡上十四个小时。</em></p>
+<p><em>高傲。你总是心高气傲而又能力有限。</em></p>
+<p><em>虚荣。你喜欢听到别人虚伪的赞美远胜于诚恳的批评。</em></p>
+<p><em>不够勇敢。你因此错过了很多机会。</em></p>
+<p><em>思想多过于行动。你始终做不到知行合一。</em></p>
+<p><em>去年的中秋你也是这样和舍友躺在情人坡的草坪上，看着月亮幻想着未来。尼采说“Eternal Return”，果然今年的我们也是这样，数着天上的星星。</em></p>
+<p><em>你说走下去吧，你还有无比胆量。</em></p>
+<p><strong>走下去吧，我们值得拥抱整片天空。</strong></p>
+<p><img src="https://pic.imgdb.cn/item/5f79202b160a154a6736b0a0.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787739160a154a6714bc53.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78758d160a154a67143e7f.jpg" alt=""></p>
 ]]></content>
       <categories>
-        <category>我们的旅行</category>
+        <category>我们的思念</category>
       </categories>
       <tags>
-        <tag>摄影</tag>
-        <tag>旅行</tag>
+        <tag>杂感</tag>
       </tags>
   </entry>
   <entry>
@@ -362,29 +423,39 @@
       </tags>
   </entry>
   <entry>
-    <title>关于我</title>
-    <url>/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
-    <content><![CDATA[<p>王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个<strong>绿头发</strong>的长发男生。</p>
-<p>所以这个人其实很好认。</p>
-<p>主要编程语言是C++，偶尔使用Python，正在考虑学习Java。</p>
-<p>专业知识并不牢固，在大佬如云的计科院是一个默默无闻的小透明。</p>
-<p>不擅长图论，字符串，数据结构，数论，计算几何，动态规划和博弈论。</p>
-<p>而且还懒，喜欢睡觉和吃饭。每天都被大佬拉开越来越大的距离。</p>
-<p>作为一名INFP，爱好摄影，旅行，哲学。也爱读书和看电影。</p>
-<p>喜欢的歌手有很多呀，陈奕迅，林俊杰，周杰伦，郑智化，杨宗纬，莫文蔚，邓紫棋blablabla……</p>
-<p>最爱的作家是史铁生，最喜欢的书是《务虚笔记》。</p>
-<p>网名<em>“雨落红尘”</em>，从小学三年级用到现在。</p>
-<p>笔名<em>“拾贰”</em>，源自这样一句话<em>“朋友十二画，恋人十二画，爱人十二画，家人十二画。所以十二的名字，叫做难忘。”</em>，恰巧自己的名字也是十二画。</p>
-<p>希望用自己的脚步丈量生命。</p>
-<p>希望用相机记录生活中的美。</p>
-<p>希望仰望星空能与伟大的灵魂沟通。</p>
-<p>联系方式：</p>
-<p>Email：<a href="mailto:Rye10000010000@hotmail.com">Rye10000010000@hotmail.com</a><br>(10000010000是二进制的1040)</p>
-<p>QQ：949662015</p>
-<p>微信：Rye65536<br>（65536是2的16次方）</p>
+    <title>夏天结束了</title>
+    <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
+    <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
+<p>这是一种对于世事无常的真情流露。</p>
+<p>今日，沿着龙眠河走了许多回。</p>
+<p>下午烈日高悬的时候，我走到了龙眠山脚下。</p>
+<p>河岸的道路于是而终止了，再往前是泥土和杂草。</p>
+<p>最后的桥洞，墙壁如同一面留言板。</p>
+<p>“这个世界会好吗？”</p>
+<p>“好你妈X”</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/71dbbaab69f93ae91fd0745d41be18ef.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/22f48f4608ed2a0f32ab7e76c5704e66.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/58c9bea7370d951d0f44c993bd30eab8.png" alt=""></p>
+<p>天色渐暗时，我瘫在房间里看《哈利波特》。影片看到一半，忽然瞥见外面淡青色的天空，几朵带着点红色的云彩。</p>
+<p>看看时间，是时候要日落了。</p>
+<p>于是出门，又一次沿着龙眠河畔走着。</p>
+<p>河是蜿蜒的，走很远的路，才看见山的踪影。</p>
+<p>背着个大大的摄影包，竟然觉得脚步愈发轻快了。</p>
+<p>是了，我追逐着落日。这时候，我有一种预感：只要我不断地向前走，一定能见到令我感动的景色。</p>
+<p>有的时候你就是有这样的预感。有的时候正是这样的非理性让你，凭着一腔孤勇向前走。</p>
+<p>是了，我看见远山如黛，近水如烟。我看见漫天红霞，飞舞的白鹭。我看见两岸的游人说说笑笑，车辆川流不息，灯光渐渐亮起，夜色笼罩天地……</p>
+<p>直到月亮升起，我知道我是时候向回走了。想象中，我就该是在这个时候往回走的。映照在河水里的霓虹荡漾，破碎。</p>
+<p>我最爱的是在黄昏和黑夜的交际，在山和水，云和天空的交际，在夏天和秋天的交际，拍下的这张照片。</p>
+<p>尤其是在日落时，那种“物哀”的感情无比真切。</p>
+<p>你终于感受到一种消逝，美好而短暂。</p>
+<p>我想尽量把这张照片拍得温柔。</p>
+<p><strong>“夏天结束了”</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
 ]]></content>
+      <categories>
+        <category>我们的旅行</category>
+      </categories>
       <tags>
-        <tag>自我介绍</tag>
+        <tag>摄影</tag>
+        <tag>旅行</tag>
       </tags>
   </entry>
   <entry>
@@ -423,77 +494,6 @@
       </tags>
   </entry>
   <entry>
-    <title>夏天结束了</title>
-    <url>/2020/08/28/%E5%A4%8F%E5%A4%A9%E7%BB%93%E6%9D%9F%E4%BA%86/</url>
-    <content><![CDATA[<p>很喜欢日本文化中的“物哀”概念。</p>
-<p>这是一种对于世事无常的真情流露。</p>
-<p>今日，沿着龙眠河走了许多回。</p>
-<p>下午烈日高悬的时候，我走到了龙眠山脚下。</p>
-<p>河岸的道路于是而终止了，再往前是泥土和杂草。</p>
-<p>最后的桥洞，墙壁如同一面留言板。</p>
-<p>“这个世界会好吗？”</p>
-<p>“好你妈X”</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/71dbbaab69f93ae91fd0745d41be18ef.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/22f48f4608ed2a0f32ab7e76c5704e66.png" alt=""><br><img src="https://img-blog.csdnimg.cn/img_convert/58c9bea7370d951d0f44c993bd30eab8.png" alt=""></p>
-<p>天色渐暗时，我瘫在房间里看《哈利波特》。影片看到一半，忽然瞥见外面淡青色的天空，几朵带着点红色的云彩。</p>
-<p>看看时间，是时候要日落了。</p>
-<p>于是出门，又一次沿着龙眠河畔走着。</p>
-<p>河是蜿蜒的，走很远的路，才看见山的踪影。</p>
-<p>背着个大大的摄影包，竟然觉得脚步愈发轻快了。</p>
-<p>是了，我追逐着落日。这时候，我有一种预感：只要我不断地向前走，一定能见到令我感动的景色。</p>
-<p>有的时候你就是有这样的预感。有的时候正是这样的非理性让你，凭着一腔孤勇向前走。</p>
-<p>是了，我看见远山如黛，近水如烟。我看见漫天红霞，飞舞的白鹭。我看见两岸的游人说说笑笑，车辆川流不息，灯光渐渐亮起，夜色笼罩天地……</p>
-<p>直到月亮升起，我知道我是时候向回走了。想象中，我就该是在这个时候往回走的。映照在河水里的霓虹荡漾，破碎。</p>
-<p>我最爱的是在黄昏和黑夜的交际，在山和水，云和天空的交际，在夏天和秋天的交际，拍下的这张照片。</p>
-<p>尤其是在日落时，那种“物哀”的感情无比真切。</p>
-<p>你终于感受到一种消逝，美好而短暂。</p>
-<p>我想尽量把这张照片拍得温柔。</p>
-<p><strong>“夏天结束了”</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/623aab65f926cb1d683d59025c7eb90d.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的旅行</category>
-      </categories>
-      <tags>
-        <tag>摄影</tag>
-        <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>去年的你也是这样躺在情人坡的草坪上</title>
-    <url>/2020/09/28/%E5%8E%BB%E5%B9%B4%E7%9A%84%E4%BD%A0%E4%B9%9F%E6%98%AF%E8%BF%99%E6%A0%B7%E8%BA%BA%E5%9C%A8%E6%83%85%E4%BA%BA%E5%9D%A1%E7%9A%84%E8%8D%89%E5%9D%AA%E4%B8%8A/</url>
-    <content><![CDATA[<p>去年的我走进苏大的校门，只觉得全世界没有一片云朵属于我。</p>
-<p>我的努力似乎并没能得到命运之神的青睐，而我梦寐以求的大学从高考分数揭晓的那一刻开始彻底成为梦中的泡影。</p>
-<p>站在“养天地正气，法古今完人”的校训面前我显得如此渺小。</p>
-<p>我不知道自己从哪里来，要到哪里去。我曾经想做的事情好像一下子落空了，而对未来的期待又太遥远触不可及。</p>
-<p>高中时候，我很喜欢这句话“成功不必在我，而功力必不唐捐。”</p>
-<p>虽然这种喜欢也是借来的。</p>
-<p>这句话的意思很好懂，是说你不要太着眼于当前的成功，你所有的努力都不会白费的。</p>
-<p>到今天我想，命运女神确实是自有安排。</p>
-<p>这一年变化可真是特别大，若写一封信给高考时的我：</p>
-<p>你绝对想不到自己是这样的：</p>
-<p><em>你参加了校园马拉松，竟然跑了个奖杯出来。在此之前你对所有的体育运动都是敬而远之的。那天你只是跟在别人的后面跑，有的人跑着跑着就停下了，但你没有；你觉得肺部像火烧一样，但你没有停下。冲过终点线的那一刻，你直到今天也不敢相信，你可以做到。</em></p>
-<p><em>你一个人坐上了开往千里之外的绿皮火车，在脏兮兮的卧铺上披着外套躺了一晚上。清晨看到南昌的晨光透过窗子照进来，你知道这是值得的。</em></p>
-<p><em>你真的带着相机走过了越来越多的地方，认识了不同的人，见识了远方的风景。走的越远，你心里对于远处的向往就越是强烈。你满心想着自由，想着用自己的脚步丈量生命。</em></p>
-<p><em>你和素昧平生的人写信，找寻灵魂的共鸣。在快节奏的网络时代你选择等待，就像你曾经为了等待日出枯坐在陌生的二十四层大楼里，饥渴交加但仍等着。而那样的人，你也确实遇到了。</em></p>
-<p><em>你还有好多的不足——</em></p>
-<p><em>懒惰。你可以在一天睡上十四个小时。</em></p>
-<p><em>高傲。你总是心高气傲而又能力有限。</em></p>
-<p><em>虚荣。你喜欢听到别人虚伪的赞美远胜于诚恳的批评。</em></p>
-<p><em>不够勇敢。你因此错过了很多机会。</em></p>
-<p><em>思想多过于行动。你始终做不到知行合一。</em></p>
-<p><em>去年的中秋你也是这样和舍友躺在情人坡的草坪上，看着月亮幻想着未来。尼采说“Eternal Return”，果然今年的我们也是这样，数着天上的星星。</em></p>
-<p><em>你说走下去吧，你还有无比胆量。</em></p>
-<p><strong>走下去吧，我们值得拥抱整片天空。</strong></p>
-<p><img src="https://pic.imgdb.cn/item/5f79202b160a154a6736b0a0.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787739160a154a6714bc53.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78758d160a154a67143e7f.jpg" alt=""></p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>夏末的浪子</title>
     <url>/2020/08/26/%E5%A4%8F%E6%9C%AB%E7%9A%84%E6%B5%AA%E5%AD%90/</url>
     <content><![CDATA[<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>这辆车足足在苏州城里绕行了两个小时，不断地上来那些说着同一个口音的人们。它甚至经过了学校旁边的一条路，看见苏大的凌云楼仅在一墙之隔。和熟悉的风景不期而遇，这种体验是奇妙的，我很想和谁说说，只是说不得。</p>
@@ -527,6 +527,94 @@
       </tags>
   </entry>
   <entry>
+    <title>山石巴</title>
+    <url>/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</url>
+    <content><![CDATA[<p>山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。</p>
+<p>之所以叫山石巴，是取了“三十八”的谐音：自助餐，38元一位。这样的取名风格，大概是为了凸显出实惠吧。</p>
+<p>第一次去那儿，是小乐乐带我去的。高中时候的我们，唯一有的空闲时间无疑是周日。那时在学校中自习，上午和晚上都是埋头在书本里暗无天日的学习时间，但也得益于此，同学们一起出去吃饭很方便。中午打个车或者坐个公交，去南洋或是万达，总是有几家心仪的实惠小店。在夕阳西下之前优哉游哉地转回来，这就是我们在那些单调乏味的日子里最大的欢乐了。</p>
+<p>十八岁时的我没有顾虑和忧愁，不担心未来和过去。</p>
+<p>小乐乐说，王雨，要不要陪我去吃饭。</p>
+<p>我说，好。</p>
+<p>于是我们就出发了。周末中午时候的112总是拥挤的，我们常把这班车次戏称为校车，因为上面都是被关了一个星期迫不及待出去放风的太高学生。</p>
+<p>小乐乐第一次带我去时，我被震惊到了。你能想象吗？一家餐厅建在二楼，而通上去的楼梯竟然是塌的，布满了钢筋和灰尘，像是被强拆的钉子户一样不堪。他尴尬地笑了笑，说：“这里卖相确实不怎么好，但是你一定不会后悔的。“</p>
+<p>跟着他绕来绕去，原来不是走楼梯上去的，在颓圮的房间里藏着一扇电梯门，通过电梯，就可以上去了。正式进入了餐厅，眼前一亮。人出乎意料地多，沙发上坐满了排队等候的顾客。房间里面热气腾腾的，氤氲着温暖的人间烟火气。</p>
+<p>三十八元一位，对于自助餐来说，确实是很实惠的价格了。可供选择的菜品还真是不少，种类齐全。至于味道？至少比食堂的饭菜更容易下口。</p>
+<p>来了一次，就想来第二次。然后我们又挟上了其他的小伙伴。</p>
+<p>旺哥被我们带来的时候，也被楼梯口的破败吓到了。他一脸怀疑地看着我们俩，怀疑是在耍他。与后来他大快朵颐的样子形成了强烈的反差。</p>
+<p>有一块灰黑色的饼，我不知道那是什么，因为我至今不敢下口。我们仨那时看着这个不明物体，面面相觑。</p>
+<p>“猜拳吧，谁输了谁吃。“</p>
+<p>于是张道旺哭丧着脸把它塞进嘴里。<br>我狂笑。</p>
+<p>看他的表情，整个脸都皱到一块去了。好不容易咀嚼了几下，就捂住嘴巴，一脸要吐的样子。其浮夸的颜艺，堪比城之内。</p>
+<p>而我和小乐乐，丝毫没有一点愧疚之情。</p>
+<p>因为他真的太好笑了。</p>
+<p>后来，我们常来这里。一起的同学越来越多，有的时候甚至一桌子坐不下。小乐乐一直在不遗余力地推广着这家餐厅，即使他们不会给他广告费。然后，这里就留下了我们的许多回忆。</p>
+<p>说起来也没有过很长时间，却让人好怀念。</p>
+<p>真想和你们再聚一聚，即使那些时光已经消失不见。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>当我拿起相机</title>
+    <url>/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/</url>
+    <content><![CDATA[<p>从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。</p>
+<p>曾向佳琪抱怨过这个问题，说，自己拍照片的举动始终是无意识的。佳琪安慰我说“你学摄影才多久呀，就想拍出多好的照片。”我深以为然。但是现在看来，这段时间其实已经不短了。在这期间，我进步了多少呢，我学习了多少呢？我在2019年之初定下一年目标的时候，曾经写下“按下第五千次快门”。这个目标现在已经达到了，但是这五千次快门中真正能被称作是看的过去的照片不超过两百张，而这两百张具有审美意义的，在我看来不超过两张。而这两张勉强可以称之为作品的照片，亦是缺乏内涵的。为什么缺乏内涵呢？因为拍下他们时，相机背后的我是无意识而被动地拍照，我缺乏主观的表达意愿也缺乏用相机表达我意愿的能力。</p>
+<p>我们不应该否认相机作为相机本来的功能，也即是“记录”的功效，但是摄影不同于拍照的最大一个特点，也正是摄影之所以可以自诩为艺术的原因，和绘画，和音乐，和雕塑和其他一切美学意义上的途径相同，摄影应该作为一种“表达”创作者想法的途径。</p>
+<p>我的作品缺乏这种表达。</p>
+<p>即使这一年半以来我看了很多很多的书，我了解了构图，我学会了后期，我知道前期的各种参数，我知道什么条件下该使用怎么样的快门速度曝光度和光圈，我可以使用三脚架和滤镜，但是我依然称不上得其门道。说到底，我缺乏系统化的学习，但是这不是问题的关键。我看了很多很多的照片，从糖水片到大师的作品，或多或少确实提升了一定的审美能力，但仍然缺乏本质上对美的敏锐，否则我又为何对于创造美这一件事感到无力呢？</p>
+<p>我买了第二个镜头，可正如人们所说，摄影重要的不是相机前面那个头，而是相机后面那个头。造成这一切的根本原因是因为我在按下快门的时候缺乏思考。</p>
+<p>也有摄影师说过，“我拍照片只是想看看这些东西拍成照片是什么样子。”但是这不是按下快门的时候不经过脑子的理由。摄影之不同于拍照就在于它不是看到了什么就拍，而是想好了拍成什么样才拍，所谓胸有成竹是也。没有思考，这个相机的感光原件与光线反应的瞬间就不配称之为摄影。没有思考，相机后面的那个脑袋的主人就不配被称为摄影师。</p>
+<p>在今天，手机的拍照性能越来越强大，在光线好的时候，因为其像素高，甚至可以媲美微单。我想起我最开始，也正是因为我用手机随手拍的几张夕阳，被妈妈盛赞，于是便自傲不已地认为自己有摄影上的天赋。那时的照片是无意识的，而到今天，我拍的照片仍然没有摆脱这样的范畴，这一年半以来，我的长进寥寥。在圈外人看来，或许可以冠绝朋友圈，收获一大批赞赏和好评，但是在真正懂摄影的人看来，却是太过乏味而无趣了。</p>
+<p>正如安塞尔亚当斯所说，“You don’t make a photograph just with a camera.You bring to the act of photography all the pictures you have seen,the books you have read,the music you have heard,the people you have loved.”安塞尔亚当斯以其风光摄影作品而闻名，并不是只有人文主题的照片可以拍出思想的，风光，或是其他，也照样可以。我始终没有以靠摄影为生的想法，只是把它当做一个兴趣爱好，虽说与此，但我的初衷并不单单是为了“记录”和拍照。在我眼里相机不应该只是用来截取时间以供回忆，因为回忆是太私人化的体验。它还要让时间长河里那些独属于我的美好变得熠熠生辉，让它人能感知到其美和其珍贵，这样，那个瞬间才能真正变为永恒，对于这个多彩的世界的爱才能被真正传达到。</p>
+<p>以此自勉，我将用一生追逐光透过叶子的缝隙洒在地上的影子的瞬间，追逐西边的太阳把云彩映成橘红色的瞬间，追逐水滴落下溅起浪花和涟漪的瞬间，追逐美，自由和爱。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>摄影</tag>
+        <tag>杂感</tag>
+        <tag>哲思</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>很多次的出走</title>
+    <url>/2020/12/07/%E5%BE%88%E5%A4%9A%E6%AC%A1%E7%9A%84%E5%87%BA%E8%B5%B0/</url>
+    <content><![CDATA[<p>很多次的出走，是在夜里。</p>
+<p>坐在车窗旁的座位，看着窗外，远处城市里的灯影缓缓移动着。远山掩映着氤氲的云，雾气涂抹着月光，黑夜里的树黯淡无光。</p>
+<p>我的梦魇是“逃”。</p>
+<p>我常梦到在幻境中逃亡：在大楼里被全副武装的杀手特务追杀，在荒芜废弃的工厂里被变异恐怖的怪物追杀，在夜半的高速公路上骑车狂奔被追杀，在侏罗纪世界的冰原里被狰狞的恐龙追杀……</p>
+<p>这些梦境如此清晰，以至于即使在梦里意识到这是梦也无法醒来。</p>
+<p>这些梦境场景各不相同，而内容却相似：我在被追着，我在逃。</p>
+<p>不得心安。</p>
+<p>像我这样的人，总是要花太多时间去思考自己的事情。活在世俗，但更活在自己的世界里。</p>
+<p>后来我明白了，始终在我身后如影随形的恐怖，不是什么别的东西，正是自己。</p>
+<p>恰恰是自己的影子，无论在什么时候都不会消失。光越强烈，阴影就却清晰，与你一步不离。到了黑暗的地方，以为能躲开它了，却不知它已融合进了黑暗，成为其一部分。</p>
+<p>我们永远无法割去自己的黑暗面，就像我们永远无法摆脱自己的影子。</p>
+<p>无数个惊坐的夜，汗流浃背。</p>
+<p>我终于明白那种恐惧的由来。</p>
+<p>它是任何人都无法慰解的。</p>
+<p>因为只要你还活着，你就会害怕。</p>
+<p>你害怕的恰恰是你追求的，那些欲望。</p>
+<p>你想要变得优秀，在未来有自傲的资本，那你就会害怕殒身于今日。</p>
+<p>你想要拥有，你就会害怕失去。你想要活着，你就得害怕死亡。你想要长久，你就恐惧短暂。</p>
+<p>人活在欲望里，人活在希望与恐惧中。</p>
+<p>我曾经想过流浪，是为了想找到一个能让心安定的地方。</p>
+<p>在长夜中等待黎明的到来，在寒冷中守护春天。在出发后寻找目的地，在死亡后谋求新生。</p>
+<p>我想，我已经找到答案了。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>扬州旅行计划书</title>
     <url>/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</url>
     <content><![CDATA[<p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
@@ -536,6 +624,48 @@
       </categories>
       <tags>
         <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉普拉斯妖，你知道吗？</title>
+    <url>/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/</url>
+    <content><![CDATA[<p>世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。</p>
+<p>我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中最冷的时候。这样的论点当然在今天看来很可笑，但于当时的我，已经是穷尽所有想象力能为这个世界找到的最科学解释了。</p>
+<p>如果一个小球的抛出点和初速度是固定的，力是固定的，重力已知，方向已知……在这样的情况下，小球的运动轨迹是可以计算的。那么，是否一切活动，都是遵循一定的规律的呢？是否只要知道所有的参数，就可以了解过去，现在，和未来呢？</p>
+<p>相信一切是被决定着的，这种观点被称作决定论。由此而诞生的一个概念就是拉普拉斯妖，一位全知全能的妖精。说远了，不提。</p>
+<p>哲学上而言，我并非不支持自由意志的观点，我认为人的主观能动性是客观存在的。但是，了解一定的规律仍然有利于我们做出更好的选择。</p>
+<p>就像我二年级时认为太阳的远近是导致温度差异的原因一样，我只能用自己有限的知识在这个无垠的世界里寻找答案，或许永不可即，但追求知识的脚步是不会停下的。</p>
+<p>由最近的学习内容产生了一些感想，记录如下。</p>
+<p>本人才疏学浅，言论如有不当之处，还请各位多多包涵。</p>
+<p>电影《美丽心灵》介绍了博弈论的奠基人，二十世纪伟大的数学家、经济学家约翰·纳什的一生。纳什因为其对博弈论的贡献，获得了诺贝尔经济学奖。他最重要的理论之一就是提出了纳什均衡，通俗的来说，就是指在一场博弈中的两个当事人都停留在对自己最有利的一个位置的平衡状态。这两个人如果做任何的决策，都会导致局面对自己不利。</p>
+<p>这个理论的提出意味着博弈问题是有解的，因此博弈论才有了研究的价值。</p>
+<p>在我们计算机算法设计的领域，最著名也是最简单的算法莫过于贪心算法。也即是每次行动都作出目前条件下的最优解，那么将得到最好的效果。显而易见，不是什么情况都能应用贪心算法的，因此，是否能运用贪心是需要证明的。（当然，实际运用的时候，我们并不会去证明，只是觉得好像可以用，然后敲一遍看看答案对不对。）</p>
+<p>贪心算法当然和博弈论搭不着边，但是贪心策略却是很重要的一环。</p>
+<p>生物的本性是自私的，生物的本能会促使我们做出对自己最有利的选择。</p>
+<p>经济学中的“理性人”是指，每次行动都追求自身最大的利益而不管别人的死活。这是合理的。</p>
+<p>那么设想一下这样一个情况：两个囚徒被关在监狱里，互相隔离。他们都是理性人。狱警和他们说，如果他们都不检举对方的罪行，他们都会被关押一年。如果一位检举而另一位不检举，那么检举的将被释放，另一位被关押十年；如果两位都坦白，他们各自被关押五年。</p>
+<p>这种情况下，对于囚徒A来说，检举对方是最优解。</p>
+<p>如果B不检举，那么A就溜之大吉了。如果B检举了而他不检举，那么他将被关押十年。如果B也检举了，那么他被关押五年——也比十年更好。</p>
+<p>于是，两个人达成的纳什平衡是互相背叛。此时，任何一个人作出合作的举动都会导致他陷入更差的境地。然而，这并不是最优解。最优解是两个人互相合作。</p>
+<p>在电影《少年的你》中小北和陈念被审问的时候，他们没有承认。这就是合作的一种行为。这是感性的一种行为。</p>
+<p>如果人们不去考虑对自己的利益最大化，始终抱着合作意愿，那么反而将得到囚徒困境的最优解。</p>
+<p>再设想这样一种情况，让人们从1~100报一个数，最接近平均数的三分之二那个人将得到奖品，最优解是多少？首先设想所有人的数均匀分布，那么均值是50，答案是33。显然，你不应该猜超过33的数。如果所有人都这么想，那么你不该猜超过22的数……继续，继续，继续……最后，你应该猜1。如果所有人都是这样理性驱动，猜1，大家都有奖品。</p>
+<p>但是如果其中有一个人没有考虑这么多，胡乱猜了一个数字呢？</p>
+<p>美好的局面就被破坏掉了。最美的结局建立在所有人都是绝对理性的情况下，这样的情况是不稳定的。感性会破坏最优解。</p>
+<p>生物的进化正源自于此。如果所有人都是怀揣着恶意的，那么这个族群就会在互相攻讦中毁灭。如果所有人都是利他的，他们通过合作可以取得更大的利益，但是一旦这个族群中突变出了一个利己主义者，那么所有的利他行为者都会变成待宰的小白羊被收割。</p>
+<p>如何破解囚徒困境？说来很简单，一报还一报。</p>
+<p>先尝试合作，接下来每次行为都模仿对方上次的行为。这样需多次重复之后，即使对方的行为是不确定的，坐牢的年数总和也是最少的。</p>
+<p>利他和利己，感性和理性，二者之间都是彼此不可分割的。</p>
+<p>贪心算法是有助于解决实际问题的，因为对象只有一个。</p>
+<p>而当问题变成非零和博弈的时候，即使是最理性的人作出的最理性的选择也未必是最优解。人与人之间交互的神奇之处就在于此了。</p>
+<p>今天上课的时候讲到人工智能，绝对理性的人工智能能摆脱囚徒困境吗？恐怕未必比小北和陈念做得更好吧。人们的相处，是不能用什么理论去预料的呀。拉普拉斯妖，你能知道吗？</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+        <tag>哲思</tag>
       </tags>
   </entry>
   <entry>
@@ -597,105 +727,282 @@
         <category>我们的思念</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
         <tag>旅行</tag>
+        <tag>杂感</tag>
       </tags>
   </entry>
   <entry>
-    <title>当我拿起相机</title>
-    <url>/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/</url>
-    <content><![CDATA[<p>从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。</p>
-<p>曾向佳琪抱怨过这个问题，说，自己拍照片的举动始终是无意识的。佳琪安慰我说“你学摄影才多久呀，就想拍出多好的照片。”我深以为然。但是现在看来，这段时间其实已经不短了。在这期间，我进步了多少呢，我学习了多少呢？我在2019年之初定下一年目标的时候，曾经写下“按下第五千次快门”。这个目标现在已经达到了，但是这五千次快门中真正能被称作是看的过去的照片不超过两百张，而这两百张具有审美意义的，在我看来不超过两张。而这两张勉强可以称之为作品的照片，亦是缺乏内涵的。为什么缺乏内涵呢？因为拍下他们时，相机背后的我是无意识而被动地拍照，我缺乏主观的表达意愿也缺乏用相机表达我意愿的能力。</p>
-<p>我们不应该否认相机作为相机本来的功能，也即是“记录”的功效，但是摄影不同于拍照的最大一个特点，也正是摄影之所以可以自诩为艺术的原因，和绘画，和音乐，和雕塑和其他一切美学意义上的途径相同，摄影应该作为一种“表达”创作者想法的途径。</p>
-<p>我的作品缺乏这种表达。</p>
-<p>即使这一年半以来我看了很多很多的书，我了解了构图，我学会了后期，我知道前期的各种参数，我知道什么条件下该使用怎么样的快门速度曝光度和光圈，我可以使用三脚架和滤镜，但是我依然称不上得其门道。说到底，我缺乏系统化的学习，但是这不是问题的关键。我看了很多很多的照片，从糖水片到大师的作品，或多或少确实提升了一定的审美能力，但仍然缺乏本质上对美的敏锐，否则我又为何对于创造美这一件事感到无力呢？</p>
-<p>我买了第二个镜头，可正如人们所说，摄影重要的不是相机前面那个头，而是相机后面那个头。造成这一切的根本原因是因为我在按下快门的时候缺乏思考。</p>
-<p>也有摄影师说过，“我拍照片只是想看看这些东西拍成照片是什么样子。”但是这不是按下快门的时候不经过脑子的理由。摄影之不同于拍照就在于它不是看到了什么就拍，而是想好了拍成什么样才拍，所谓胸有成竹是也。没有思考，这个相机的感光原件与光线反应的瞬间就不配称之为摄影。没有思考，相机后面的那个脑袋的主人就不配被称为摄影师。</p>
-<p>在今天，手机的拍照性能越来越强大，在光线好的时候，因为其像素高，甚至可以媲美微单。我想起我最开始，也正是因为我用手机随手拍的几张夕阳，被妈妈盛赞，于是便自傲不已地认为自己有摄影上的天赋。那时的照片是无意识的，而到今天，我拍的照片仍然没有摆脱这样的范畴，这一年半以来，我的长进寥寥。在圈外人看来，或许可以冠绝朋友圈，收获一大批赞赏和好评，但是在真正懂摄影的人看来，却是太过乏味而无趣了。</p>
-<p>正如安塞尔亚当斯所说，“You don’t make a photograph just with a camera.You bring to the act of photography all the pictures you have seen,the books you have read,the music you have heard,the people you have loved.”安塞尔亚当斯以其风光摄影作品而闻名，并不是只有人文主题的照片可以拍出思想的，风光，或是其他，也照样可以。我始终没有以靠摄影为生的想法，只是把它当做一个兴趣爱好，虽说与此，但我的初衷并不单单是为了“记录”和拍照。在我眼里相机不应该只是用来截取时间以供回忆，因为回忆是太私人化的体验。它还要让时间长河里那些独属于我的美好变得熠熠生辉，让它人能感知到其美和其珍贵，这样，那个瞬间才能真正变为永恒，对于这个多彩的世界的爱才能被真正传达到。</p>
-<p>以此自勉，我将用一生追逐光透过叶子的缝隙洒在地上的影子的瞬间，追逐西边的太阳把云彩映成橘红色的瞬间，追逐水滴落下溅起浪花和涟漪的瞬间，追逐美，自由和爱。</p>
+    <title>我和小李的故事(长篇，持续更新)</title>
+    <url>/2021/05/18/%E6%88%91%E5%92%8C%E5%B0%8F%E6%9D%8E%E7%9A%84%E6%95%85%E4%BA%8B-%E9%95%BF%E7%AF%87%EF%BC%8C%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<h1 id="拾穗集"><a href="#拾穗集" class="headerlink" title="拾穗集"></a>拾穗集</h1><p>这是一本私人的散文集，写给你，祝贺你的二十岁生日。取谐音，于是叫“拾穗”。它由零散的文字拼凑而成，所以就叫它是“拾穗集”。</p>
+<p>你知道我是一个很珍视回忆的人。我喜欢摄影，喜欢用照片来定格时间的原因大抵也因为这样吧。</p>
+<p>人生就像一片麦田，我们的经历就像是其中的麦穗。当你有一天步入终点，回望这一片麦田，你发现你曾经经历过许多，但最后只能两手空空。</p>
+<p>我希望通过这些文字，能让我们在这流失的岁月中捡到些珍贵的回忆。</p>
+<p>这么做的初衷，仅仅是在自己老去之后的耄耋之年，对于记忆已经模糊褪色的时候，能够聊以回味自己的一生。</p>
+<p>我们的一天，无论如何都是二十四小时，一年年就这样过去。然而有些日子在你的记忆里会格外深刻，有些日子则被模糊在了其他的几千个日夜里。是什么决定了这区别呢？是什么让那些记忆在多年以后回望还显得熠熠生辉呢？</p>
+<p>第一章 平生不会相思，才会相思，便害相思</p>
+<p>2021年1月16日，一夜未眠。</p>
+<p>在过去的几年中，我以独自一人的身份去过了很多地方。一个人在绿皮火车上层逼仄的卧铺里等待天亮，也曾在开往八百里之外的大巴车上被不知名的乡音所淹没。但像这样担心自己赶不上车，以至于一夜难眠，还是第一次。</p>
+<p>我要和小李见面了。</p>
+<h2 id="第一章-平生不会相思"><a href="#第一章-平生不会相思" class="headerlink" title="第一章 平生不会相思"></a>第一章 平生不会相思</h2><h3 id="1-过客"><a href="#1-过客" class="headerlink" title="1. 过客"></a>1. 过客</h3><p>“浮生若梦，为欢几何。如果命中注定，两个将要结伴同行的过客，是不会擦肩而过的。”</p>
+<p>我和小李初识，是在一个名为 Gorker 的软件上。</p>
+<p>这是一个交友APP。在里面，用户唯一的通讯方式就是写信。用户拥有的信箱数量是有限的，也就是说，你没办法同时和很多的人写信。你的每一封信都不是即时通讯，需要贴上4小时或者8小时的邮票才能送达。你没有办法定向给某人写信，纯靠缘分。而一旦删除了笔友，就再也无法找回。</p>
+<p>在当今的互联网时代，这种交流方式简直是一股清流。</p>
+<p>而你不得不很珍惜每一个认真和你通信的人。</p>
+<p>因为，你们仅仅是人生中的过客罢了。</p>
+<p>你不知道我的音讯和面容，不知道我的一切现实状况，也是否会在下一次回信的时候永远消失。</p>
+<p>有些人仅仅是拿写信当做自己的树洞，在匿名的面具下倾诉自己的苦闷。有些人永远只回几行字，回复像是例行公事，让你提不起沟通的热情。</p>
+<p>在你出现之前，我也有过几个有趣的笔友。</p>
+<p>我第一次写信的笔友，收到来信的时候是18年，后来通信了几次之后人间蒸发了。直到两年后再次出现，给我回信。收到我的回信之后，言语中充满着对我仍然在使用这个APP的惊喜，信誓旦旦地保证自己再也不会无故消失——然后再也没有出现过。</p>
+<p>一位是断断续续联络了一年多的，年龄和我一样大。我们通过很多的信，在高中的时候互相诉说自己的学习生活和压力。高考的时候，我们仍然相互鼓励。</p>
+<p>高考结束之后，我们就断了联系。就像是遥远的高中同学一样，一起战斗，然后又各奔东西。时至今日我仍然不知道她的消息，她的高考成绩是否如意，又或是选择了复读，又或是考上了理想的大学呢？</p>
+<p>如此这般的，还有很多。在茫茫人海中萍水相逢，然后在某个云淡风轻的午后突然离开。我并不责怪任何不辞而别，过客的含义本就如此。</p>
+<p>其实不管是在现实中，还是网络中，我们和大多数朋友的关系，或许也仅仅是擦肩而过的过客而已。</p>
+<p>小李是我的最后一位笔友。</p>
+<h3 id="2-交织"><a href="#2-交织" class="headerlink" title="2. 交织"></a>2. 交织</h3><p>2020年6月9日，你寄给我的第一封信的第一句话是“嗨！最近做的还好吗？”</p>
+<p>多年以后，我站在久违的宿舍楼前，准会想起20年的夏天收到小李第一封信的那个遥远的下午。</p>
+<p>从那以后，两条相隔千里的平行线开始转过方向，一点一点，奔赴彼此。</p>
+<p>我们在信中交流生活的琐事，学习的压力，兴趣爱好，看过的电影，读过的书，听过的音乐，还有对人生未来的憧憬。</p>
+<p>你的文风是淡淡的，似乎在我的印象里，那就是初夏该有的味道。你的文字里有养鸽子的邻居，演奏萨克斯的路人，阳光穿透的书桌，夏日的蝉鸣，空调和冰棍。</p>
+<p>我们也渐渐聊到感情问题，聊到自己暗恋过的异性，那些不怎么成功的爱情故事。就如同所有在青春期懵懂而悸动的少年少女一样，我们有过幻想的对象，也曾让那些无处安放的温柔最终沉淀在岁月里。</p>
+<p>至少从我的经验来看，当男女开始聊到情感的话题的时候，多半对彼此抱有这若有若无的好感，至少认为对方是可以信任的。</p>
+<p>但彼时的我，未曾想过在不远后的将来，我们会真的走进彼此的现实中，然后走到一起。</p>
+<h3 id="3-黎明破晓时"><a href="#3-黎明破晓时" class="headerlink" title="3. 黎明破晓时"></a>3. 黎明破晓时</h3><p>2021年1月17日凌晨四点。</p>
+<p>学校已经正式放了寒假，但宿舍里还有两个舍友没有离开。我从床上爬起来的时候，对铺的舍友还醒着。</p>
+<p>外面的天还没有亮，而行李已经早早地收好了。穿衣服，刷牙，洗脸，提着行李箱静静地离开。之所以是提着，是怕拖着走的行李箱在地上摩擦弄出太多的动静，吵醒这座还在沉睡的校园。</p>
+<p>刚出了宿舍楼的大门，又迈回去了。</p>
+<p>突然想起应该喷一点香水。没想到后来见面的时候小李说不喜欢那个味道，于是再也没用过。</p>
+<p>坐上前往上海的列车，这时候天刚刚亮。</p>
+<h3 id="4-初见"><a href="#4-初见" class="headerlink" title="4. 初见"></a>4. 初见</h3><p>2021年1月17日中午12点半，两辆列车抵达了长沙南站。来自株洲的那辆先到，然后是来自上海虹桥的那辆。</p>
+<p>很难说那时候究竟是怀着怎样的心情，夹杂着期待，也有忐忑和紧张。心怦怦直跳，就和所有人生中即将揭晓的重要结果——比如高考查成绩时一样。当虚幻铸成现实，当我们无比真切地走向这一刻，却又觉得如此不真实。</p>
+<p>在拥挤的人潮中，我在出站口之前见到了穿着白色羽绒服的你。</p>
+<p>我们相约见面拥抱一下，只是轻轻地抱了一下。我忽然觉得手也无处安放了。</p>
+<p>我们一起坐上地铁，并排坐着。然后，那是我们第一次牵手——我说，你的手好小呀，你伸出手来和我比大小——十指相扣。</p>
+<p>我们一起去往了居住的民宿，在一家商场对面的小区里。装修风格是日式的，两房一厅一卫，还有一个厨房。价格也很实惠，印象里是两三百元一晚上，两个人住是绰绰有余了。</p>
+<p>我们第一次一起吃的饭是一家烤肉，就在那家对面的商场里。说不上好吃，或是难吃，天下的烤肉大抵都是一个样。只是因为有你，所以记得格外清晰。</p>
+<p>你的美夹在你的一颦一笑里。</p>
+<h3 id="5-长沙"><a href="#5-长沙" class="headerlink" title="5. 长沙"></a>5. 长沙</h3><p>长沙，我们在一起度过8天。</p>
+<p>走过烈士公园，去过湖南省博物馆，看了马王堆，也拜访了没有围墙的湖南大学。在湘江旁和江水近距离接触，夜晚在橘子洲散步。也一起喝了茶颜的幽兰拿铁，在傍晚窝在沙发里看电影，吃着甜蜜的小蛋糕，喝着RIO微醺撸串。</p>
+<p>在长沙的时候，拍了很多照片。我很喜欢拍照片，拍照是一个记录的过程，可以把时间凝固在这一刻。我想，我是个记忆力很差的人，如果不用这样的办法去记录的话，恐怕有一天会把自己曾经经历的事情全都忘光吧。</p>
+<p>初到一个城市，总是抱着一种一定要去哪去哪的焦虑。或许是觉得，以后来的机会也不多。有些地方仅仅是作为一个过客去参观，因此格外争分夺秒。然而还是觉得，最好的旅行不需要规划，也不是一定要去那些人多的网红景点。而是能够真正融入到那个城市的生活中去，才能体会一个地方的文化、历史和情感。</p>
+<p>长沙是一个悠闲的城市。房价不高，生活的压力没有那么大。于是长沙人的生活很大一部分是由吃喝玩乐组成起来的。我喜欢他们带着湘味的普通话，听上去很可爱。或许是本就可爱，或许是因为认识了小李，而觉得这种语调可爱。</p>
+<p>丫丫是个很可爱的女孩。你的身上有的这种纯真，和好奇，每每显露出来，都会让我会心一笑。丫丫很爱我，而我一想到我那么深深地被爱着，就觉得幸福无比。这种爱是一种不掺杂利益关系的纯粹的爱。我庆幸我遇到丫丫的时候，也还只有十九岁，也还年轻，也还葆有一颗少年人的热心。</p>
+<p>上了大学这几年，不说成长了多少，似乎越来越开始挣脱理想主义而迈入现实的泥潭，很少再去感受浪漫和温暖。这好吗？难说。如果把我从时间线的这一刻抽出来，我会惊异地发现自己逐渐变得陌生。</p>
+<p>少年有一天也会死去吗？</p>
+<p>说回长沙，而长沙如果不是因为丫丫，也未必有多特别。毕竟，现代化的省会大都市其实所差无几，几乎是一个模板里印出来的。高楼大厦，车水马龙和灯红酒绿。</p>
+<p>长沙的天气是不怎么好的，而我去的那几天似乎也还晴朗。</p>
+<p>而因为有了丫丫，长沙就是特别的。长沙于是成了一个能够把心寄托和安放的地方了。只是我们还没有一个自己的家。我想，如果我们将来在长沙定居也是极好的。</p>
+<p>我们俩在长沙度过了八天七夜，然后各自分别。我从前就觉得自己以后会谈一次异地恋，也幻想过离别是如何滋味。对于刚上了大学的我们来说，金钱是个很大的问题。只有假期才能相距，而每碰一次面，就要花去三四五千元，是两三个月的生活费。</p>
+<p>钱，倒还是次要的。别后的苦楚是多么让人心酸啊！特别是送着你离开，又要开始下一轮的倒计时，才能再度见面。在你的影子消失在人群中的时候，多么想不顾一切冲上去拥抱你，让你留下来吧。“你也知道这是不可能的。”，每每想到这里，就觉得，相逢的日子遥远的好像在下一个世纪。</p>
+<h3 id="6-电影"><a href="#6-电影" class="headerlink" title="6. 电影"></a>6. 电影</h3><p>先不说到见面与离别，谈谈我们的日常吧。</p>
+<p>我们的生活有很大一部分是由电影组成的，我们都很爱看电影。从刚见面开始，我们就几乎保持着一周一次的看电影频率。异地的时候，就打着语音电话，好像对方就在身边。在一起的时候，就一起窝在沙发里，或者去电影院里看。</p>
+<p>电影被称为第七艺术是有原因的。而我认为正如所有的其他艺术一样，这些美好的感性是用语言无法解读的，你需要去感受。</p>
+<p>和谁去感受又是大不相同的心境了。无人分享乐趣才是最大的孤独。认识你之前我常常觉得孤独，爱上你之后，即使我们的常态是天各一方，我也没有觉得凄冷。感谢我的快乐和悲伤都有你在听。</p>
+<p>说回电影，我们一起看过好多的电影。恋恋笔记本，时空恋旅人，朝花夕誓，悬崖之上，中国医生，金陵十三钗，小妇人，布达佩斯大饭店，十二夜，心灵捕手，蒙太奇……</p>
+<p>我依然记得我们在看《恋恋笔记本》的时候，男女主多年之后重逢泛舟湖上，耳机里传来了你的轻语，你说我们以后也要去好多好多地方。</p>
+<p>有那么多向往的地方，在现在看来仍然是遥不可及的，但至少在电影里，它离我们那么近。我想定时的看电影并不仅仅是我们维系感情的方法，更是我们心灵的碰撞和沟通。</p>
+<p>在复习繁忙的考试周，我们才停了这项活动。</p>
+<h3 id="7-想过我们的未来"><a href="#7-想过我们的未来" class="headerlink" title="7. 想过我们的未来"></a>7. 想过我们的未来</h3><p>想过我们的未来，有诗酒年华，也有油盐米柴</p>
+<p>想过我们的未来，住在一个不大的房子</p>
+<p>进门的走廊上要挂着相片，用颜色好看的木头做相框</p>
+<p>有一个大大的懒人沙发，和一张柔软的床</p>
+<p>清晨的时候，你在我的怀里醒来，窗帘透过阳光的芬芳</p>
+<p>我们会养着一只小乌龟，也得有一只小猫</p>
+<p>我们会一起出去旅行，也看过很多风景</p>
+<p>要见过花海，见过大大的榕树</p>
+<p>要泛舟于湖上，轻抚天鹅和白鹭</p>
+<p>要走过雪山白头，也听见大海亲吻沙滩</p>
+<p>也要路过许多城市，留下很多回忆</p>
+<p>对坐在摩天轮上，等夜幕降临</p>
+<p>在深夜的路边摊吃烧烤，在江畔用捡来的石头打水漂</p>
+<p>爬上高楼仰望城市，也幻想着云上的世界如何绮丽</p>
+<p>一起在陈奕迅的演唱会上欢呼，在凌晨的沙滩散步，然后等到天亮——</p>
+<p>等到初升的太阳，把我们的影子投射到一起</p>
+<p>想和你说</p>
+<p>来这人间一趟，谢谢有你</p>
+<h3 id="8-第二次见面-苏州"><a href="#8-第二次见面-苏州" class="headerlink" title="8. 第二次见面-苏州"></a>8. 第二次见面-苏州</h3><p>五月份的时候，借由劳动节的机会，我们见了第二次面。这时候距离上次见面已经过去了一百多天。</p>
+<p>我去虹桥机场接你，我仍然记得见面的时候我是不知所措的。我似乎从来没有习惯自己有过一个女朋友，因为她几乎没有来过我现实的生活里。那一刹那我感到惊讶，手，不知如何安置。</p>
+<p>而几秒钟之后，我们便消除了一百多天的生疏，又仿佛这么长时间你一直在我身边一样自然了。</p>
+<p>你是五月一号才来苏州的，而五月五号就要离开了。我们能玩的时间，满打满算也只有三天四夜而已。</p>
+<p>在这个我所熟悉的城市，我提前做了好多规划。</p>
+<p>我们第一天晚上夜游网师园，看了昆曲，评弹，古琴等表演。我们逛了我的学校，也和我妈妈、同学一起吃了饭。去了拙政园和苏州博物馆，也去了诚品书店，金鸡湖，去了独墅湖和白鹭园教堂。吃了东吴面馆的苏式汤面，也踩了平江路上的雷。还有让你始终念念不忘的莉莉小炒。还一起去看了电影，应该是在观前街的几何影城，看了悬崖之上。这也是我们第一次一起坐在电影院里看电影。</p>
+<p>三天的时间去了很多地方，似乎并不比长沙时候玩的少。也许是因为这样，离别的时候才格外念念不忘。第二次来苏州的时候，就没有那么多可以去的地方了。</p>
+<p>时间终究是很短暂的，我们每次即将接近离别的时候，我都会数着。倒数第三天，倒数第二天……最后一天，最后几个小时……</p>
+<p>这时候我们终将深感无力。</p>
+<h3 id="9-第二次离别"><a href="#9-第二次离别" class="headerlink" title="9. 第二次离别"></a>9. 第二次离别</h3><p>2021年5月5日上午9点，上海虹桥。</p>
+<p>21号A检票口前面的座椅上，你倚着我的手臂。我们数着，一秒一秒。彼此没有说太多话。</p>
+<p>通知检票的铃声已经响起，我看了看票上显示的列车班次。这时候我们似乎都意识到了某些不同寻常的东西。第二次见面，先离开的人是我。</p>
+<p>在那些离别的车站，目送着对方离开，频频回望，被人流裹挟着前进，直至背影消失在某个转角。噙住眼角的泪花，直到视野里对方不再出现的时候，才敢流下。</p>
+<p>终于体会到离别的苦楚，尤其建立在短暂的重逢之后。空气中隐隐还残留着你的气息，手臂上尚有余温。回到那个曾与你一同走过的城市，路上都是我们俩欢笑的影子。那个路灯，那个街角。不由得把手往后伸出，想给你牵，回头望去，已不在身边。</p>
+<p>终于明白什么叫相见时难别亦难。</p>
+<p>说不想奔去你怀里，留你在此，是假的。知道这不可能，是真的。那些漫步在夜里的时候，看着别人手牵手，说不羡慕也是假的。希望风能把我的思念带给你啊，但那么远，那么远，它该何时才能到呢？</p>
+<h3 id="10-第三次见面-湘潭"><a href="#10-第三次见面-湘潭" class="headerlink" title="10. 第三次见面-湘潭"></a>10. 第三次见面-湘潭</h3><p>我第二次来长沙，是借由2020年CCPC湘潭邀请赛的机会，能够公费旅游——好处是不用自己花钱，坏处是只能停留一天。</p>
+<p>我们在车站见面，一起去了湘潭。</p>
+<p>湘潭站在湘潭大学举办，我有一位高中同学在那里上学。他高中的时候志向很远大，想考中国科学技术大学，以后做化学的研究。他是一个相当纯粹的人。他高考没考好，于是去了湘潭大学。在大学里，学习也很认真努力。在大二的时候已经确认拿到了保研资格，参加了很多学术会议。</p>
+<p>印象里，他刚上大学的时候，对于大学生活的一切，对于异地他乡的一切都相当的不习惯。其实我和他关系也并没有很熟，但是他仍然愿意大晚上九十点钟穿过好几公里的马路，满头大汗地来找我，然后带我们去湘大附近吃饭。吃饭的时候，他也并不吃，只是看着我们。我心里很惭愧。</p>
+<p>我们住的地方在荒郊野外，妥妥的一个城乡结合部。但这一切都让我亲切，或许是因为从小也就在这样的地方长大的缘故。没有高楼大厦，只有小镇和荒地。上一个与这类似的城市大概是桐城。而湘潭大学附近的小吃街，在我看来是一种类似于九十年代的热闹。我喜欢这种贴地气的感觉。长沙也与此类似，不过湘潭的味更浓。</p>
+<p>我从小生活在中国生活条件最优渥的东部沿海地带，虽然在一个小县城，但是离上海只有一步之遥。而对于中国普遍的真实的景况，大抵是缺乏认识的。这也是我对于家乡以外的地方都充满向往的原因。我始终觉得，人须要多走多看，然后才能充实了自己，以期成为更强大的人，更善良，更真实的人。</p>
+<p>湘潭站的比赛，打得并不很好。混了个铜首。这也是第一次现场赛拿牌，然而与预期所差甚大的缘故，并不觉得兴奋。之后便去了长沙，与队友分别，和小李同住长沙医学院外面。</p>
+<p>长沙医学院的建筑在我看来，是有些风格的，那些石灰色的教学楼和宿舍楼就像是欧洲中世纪的堡垒一样肃穆。望城区离长沙市区也远得很，但看上去城建规划也是规整美观的。</p>
+<p>附近有一个小公园，很想去走走。但一路舟车劳顿，实在没有这个精力。入住的时候，因为一些小插曲，给我们升级了更好的房间，有一个大大的投影屏。阳台的风景也很好，我们一起在阳台拍了照片。</p>
+<p>那是在期末前一个月了，我们的压力都很大。晚上的时候，小李在我的怀里哭。从“异地恋怎么这么难啊”到“微生物怎么这么难啊”，现在想想好像每次见面小李都会哭。离别的时候我也常常落泪，只是不能让她看见。</p>
+<p>真的要好多的努力，才能最后走到一起吧。</p>
+<h2 id="第二章-你曾是少年"><a href="#第二章-你曾是少年" class="headerlink" title="第二章 你曾是少年"></a>第二章 你曾是少年</h2><p>取自S.H.E的一首歌《你曾是少年》，你可以听着这首歌，来读下面的文章。</p>
+<p>二十岁对于我们来说是一个人生的分界线，还记得我曾经在信里给你写过的那句话吗？</p>
+<p>“如果有一天，你发现我向平庸低了头，请你向我开炮。”</p>
+<p>爱这世界吧！热烈地，勇敢地去爱，你会发现生命的意义就在于此——在于叶上的露水，林间的蝉声，荷塘里的蛙鸣，在于那片像爱心一样的银杏叶，冬天落到指尖的雪花……在于你身边时时刻刻存在着的美丽呀。</p>
+<p>希望你永远年轻，永远善良，永远充满希望，永远相信浪漫和爱情。</p>
+<h4 id="11-献给二十岁"><a href="#11-献给二十岁" class="headerlink" title="11. 献给二十岁"></a>11. 献给二十岁</h4><p>临近傍晚的时候，天上开始飘下雪花。</p>
+<p>明天，或者说三十分钟后，是我的二十岁生日。对于这个日子，我已经期待了很久，但当它真的要来临的时候，却又心生恍然的淡漠。</p>
+<p>遥望人生的第三个十年，在这十年里我会完成自己的学业、步入社会，成家立业，有可能要为人父母了。回想昨日，高考的情景还历历在目，在上一刻，还是孩子，下一刻就要走向成熟。</p>
+<p>我仍然难忘，小学时候我是一个腼腆害羞的男孩，总是觉得自己比同龄人早熟一点，身体瘦弱，自恃聪明，总是以恶劣的态度对待朋友和家人。成绩还算优秀，但心底却是深深地自卑。上初中了之后，沉迷于电子网络世界——致使我如今选择计算机专业，一度影响了学业。那时的我不能理解，为何父母老师向我投着期待的眼光，于是我选择逃避。</p>
+<p>高中时的我，开始追问人生和社会。我总是花上很长的时间去思索生老病死，盯着川流不息的车辆发呆。有一段时间我只和自己相处，从不对身边的朋友吐露心里话，从不信任别人。我穿梭在大街小巷里，偶尔为了克服自己对陌生人的恐惧而和别人攀谈。我和开饮品店的阿婆交朋友，和古居的门卫阿姨聊天，也接受过很多冷眼相待。周末的时候，学校放半天的假，我常常在傍晚的时候在天镜湖畔奔跑，看着日落，想着自己渺茫的前程，化自己的思念在火烧的云彩里。我常在闲暇的午后拜访南园，让自己的影子融化在荡漾的波纹里。我内心的彷徨未曾找到过地方安放。于是我开始尝试恋爱，而那些都是不怎么成功的经历了。</p>
+<p>离开了高中，步入大学的校门。一下子失落了自己的目标。我如同所有可恨的成年人一样，放弃了自己的梦想而屈从于现实。我仍然在喘息的时候仰望星空，却找不到方向。我读了马克思主义的著作，他解释了很多关于我从前思考的困惑，于是我开始信仰共产主义。</p>
+<p>我仍然努力让自己的生活过得充实，以一种积极的态度，去试着做“大人们”眼中应该做的事情。有些事情能让我感到由衷的快乐，有些则不能。</p>
+<p>我曾经想过爱情，却从未想过自己能遇见爱情。之前我试过喜欢别人，到头来发现一直都是自己的情感在纠缠自己。直到爱情的流星击中了我，击晕了我，让我眼冒金星不知所措，我才真正开始学着怎么样去爱一个人。</p>
+<p>首先她的到来让我不再思考关于死。我并不是说，之前的我就想着自杀，只是在此之前我不明白自己为什么而活。可当你遇见了人世间所有的美好，你就会明白生命的意义。爱上她之后，我的人生燃起这样一股生的活力。而我不愿意用美好去形容她，我将以她形容美好。</p>
+<p>我仍然对自己的未来怀有疑问。而现在有人陪我一起走了。</p>
+<p>因为你，我的二十岁，以及以后所有的生命岁月，都开始有了更多的色彩。</p>
+<p>——写于2020年12月30日，给20岁的自己。</p>
+<h4 id="12-沈阳，沈阳"><a href="#12-沈阳，沈阳" class="headerlink" title="12. 沈阳，沈阳"></a>12. 沈阳，沈阳</h4><p>不知心中是从何时开始，种下了对ACM的憧憬。</p>
+<p>刚进入大学的我，因郁结而踌躇。大学的生活选择很多，丰富多彩，刚从单调枯燥的高中过渡而来的我们很难一下子适应。我对ACM最初的认识大概是在班级的导生见面会上，唐诚学长第一次介绍了大学里的相关竞赛。或许，种子就是从那时种下的。</p>
+<p>大一的时候加入了科协的图文中心，部门里的部长陈彦至当时作为ACM队员正在参加比赛，能够见识各个学校的风采，和最优秀的同龄人同台竞技。类似电竞比赛的制度，让当时的我感到新奇有趣。</p>
+<p>进入大学之前，并没有什么编程基础，空怀一腔热血，觉得自己能够学好计算机。至少在学习Python的时候，还是相当得心应手的，这或许也归结于学校的课程对于学生培养的要求并不高的缘故。大一的时候成绩不好，Python是唯一满绩的课。</p>
+<p>参加了两场新生赛，靠着自己并不高人一等的编程能力，居然得了两次二等奖。其中，第二次还是现场的第三名。这下，我一下子膨胀了，觉得自己是极其富有天赋的。</p>
+<p>这种浮躁的心理，一直伴着我很久。相较于高中时期，大学的我能够真正静下心来学习的时刻没那么多了。有外力因素，也有自身因素。</p>
+<p>大二上的时候，开始参加一些比赛。CCF考了两百多分，因为疫情的缘故，正好可以参加线上的CCSP，只做了40分，当时那场比赛国赛和省赛一起算，有分就有奖，60分就有国奖。大三的主力队员学长几乎无一例外都是金牌，而我是个卑微的铜奖。之后，参加了第一场线下赛，江苏省赛。没抱着能拿牌的想法，却拿到了人生第一块XCPC铜牌。上海站ICPC线上赛，打铁了。</p>
+<p>之后，我经历了很长时间的挫败，一度怀疑自己是否是不是根本不适合打ACM。一方面，作为19届一开始排名比较靠前的队员，学长和老师都给予了我很多的期望。另一方面，鉴于自己的愚蠢和懒惰，又一直没能取得很好的成绩。直到大二下学期的时候，才堪堪上了蓝名。我也得过奖，比如CCF考了325分，天梯赛个人国二（大概是242分）……但这些奖又没什么说服力。</p>
+<p>令我印象很深的是蓝桥杯。蓝桥杯，人称究极水赛，我打得究极烂。省赛，省二第三还是第四名。邝老师于心不忍，给了我一个珍贵的外卡参赛名额，然后就去打国赛了。优秀奖，也就是参与奖。</p>
+<p>至今，我都不太理解我为什么只拿了个参与奖。回顾所有这些我参加过的比赛中，IOI赛制的成绩普遍好于ACM赛制的成绩，而如果是OI赛制，简直是烂中烂。但归根结底，其实还是自己学的很不扎实，写代码的能力也不够强。</p>
+<p>大二下的一学期，队伍经过了重组，应该说是非常尽心尽力地训练了。我，孙孜斌，孙楠，我们的训练频率是一周两场，CF几乎每一场都打。到后来，国内赛区的ICPC和CCPC做完了，就开始做国外的。做不出题目的时候，常常感觉到焦灼，煎熬和痛苦。于是队伍命名为痛苦三人众。</p>
+<p>我们的做题数在整个集训队里面都是非常多的。我是队伍里的计算几何选手，偶尔能出金牌难度的计算几何。斌哥是图论选手，也是主代码手和大腿。一次训练赛，有一道题他直接用带花树算法秒过了，而我并没有听说过什么是带花树，从那以后我对斌哥的敬仰如滔滔黄河连绵不绝。楠哥是数据结构选手，给他一道很难的题，让他一个人在那里自闭，他也能出。对于其他的部分，数学，DP，字符串等，我们其实并没有非常明确地划分，会一点，但并不精通。而思维尤其是我们的弱项。</p>
+<p>而我擅长的计算几何，斌哥擅长的图论，直到痛苦三人众的最后一场比赛结束后，我们都没有开到一题。</p>
+<p>蓝桥杯的第二天就前往湖南参加湘潭邀请赛。那是痛苦三人众的第一场线下赛。打得很不好，罚坐了两个小时，泪提铜首。在参赛之前，是自认为有争金夺银的实力的，与预期相差甚大。</p>
+<p>沈阳站推迟到暑假举行，这打乱了我和小李在暑假初去东山岛旅行看海的计划，也直接让我期末周般紧张的节奏一直延续。</p>
+<p>当我乘上前往沈阳的飞机时，我是害怕的。沈阳站的对手大多是985,211双一流高校的尖子生，而湘潭站的对手有很多普通本一本二的同学；沈阳站的获奖比例并不高，而出题风格与我们往常训练时候也有所差异。</p>
+<p>如果这一次失败了，大三恐怕机会就很少了。</p>
+<p>沈阳站的比赛是在体育馆举行的，我第一次看到那样整齐排列的机器，高高升起的旗帜和气球，播放着宣传片的大屏幕，体育馆前的红地毯……当我们踏入赛场时，仿佛是走上征途的战士。我突然能理解奥运会赛场上那些运动员们的自豪了。</p>
+<p>从发挥来看，沈阳站打得并不好。结束的时候，我们几乎认定自己无缘银牌了。我们三人哭丧着脸，相顾无言，沉默着。同行的其他队伍的队友看到我们，觉得空气几乎凝滞了。</p>
+<p>可是我们足够幸运——有76支队伍能拿银牌，而我们排在第74。</p>
+<p>滚榜到铜牌前列的时候，屏幕突然坏了。这时候我们的紧张升到了极点。主持人开始继续报铜牌队伍，一个，两个，三个……十个……没有，没有我们，还是没有我们。</p>
+<p>我的紧张一点点积累。当他念完的时候，所有的紧张都化为了一点点的希冀。我忍不住颤抖着……</p>
+<p>银牌——痛苦三人众。</p>
+<p>最后的最后，我们不再痛苦。</p>
+<p>这一年是值得的。</p>
+<h4 id="13-黄金时代"><a href="#13-黄金时代" class="headerlink" title="13. 黄金时代"></a>13. 黄金时代</h4><p>我们处于人生的黄金时代。</p>
+<p>王小波在《黄金时代》里写道，“那一天我二十一岁，在我一生的黄金时代，我有好多奢望。我想爱，想吃，还想在一瞬间变成天上半明半暗的云，后来我才知道，生活就是个缓慢受锤的过程，人一天天老下去，奢望也一天天消逝，最后变得像挨了锤的牛一样。可是我过二十一岁生日时没有预见到这一点。我觉得自己会永远生猛下去，什么也锤不了我。”</p>
+<p>是的，哪怕我们已经能够预见——时间会有一天不可阻挡地将我们变为平庸的模样，但在这个岁月，我们仍然要充满希冀地奔向自己追求的未来和远方。</p>
+<p>上面的两篇文章，是我在我自己二十岁的生日，以及沈阳站拿牌的那天晚上写的。他们是我心里的火。</p>
+<p>我渴望爱情，让灵魂在燃烧中碰撞；</p>
+<p>我渴望光荣，用理想让荆棘开出花朵；</p>
+<p>我渴望远方，渴望一场说走就走的旅行，渴望从未见过的风景。</p>
+<p>我们应该勇敢地追求自己的悸动，用血泪和汗水铸就人生的华章。</p>
+<h2 id="第三章-诗酒趁年华"><a href="#第三章-诗酒趁年华" class="headerlink" title="第三章 诗酒趁年华"></a>第三章 诗酒趁年华</h2><p>这里记录一些我在过去随笔写下的文字。</p>
+<h4 id="14-长夜"><a href="#14-长夜" class="headerlink" title="14. 长夜"></a>14. 长夜</h4><p>长夜里</p>
+<p>月光下是不变的星空</p>
+<p>月华黯淡，星野低垂</p>
+<p>远方是死神的圣所</p>
+<p>像婴儿一般</p>
+<p>黑夜安宁</p>
+<p>在这里我经过你</p>
+<h4 id="15-一首诗"><a href="#15-一首诗" class="headerlink" title="15. 一首诗"></a>15. 一首诗</h4><p>火焰！燃烧着云朵</p>
+<p>鲜花和羽箭！</p>
+<p>丘比特死去了！</p>
+<p>只埋葬了，埋葬着</p>
+<p>彩虹的碎片</p>
+<p>地域的界线，白骨的灰屑</p>
+<h4 id="16-诗贰"><a href="#16-诗贰" class="headerlink" title="16. 诗贰"></a>16. 诗贰</h4><p>一声巨响</p>
+<p>浓烟遮住了天空</p>
+<p>绝望的呼号</p>
+<p>钢筋压倒</p>
+<p>重生、重逢、重生、重逢、重生</p>
+<p>黄色的汗液，红色的泪点</p>
+<p>为什么被</p>
+<p>冷漠的人们取笑？</p>
+<p>这悲欢、天空下的悲欢</p>
+<p>从不相通</p>
+<h4 id="17-宙斯"><a href="#17-宙斯" class="headerlink" title="17. 宙斯"></a>17. 宙斯</h4><p>偶尔也会想起，曾倚着冰冷的墙壁，</p>
+<p>听着雷鸣电闪和狂风的咆哮，</p>
+<p>把温暖握在手心里。</p>
+<p>偶尔也会想起，多年前仰望星空的夜里。</p>
+<p>将答案诉诸未来，向往霞光和云彩，</p>
+<p>等到漫天的星辰在第二个黎明醒来。</p>
+<p>奥林匹斯山的冬天太冷，</p>
+<p>而春天又来的太慢，</p>
+<p>神殿上的魔鬼灼烧着焦虑。</p>
+<p>拉车的牛马已经累死在了夜里。</p>
+<p>而太阳还不曾升起。</p>
+<h4 id="18-D74（高考前第74天）"><a href="#18-D74（高考前第74天）" class="headerlink" title="18. D74（高考前第74天）"></a>18. D74（高考前第74天）</h4><p>晚上和同学骑车去绿地吃KFC。</p>
+<p>大意，没有锁车，丢了两辆车。</p>
+<p>差点没能回来。有波波借我的卡，我把卡借给同桌，让他骑回来。我后来搭了同校学生的车，赶上了晚自习，迟到了两分钟。</p>
+<p>真的很愧疚，似乎是我的错吧。要不是我坚持随便停一停车赶紧吃饭，我们把车都锁好，就不会这样。</p>
+<p>同桌很着急，我们担心因为丢车要赔很多钱，不知道怎么办，我也很慌。但我要表现得坚强一点，安慰他。很对不起他，把一次快乐的旅程变得糟心。</p>
+<p>我考了年级第九，但是估计物理没考好，要引以为戒，再接再励。</p>
+<p>还有，八班和廖怡玮一起的那个女生到底是谁？每次看见我都笑，而且笑得很大声很夸张，当着我的面说我一个人站在那里好傻哦。我说，能不能不要当面说我傻，结果她就背过去又说了一遍。真是…缺乏教养。真的是无话可说。</p>
+<p>无所谓，反正我也不会和这种人有什么交集。不配我生气。</p>
+<p>晚自习的时候，看见真的很红很红很红的月亮。惊了！超级红，像是染了血一般，惊心动魄的红。</p>
+<p>我只想一个人承担所有的苦痛，把快乐留给你们。</p>
+<p>我也没还车，同桌也没还。我知道他最近不顺意，我非常抱歉。</p>
+<h4 id="19-D54（高考前第54天）"><a href="#19-D54（高考前第54天）" class="headerlink" title="19. D54（高考前第54天）"></a>19. D54（高考前第54天）</h4><p>第一次在周末晚上上晚自习。</p>
+<p>20:51</p>
+<p>按说不应该浪费时间写东西。毕竟高考已将到来，时间是永远不嫌多了。但我终究是个懒散而不自律的人，最近压力真的很大，写一些来发泄情感吧。</p>
+<p>虽然这么说，又不知道该从何落笔？近来波澜壮阔的内心世界吗？总是不如意的考试成绩吗？亦或者，四月十四日晚上绮丽的晚霞吗？无所谓，因为没有人会看到这些碎碎念。</p>
+<p>我发现，不知不觉间我也从“天赋派”变成“努力派”的一员了。可是，我是一个两边不讨好的人。论天赋，智商，碾压我的不少数。而匹敌、优于我的比比皆是；论努力，我花闲功夫来干闲事就是我并不努力的最好明证。</p>
+<p>你们看到我的光芒，可曾也看到我的狼狈呢？你们看到我的洒脱，可曾也看到我在人后偷偷流泪呢？你们看到我的勾肩搭背，可曾也看到我的孤独寂寞和无处倾诉呢？</p>
+<p>矫情，这个词太适合我。</p>
+<p>但是我在你们面前装作一副坚强的样子，我私底下矫情又有什么错呢？谁又有资格来怪罪我呢？呵，在这个信仰崩坏，人情淡漠的社会，谁又有闲心来管别人呢？</p>
+<p>我想能为别人做一些事，哪怕是微不足道的小事。我想去献血，想去支教，想去贫困山区帮农民脱贫，想投身于共产主义的伟大事业。可是我没有勇气，也缺乏能力。然而我想为自己而活的时候，有发觉生活终究少了些崇高感和神圣感。</p>
+<p>也许是寂寞太久了吧。会有某个人陪伴我度过剩下的岁月吗？已经习惯了一个人。</p>
+<h4 id="20-D49（高考前第49天）"><a href="#20-D49（高考前第49天）" class="headerlink" title="20. D49（高考前第49天）"></a>20. D49（高考前第49天）</h4><p>同情→伪善、优越感→傲慢</p>
+<p>爱情→欲望、虚荣、贪婪、虚伪</p>
+<p>懒惰，趋利避害</p>
+<p>孤独感→对自己的认识不深入，卑怯、懦弱</p>
+<p>克服傲慢，方能共情</p>
+<p>克服虚伪，才能真诚</p>
+<p>克服贪婪，虚荣，才能自足，才能坦然面对</p>
+<p>克服欲望，才能发自心底地爱别人</p>
+<p>克服卑怯懦弱，和自己相处，了解自己，才不会孤独，反之，身处闹市亦如居冰窟。</p>
+<p>克服懒惰，才有动力，才有机会成为更好的自己。</p>
+<p>直面，承认自己的丑恶，</p>
+<p>接受它们而时刻警惕</p>
+<p>积极向上，努力改正</p>
+<p>让自己的生命更加圆满，不留有缺憾。</p>
+<h4 id="21-高考后的日记"><a href="#21-高考后的日记" class="headerlink" title="21. 高考后的日记"></a>21. 高考后的日记</h4><p>高考失利，遭遇了人生最大的一场打击；自己做作，失去了一个能说话的很好的朋友。不确定的未来变得黯淡，失败的人际关系又为破碎的现实雪上加霜。</p>
+<p>七月的第三天，在静默中体验孤独。</p>
+<p>很难向别人解释自己的感受，那种梦想幻灭的绝望。</p>
+<p>很难去将自己脆弱的灵魂暴露在阳光下让别人评头论足。</p>
+<p>能够说话的人太少，其中能够感同身受的人更少，其中愿意听我倾吐苦水的人更少。即使真的存在这样的人，可以称得上是知己的存在了，但是我又怎么忍心让别人承担我的负能量呢。</p>
+<p>想成为太阳播撒阳光。</p>
+<p>要找寻明亮的方向。</p>
+<p>我每天背单词，练字，读书，学习摄影，锻炼身体。多少不能算是虚度光阴，也能让我在忙碌之中感到充实。</p>
+<p>然而夜深人静躺在床上，寂寞又像蚂蚁噬心一样让人难以忍受。</p>
+<p>排遣是一件很简单的事情，在暑假的开始几天我就是通过放纵来麻痹自己的神经。但是这样真的好吗，我不能止住地叩问自己。</p>
+<p>很想谈恋爱，其实只是渴望有一个人陪伴。但是我值得被爱吗。</p>
+<p>我已经沉浸太久的孤独。</p>
+<p>我已经明了我无法摆脱这深渊。</p>
+<p>我要在这深渊里，看到盛开的花。</p>
+<p>我不会沉沦。</p>
+<p>加油吧。</p>
+<h4 id="22-且将新火试新茶，诗酒趁年华。"><a href="#22-且将新火试新茶，诗酒趁年华。" class="headerlink" title="22. 且将新火试新茶，诗酒趁年华。"></a>22. 且将新火试新茶，诗酒趁年华。</h4><p>如你所见，这章摘录了一些我过去的文字，从高中时期一直到大学时期。</p>
+<p>从不知什么时候开始，我就有了用文字来记录自己的生活的习惯。我偶尔写日记，但大部分时候只是随心写两句不知所谓的话，或是诗。</p>
+<p>我的感情是那样的隐晦，以至于那些文字于今天的我来说似乎都是读不懂的。</p>
+<p>而我的感情又是那样的明显，在这些仅仅留给自己的文字中，我不停地怨天尤人。</p>
+<p>人的生命真的好像是现在的自己在不停地杀死过去的自己的一个过程。</p>
+<p>如今的我，和十年前的我，有一分一毫的相似吗？</p>
+<p>我重读过去写的文字，不可避免地又觉察到了自己的幼稚，并为此感到羞恼。然而我仍然要把它们放在这里，并且也让你能够一窥我的过去。</p>
+<p>我喜欢思考那些哲学问题，而思考他们需要很强的自我意识才能够让自己不那么迷失在缥缈虚无的思想困境中。现在看来这导致的后果，就是我始终存活在自己的世界中。我把自己囚禁在了自己的世界里，从来没有接纳过别人。</p>
+<p>过去的我并不明白这点。过去的我，从来不由衷地相信有人能够理解我。我以为人和人是必不可能相遇的孤岛，而这就是所有人注定的命运。原来这只是画地为牢而已。</p>
+<p>我把这些文字放在这里，我终于可以敞开胸怀拥抱自己，也接纳自己。即使我仍然称不上多么成熟，但我已经明白自己过往的所有失败和挫折，所有不甘和泪水，浸润在泥土里，都最终会结出果实。</p>
+<p>我感谢我的那些挣扎，感谢我做出的那些不甘于平庸的努力。我感谢一路上我遇见的所有，给我以帮助，或是与我同行一路的人。</p>
+<p>我相信在这路上少了任何一个经历我都没有办法变成现在的我，我也绝无可能认识现在的你。</p>
+<p>读这些文字，你可以看到我的挣扎和痛苦，也可以看到我一次又一次在跌倒后又自己激起无比的信心和勇气继续向前。你可以看到我始终在向变得优秀而努力，我相信我的这些努力最后都会实现。</p>
+<p>年轻是一件多好的事情，不是吗？</p>
 ]]></content>
       <categories>
         <category>我们的思念</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
-        <tag>摄影</tag>
-        <tag>哲思</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉普拉斯妖，你知道吗？</title>
-    <url>/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/</url>
-    <content><![CDATA[<p>世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。</p>
-<p>我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中最冷的时候。这样的论点当然在今天看来很可笑，但于当时的我，已经是穷尽所有想象力能为这个世界找到的最科学解释了。</p>
-<p>如果一个小球的抛出点和初速度是固定的，力是固定的，重力已知，方向已知……在这样的情况下，小球的运动轨迹是可以计算的。那么，是否一切活动，都是遵循一定的规律的呢？是否只要知道所有的参数，就可以了解过去，现在，和未来呢？</p>
-<p>相信一切是被决定着的，这种观点被称作决定论。由此而诞生的一个概念就是拉普拉斯妖，一位全知全能的妖精。说远了，不提。</p>
-<p>哲学上而言，我并非不支持自由意志的观点，我认为人的主观能动性是客观存在的。但是，了解一定的规律仍然有利于我们做出更好的选择。</p>
-<p>就像我二年级时认为太阳的远近是导致温度差异的原因一样，我只能用自己有限的知识在这个无垠的世界里寻找答案，或许永不可即，但追求知识的脚步是不会停下的。</p>
-<p>由最近的学习内容产生了一些感想，记录如下。</p>
-<p>本人才疏学浅，言论如有不当之处，还请各位多多包涵。</p>
-<p>电影《美丽心灵》介绍了博弈论的奠基人，二十世纪伟大的数学家、经济学家约翰·纳什的一生。纳什因为其对博弈论的贡献，获得了诺贝尔经济学奖。他最重要的理论之一就是提出了纳什均衡，通俗的来说，就是指在一场博弈中的两个当事人都停留在对自己最有利的一个位置的平衡状态。这两个人如果做任何的决策，都会导致局面对自己不利。</p>
-<p>这个理论的提出意味着博弈问题是有解的，因此博弈论才有了研究的价值。</p>
-<p>在我们计算机算法设计的领域，最著名也是最简单的算法莫过于贪心算法。也即是每次行动都作出目前条件下的最优解，那么将得到最好的效果。显而易见，不是什么情况都能应用贪心算法的，因此，是否能运用贪心是需要证明的。（当然，实际运用的时候，我们并不会去证明，只是觉得好像可以用，然后敲一遍看看答案对不对。）</p>
-<p>贪心算法当然和博弈论搭不着边，但是贪心策略却是很重要的一环。</p>
-<p>生物的本性是自私的，生物的本能会促使我们做出对自己最有利的选择。</p>
-<p>经济学中的“理性人”是指，每次行动都追求自身最大的利益而不管别人的死活。这是合理的。</p>
-<p>那么设想一下这样一个情况：两个囚徒被关在监狱里，互相隔离。他们都是理性人。狱警和他们说，如果他们都不检举对方的罪行，他们都会被关押一年。如果一位检举而另一位不检举，那么检举的将被释放，另一位被关押十年；如果两位都坦白，他们各自被关押五年。</p>
-<p>这种情况下，对于囚徒A来说，检举对方是最优解。</p>
-<p>如果B不检举，那么A就溜之大吉了。如果B检举了而他不检举，那么他将被关押十年。如果B也检举了，那么他被关押五年——也比十年更好。</p>
-<p>于是，两个人达成的纳什平衡是互相背叛。此时，任何一个人作出合作的举动都会导致他陷入更差的境地。然而，这并不是最优解。最优解是两个人互相合作。</p>
-<p>在电影《少年的你》中小北和陈念被审问的时候，他们没有承认。这就是合作的一种行为。这是感性的一种行为。</p>
-<p>如果人们不去考虑对自己的利益最大化，始终抱着合作意愿，那么反而将得到囚徒困境的最优解。</p>
-<p>再设想这样一种情况，让人们从1~100报一个数，最接近平均数的三分之二那个人将得到奖品，最优解是多少？首先设想所有人的数均匀分布，那么均值是50，答案是33。显然，你不应该猜超过33的数。如果所有人都这么想，那么你不该猜超过22的数……继续，继续，继续……最后，你应该猜1。如果所有人都是这样理性驱动，猜1，大家都有奖品。</p>
-<p>但是如果其中有一个人没有考虑这么多，胡乱猜了一个数字呢？</p>
-<p>美好的局面就被破坏掉了。最美的结局建立在所有人都是绝对理性的情况下，这样的情况是不稳定的。感性会破坏最优解。</p>
-<p>生物的进化正源自于此。如果所有人都是怀揣着恶意的，那么这个族群就会在互相攻讦中毁灭。如果所有人都是利他的，他们通过合作可以取得更大的利益，但是一旦这个族群中突变出了一个利己主义者，那么所有的利他行为者都会变成待宰的小白羊被收割。</p>
-<p>如何破解囚徒困境？说来很简单，一报还一报。</p>
-<p>先尝试合作，接下来每次行为都模仿对方上次的行为。这样需多次重复之后，即使对方的行为是不确定的，坐牢的年数总和也是最少的。</p>
-<p>利他和利己，感性和理性，二者之间都是彼此不可分割的。</p>
-<p>贪心算法是有助于解决实际问题的，因为对象只有一个。</p>
-<p>而当问题变成非零和博弈的时候，即使是最理性的人作出的最理性的选择也未必是最优解。人与人之间交互的神奇之处就在于此了。</p>
-<p>今天上课的时候讲到人工智能，绝对理性的人工智能能摆脱囚徒困境吗？恐怕未必比小北和陈念做得更好吧。人们的相处，是不能用什么理论去预料的呀。拉普拉斯妖，你能知道吗？</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
-        <tag>哲思</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>山石巴</title>
-    <url>/2020/03/13/%E5%B1%B1%E7%9F%B3%E5%B7%B4/</url>
-    <content><![CDATA[<p>山石巴是一家自助餐厅，坐落在南洋广场不起眼的一个犄角旮旯里。</p>
-<p>之所以叫山石巴，是取了“三十八”的谐音：自助餐，38元一位。这样的取名风格，大概是为了凸显出实惠吧。</p>
-<p>第一次去那儿，是小乐乐带我去的。高中时候的我们，唯一有的空闲时间无疑是周日。那时在学校中自习，上午和晚上都是埋头在书本里暗无天日的学习时间，但也得益于此，同学们一起出去吃饭很方便。中午打个车或者坐个公交，去南洋或是万达，总是有几家心仪的实惠小店。在夕阳西下之前优哉游哉地转回来，这就是我们在那些单调乏味的日子里最大的欢乐了。</p>
-<p>十八岁时的我没有顾虑和忧愁，不担心未来和过去。</p>
-<p>小乐乐说，王雨，要不要陪我去吃饭。</p>
-<p>我说，好。</p>
-<p>于是我们就出发了。周末中午时候的112总是拥挤的，我们常把这班车次戏称为校车，因为上面都是被关了一个星期迫不及待出去放风的太高学生。</p>
-<p>小乐乐第一次带我去时，我被震惊到了。你能想象吗？一家餐厅建在二楼，而通上去的楼梯竟然是塌的，布满了钢筋和灰尘，像是被强拆的钉子户一样不堪。他尴尬地笑了笑，说：“这里卖相确实不怎么好，但是你一定不会后悔的。“</p>
-<p>跟着他绕来绕去，原来不是走楼梯上去的，在颓圮的房间里藏着一扇电梯门，通过电梯，就可以上去了。正式进入了餐厅，眼前一亮。人出乎意料地多，沙发上坐满了排队等候的顾客。房间里面热气腾腾的，氤氲着温暖的人间烟火气。</p>
-<p>三十八元一位，对于自助餐来说，确实是很实惠的价格了。可供选择的菜品还真是不少，种类齐全。至于味道？至少比食堂的饭菜更容易下口。</p>
-<p>来了一次，就想来第二次。然后我们又挟上了其他的小伙伴。</p>
-<p>旺哥被我们带来的时候，也被楼梯口的破败吓到了。他一脸怀疑地看着我们俩，怀疑是在耍他。与后来他大快朵颐的样子形成了强烈的反差。</p>
-<p>有一块灰黑色的饼，我不知道那是什么，因为我至今不敢下口。我们仨那时看着这个不明物体，面面相觑。</p>
-<p>“猜拳吧，谁输了谁吃。“</p>
-<p>于是张道旺哭丧着脸把它塞进嘴里。<br>我狂笑。</p>
-<p>看他的表情，整个脸都皱到一块去了。好不容易咀嚼了几下，就捂住嘴巴，一脸要吐的样子。其浮夸的颜艺，堪比城之内。</p>
-<p>而我和小乐乐，丝毫没有一点愧疚之情。</p>
-<p>因为他真的太好笑了。</p>
-<p>后来，我们常来这里。一起的同学越来越多，有的时候甚至一桌子坐不下。小乐乐一直在不遗余力地推广着这家餐厅，即使他们不会给他广告费。然后，这里就留下了我们的许多回忆。</p>
-<p>说起来也没有过很长时间，却让人好怀念。</p>
-<p>真想和你们再聚一聚，即使那些时光已经消失不见。</p>
-]]></content>
-      <categories>
-        <category>我们的思念</category>
-      </categories>
-      <tags>
-        <tag>杂感</tag>
+        <tag>故事</tag>
       </tags>
   </entry>
   <entry>
@@ -787,42 +1094,51 @@
       </tags>
   </entry>
   <entry>
-    <title>让平凡的日子也散发出光亮</title>
-    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
-    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
-<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
-<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
-<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
-<p>诗意的世界就借由仪式感来创造。</p>
-<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
-<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
-<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
-<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
-<p>让平凡的日子也散发出光亮。</p>
+    <title>王雨的ACM模板(持续更新)</title>
+    <url>/2021/05/18/%E7%8E%8B%E9%9B%A8%E7%9A%84ACM%E6%A8%A1%E6%9D%BF-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<h1 id="王雨的ACM模板"><a href="#王雨的ACM模板" class="headerlink" title="王雨的ACM模板"></a>王雨的ACM模板</h1><p><a href="ACM.pdf" title="下载">点击下载</a></p>
 ]]></content>
       <categories>
-        <category>我们的思念</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>杂感</tag>
+        <tag>ACM</tag>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
-    <title>田野也消失了</title>
-    <url>/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/</url>
-    <content><![CDATA[<p>又是一年，回到太高，思绪已逐渐遥远。</p>
-<p>我们也有了一些变化、正如太高也有了一些变化。可对我来说，最大的改变竟不是在太高，而是太高东面的田野上——建起了一栋栋整齐的商品房。</p>
-<p>原本位于南郊，被戏称为乡下学校，百草丰茂，是虫豸的乐园。清晨走出宿舍时，能看见操场上款款行走的白鸟。晚上晚自习，能在一节课拍死二十只蚊子，又好事者把它们排成一列，粘在纸上，曝尸示众。倒也不觉得残忍，人向来冷酷。因为此般丰富的物种，再加上那一条流淌而过的臭水沟，又把学校呼作“生态沟”。</p>
-<p>高一刚入学时，最喜欢趴在东面的走廊上吹风。凝望着远方，那是一个少年对于未来的全部渴望。常记得冬天的清晨六点，薄薄的淡雾，在地上只是一层，弥漫在树林和田野里。雾中，依稀见到初升的太阳，然后橙黄色的阳光渐渐晕染了水汽，那幅景象静谧而玄奇。那时我也十六岁，隐约觉得那就是“希望”。</p>
-<p>校外的东南角有一栋孤独的老房子。不大的院墙里生长着一棵雄壮的银杏树，每至秋天，叶子落满了院落的地面，曾隔门相望，里面像是一个神秘的世界。那棵银杏树，在学校的走廊里也是能看见的。我最爱银杏的叶子。</p>
-<p>高二高三时，田野变成了建筑工地，工程机械整日不停地轰鸣，午睡时常常不堪其扰。直到今日再回校，才发现楼盘已经紧凑地布列在那里了——那原来是田野、树林和老院落的地方。</p>
-<p>今天的同学们，若是再像我当时那样，喜欢趴在栏杆上吹风，喜欢眺望远方，想必已经是看不到那时的风景了。</p>
-<p>时隔一年，如历半生，恍惚间仿佛还看见自己曾经的身影。然而过去种种苦乐酸甜，已随着时间酿成了清冽的甜酒，当是能够释怀了。只有那些如囚笼般的钢铁森林，让我尤为不喜。</p>
+    <title>沈阳,沈阳</title>
+    <url>/2021/08/10/%E6%B2%88%E9%98%B3-%E6%B2%88%E9%98%B3/</url>
+    <content><![CDATA[<p>不知心中是从何时开始，种下了对ACM的憧憬。</p>
+<p>刚进入大学的我，因郁结而踌躇。大学的生活选择很多，丰富多彩，刚从单调枯燥的高中过渡而来的我们很难一下子适应。我对ACM最初的认识大概是在班级的导生见面会上，唐诚学长第一次介绍了大学里的相关竞赛。或许，种子就是从那时种下的。</p>
+<p>大一的时候加入了科协的图文中心，部门里的部长陈彦至当时作为ACM队员正在参加比赛，能够见识各个学校的风采，和最优秀的同龄人同台竞技。类似电竞比赛的制度，让当时的我感到新奇有趣。</p>
+<p>进入大学之前，并没有什么编程基础，空怀一腔热血，觉得自己能够学好计算机。至少在学习Python的时候，还是相当得心应手的，这或许也归结于学校的课程对于学生培养的要求并不高的缘故。大一的时候成绩不好，Python是唯一满绩的课。</p>
+<p>参加了两场新生赛，靠着自己并不高人一等的编程能力，居然得了两次二等奖。其中，第二次还是现场的第三名。这下，我一下子膨胀了，觉得自己是极其富有天赋的。</p>
+<p>这种浮躁的心理，一直伴着我很久。相较于高中时期，大学的我能够真正静下心来学习的时刻没那么多了。有外力因素，也有自身因素。</p>
+<p>大二上的时候，开始参加一些比赛。CCF考了两百多分，因为疫情的缘故，正好可以参加线上的CCSP，只做了40分，当时那场比赛国赛和省赛一起算，有分就有奖，60分就有国奖。大三的主力队员学长几乎无一例外都是金牌，而我是个卑微的铜奖。之后，参加了第一场线下赛，江苏省赛。没抱着能拿牌的想法，却拿到了人生第一块XCPC铜牌。上海站ICPC线上赛，打铁了。</p>
+<p>之后，我经历了很长时间的挫败，一度怀疑自己是否是不是根本不适合打ACM。一方面，作为19届一开始排名比较靠前的队员，学长和老师都给予了我很多的期望。另一方面，鉴于自己的愚蠢和懒惰，又一直没能取得很好的成绩。直到大二下学期的时候，才堪堪上了蓝名。我也得过奖，比如CCF考了325分，天梯赛个人国二（大概是242分）……但这些奖又没什么说服力。</p>
+<p>令我印象很深的是蓝桥杯。蓝桥杯，人称究极水赛，我打得究极烂。省赛，省二第三还是第四名。邝老师于心不忍，给了我一个珍贵的外卡参赛名额，然后就去打国赛了。优秀奖，也就是参与奖。</p>
+<p>至今，我都不太理解我为什么只拿了个参与奖。回顾所有这些我参加过的比赛中，IOI赛制的成绩普遍好于ACM赛制的成绩，而如果是OI赛制，简直是烂中烂。但归根结底，其实还是自己学的很不扎实，写代码的能力也不够强。</p>
+<p>大二下的一学期，队伍经过了重组，应该说是非常尽心尽力地训练了。我，孙孜斌，孙楠，我们的训练频率是一周两场，CF几乎每一场都打。到后来，国内赛区的ICPC和CCPC做完了，就开始做国外的。做不出题目的时候，常常感觉到焦灼，煎熬和痛苦。于是队伍命名为痛苦三人众。</p>
+<p>我们的做题数在整个集训队里面都是非常多的。我是队伍里的计算几何选手，偶尔能出金牌难度的计算几何。斌哥是图论选手，也是主代码手和大腿。一次训练赛，有一道题他直接用带花树算法秒过了，而我并没有听说过什么是带花树，从那以后我对斌哥的敬仰如滔滔黄河连绵不绝。楠哥是数据结构选手，给他一道很难的题，让他一个人在那里自闭，他也能出。对于其他的部分，数学，DP，字符串等，我们其实并没有非常明确地划分，会一点，但并不精通。而思维尤其是我们的弱项。</p>
+<p>而我擅长的计算几何，斌哥擅长的图论，直到痛苦三人众的最后一场比赛结束后，我们都没有开到一题。</p>
+<p>蓝桥杯的第二天就前往湖南参加湘潭邀请赛。那是痛苦三人众的第一场线下赛。打得很不好，罚坐了两个小时，泪提铜首。在参赛之前，是自认为有争金夺银的实力的，与预期相差甚大。</p>
+<p>沈阳站推迟到暑假举行，这打乱了我和小李在暑假初去东山岛旅行看海的计划，也直接让我期末周般紧张的节奏一直延续。</p>
+<p>当我乘上前往沈阳的飞机时，我是害怕的。沈阳站的对手大多是985,211双一流高校的尖子生，而湘潭站的对手有很多普通本一本二的同学；沈阳站的获奖比例并不高，而出题风格与我们往常训练时候也有所差异。</p>
+<p>如果这一次失败了，大三恐怕机会就很少了。</p>
+<p>沈阳站的比赛是在体育馆举行的，我第一次看到那样整齐排列的机器，高高升起的旗帜和气球，播放着宣传片的大屏幕，体育馆前的红地毯……当我们踏入赛场时，仿佛是走上征途的战士。我突然能理解奥运会赛场上那些运动员们的自豪了。</p>
+<p>从发挥来看，沈阳站打得并不好。结束的时候，我们几乎认定自己无缘银牌了。我们三人哭丧着脸，相顾无言，沉默着。同行的其他队伍的队友看到我们，觉得空气几乎凝滞了。</p>
+<p>可是我们足够幸运——有76支队伍能拿银牌，而我们排在第74。</p>
+<p>滚榜到铜牌前列的时候，屏幕突然坏了。这时候我们的紧张升到了极点。主持人开始继续报铜牌队伍，一个，两个，三个……十个……没有，没有我们，还是没有我们。</p>
+<p>我的紧张一点点积累。当他念完的时候，所有的紧张都化为了一点点的希冀。我忍不住颤抖着……</p>
+<p>银牌——痛苦三人众。</p>
+<p>最后的最后，我们不再痛苦。这一年是值得的。</p>
 ]]></content>
       <categories>
         <category>我们的思念</category>
       </categories>
       <tags>
+        <tag>ACM</tag>
         <tag>杂感</tag>
       </tags>
   </entry>
@@ -850,6 +1166,109 @@
         <tag>题解</tag>
         <tag>学习笔记</tag>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>田野也消失了</title>
+    <url>/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/</url>
+    <content><![CDATA[<p>又是一年，回到太高，思绪已逐渐遥远。</p>
+<p>我们也有了一些变化、正如太高也有了一些变化。可对我来说，最大的改变竟不是在太高，而是太高东面的田野上——建起了一栋栋整齐的商品房。</p>
+<p>原本位于南郊，被戏称为乡下学校，百草丰茂，是虫豸的乐园。清晨走出宿舍时，能看见操场上款款行走的白鸟。晚上晚自习，能在一节课拍死二十只蚊子，又好事者把它们排成一列，粘在纸上，曝尸示众。倒也不觉得残忍，人向来冷酷。因为此般丰富的物种，再加上那一条流淌而过的臭水沟，又把学校呼作“生态沟”。</p>
+<p>高一刚入学时，最喜欢趴在东面的走廊上吹风。凝望着远方，那是一个少年对于未来的全部渴望。常记得冬天的清晨六点，薄薄的淡雾，在地上只是一层，弥漫在树林和田野里。雾中，依稀见到初升的太阳，然后橙黄色的阳光渐渐晕染了水汽，那幅景象静谧而玄奇。那时我也十六岁，隐约觉得那就是“希望”。</p>
+<p>校外的东南角有一栋孤独的老房子。不大的院墙里生长着一棵雄壮的银杏树，每至秋天，叶子落满了院落的地面，曾隔门相望，里面像是一个神秘的世界。那棵银杏树，在学校的走廊里也是能看见的。我最爱银杏的叶子。</p>
+<p>高二高三时，田野变成了建筑工地，工程机械整日不停地轰鸣，午睡时常常不堪其扰。直到今日再回校，才发现楼盘已经紧凑地布列在那里了——那原来是田野、树林和老院落的地方。</p>
+<p>今天的同学们，若是再像我当时那样，喜欢趴在栏杆上吹风，喜欢眺望远方，想必已经是看不到那时的风景了。</p>
+<p>时隔一年，如历半生，恍惚间仿佛还看见自己曾经的身影。然而过去种种苦乐酸甜，已随着时间酿成了清冽的甜酒，当是能够释怀了。只有那些如囚笼般的钢铁森林，让我尤为不喜。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[苏州大学C++] 大一下C++第二次考试</title>
+    <url>/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<p>题目如下：<br>请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：</p>
+<ol>
+<li>包含圆形编号、圆心x坐标、圆心y坐标和半径等数据成员。圆形编号为整形。生成第1个圆形对象时编号为1，生成第2个圆形对象时编号为2，以此类推。每构造一个新的圆形，对象编号为当前最大编号加1（如当前最大编号为5，则生成的这个新圆形的编号应该为6）。</li>
+<li>是否需要其它数据成员，可视情况自行决定。提示：建议使用两个静态变量。一个静态变量用于记录当前圆形对象的个数，此变量的值可增大或减小；另一个静态变量用于记录已经生成的圆形对象的最大编号，此变量的值只会增大不会减小。</li>
+<li>1个带有3个参数的构造函数。3个参数分别初始化圆形的圆心x坐标、圆心y坐标和半径等数据成员。提示：圆形对象的编号也需要初始化。</li>
+<li>1个拷贝构造函数。提示：圆形对象的编号不能简单复制。</li>
+<li>1个获取当前圆形对象数量的函数。提示：此函数建议为静态函数。</li>
+<li>前自增运算符，对半径自增1。</li>
+<li>后自增运算符，对半径自增1。</li>
+<li>+运算符，用于将两个圆形加在一起，得到一个新的圆形。新圆形的圆心坐标是两个圆形坐标连线的中点，面积是两个圆形面积的和。提示：需要根据面积反算半径。</li>
+<li>流输出运算，用于显示圆形的编号、圆心x坐标、圆心y坐标和半径、面积、周长。一个圆形的信息占1行。</li>
+<li>析构函数。圆形对象销毁时，需要将当前圆形对象的数量减去1。</li>
+<li>使用给定的main函数测试Circle类的功能。</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">///#Author:Rye</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_number;<span class="comment">//当前圆对象的数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_maxCount;<span class="comment">//最大编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m_count = <span class="number">0</span>;<span class="comment">//对象编号</span></span><br><span class="line">    <span class="keyword">double</span> m_x;</span><br><span class="line">    <span class="keyword">double</span> m_y;</span><br><span class="line">    <span class="keyword">double</span> m_r;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> x,<span class="keyword">double</span> y,<span class="keyword">double</span> r)&#123;</span><br><span class="line">        m_x = x;</span><br><span class="line">        m_y = y;</span><br><span class="line">        m_r = r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了构造函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number++;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle(<span class="keyword">const</span> Circle&amp;C)&#123;</span><br><span class="line">        m_x = C.m_x;</span><br><span class="line">        m_y = C.m_y;</span><br><span class="line">        m_r = C.m_r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了拷贝构造函数"&lt;&lt;C.m_count&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//        m_maxCount++;</span></span><br><span class="line">        m_number++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~Circle()&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了析构函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_num</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_number;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle&amp; <span class="keyword">operator</span>++()&#123;</span><br><span class="line">        m_r++;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"前置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;<span class="comment">//前置++</span></span><br><span class="line">    Circle <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"后置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="function">Circle <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;<span class="comment">//调用拷贝构造函数</span></span><br><span class="line">        temp.m_count = m_count;</span><br><span class="line">        m_r++;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;<span class="comment">//后置++</span></span><br><span class="line">    <span class="keyword">friend</span> Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b);</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t);<span class="comment">//流输出</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle&amp; operator++(Circle &amp;t)&#123;///友元函数重载</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return t;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle operator++(Circle &amp;t,int)&#123;</span></span><br><span class="line"><span class="comment">//    Circle temp(t);//调用拷贝构造函数</span></span><br><span class="line"><span class="comment">//    temp.m_count = t.m_count;</span></span><br><span class="line"><span class="comment">//    Circle::m_maxCount--;</span></span><br><span class="line"><span class="comment">//    Circle::m_number--;</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return temp;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b)&#123;</span><br><span class="line">    <span class="keyword">double</span> S = PI * (a.m_r * a.m_r + b.m_r * b.m_r);</span><br><span class="line">    <span class="keyword">double</span> R = <span class="built_in">pow</span>(S / PI, <span class="number">0.5</span>);</span><br><span class="line">    <span class="function">Circle <span class="title">NEW</span><span class="params">(a.m_x + b.m_x, a.m_y + b.m_y, R)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> NEW;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t)&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的编号"</span> &lt;&lt; t.m_count &lt;&lt; <span class="string">" x:"</span> &lt;&lt; t.m_x &lt;&lt; <span class="string">" y:"</span> &lt;&lt; t.m_y &lt;&lt; <span class="string">" 周长:"</span> &lt;&lt; <span class="number">2</span> * PI * t.m_r &lt;&lt; <span class="string">" 面积:"</span> &lt;&lt; PI * t.m_r * t.m_r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Circle::m_maxCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> Circle::m_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Circle c1( 1.12, 2.23, 3.34 ), c2( c1 );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1 &lt;&lt; c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Circle c3 = c1 + c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c3;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实很简单。<br>但是踩了一个坑，今天有同学来问我这道题，有关于静态变量。它的序号莫名其妙增加了。<br>我第一次写的时候也出现了这个问题，后来找到问题所在。<br>如果使用友元函数重载运算符，传入的参数没有使用常引用的时候，就会调用拷贝构造函数。<br>比如你把<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,const Circle &amp;t);</code>写成了<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,Circle t);</code><br><img src="https://img-blog.csdnimg.cn/2020060120410313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="调用拷贝构造函数"><br>那么cout &lt;&lt; c1 &lt;&lt; c2 就会调用2次拷贝构造函数和2次析构函数。在不涉及静态变量的时候，常引用和不写引用的方式是没有区别的。但是这道题目中，调用拷贝构造函数会使最大序号增加，而析构函数不会使最大序号减小，所以这种写法就错了。</p>
+<p>常引用能够提高程序运行的效率，也能保护传递给函数的数据不被改变。引用型参数如果可以被定义为const，应该尽量定义为const。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>学习笔记</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[苏州大学C++] 2020春第二次考试</title>
+    <url>/2020/06/07/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<p>题目描述：<br>*<br>请各位考生从课程教学群文件中下载数据文件 account.txt，然后将数据文件<br>手动保存在 D 盘根文件夹下。按要求编写一个 deposit 类，用于存储文件<br>account.txt 中的数据。该文件中每行记录一个账户的信息，包含 4 项数据，以 tab<br>字符分隔，各个字段的信息如下：<br> 第 1 列表示账户名称 name；<br> 第 2 列表示账户存款余额 balance；<br> 第 3 列表示账户贷款余额 loan；<br> 第 4 列表示每次还贷金额 charge；<br>根据 account.txt 文件中的数据，现设计 deposit 类的结构如下，其中包含 4<br>个私有数据成员变量：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deposit</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"> <span class="built_in">string</span> name;</span><br><span class="line"> <span class="keyword">double</span> balance, loan, charge;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按以下要求编写程序</p>
+<ol>
+<li>deposit类包含构造函数，name默认值为“NoName”，其余参数默认值为0.0。</li>
+<li>deposit 类包含成员函数 setName，用于设置账户名称。</li>
+<li>deposit 类包含成员函数 pay，用于执行还贷操作。正常还贷操作的过程是：<br>balance 减去 charge，loan 减去 charge。如果 loan 大于 charge，则还贷金额<br>为 charge，否则还贷金额为 loan。如果余额 balance 大于还贷金额 charge，<br>则正常还贷，并返回 true，否则不执行还贷操作，并设置账户名称为原名称<br>后面加“(*)”，并返回 false。</li>
+<li>重载后自增运算符++，用于将当前对象的每次还贷金额 charge 增加 100。</li>
+<li>重载流输出运算符，用于显示一个对象的信息。其中，name 占 10 列并左对<br>齐，balance、loan、charge 各占 15 列并精确到小数点后 2 位。</li>
+<li>编写函数 inputData，完成数据的读入，结果存放在向量 v_acc 中。</li>
+<li>编写函数 incData，将 v_acc 中所有账户的还贷金额增加 100。</li>
+<li>编写函数 decData，将 v_acc 中所有账户执行一次还贷操作，返回无法完成<br>还贷的账户数；</li>
+<li>编写函数 outPut，用于把向量 v_acc 中的数据显示输出。显示格式在重载流<br>输出运算符中已有表述。<br>程序的 main 函数（注意：不得修改 main 函数！对 main 函数每修改<br>一处扣 2 分，最多扣 10 分。）</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">vector</span>&lt;deposit&gt; v_acc;</span><br><span class="line"> <span class="built_in">string</span> path = <span class="string">"d:\\account.txt"</span>;</span><br><span class="line"> inputData(path, v_acc);</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> incData(v_acc);</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"can not pay = "</span> &lt;&lt; decData(v_acc) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>*</p>
+<p>解析：<br>实在是没有什么好说的，非常简单的一次考试。班级里没有低于90分的。<br>大概是为了防止出现大面积满分，居然因为函数说明没写够扣分了，真是有够好笑的呢。<br>半个小时不到就写完了。<br>直接附上代码供参考吧。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deposit</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">double</span> balance, loan, charge;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    deposit(<span class="built_in">string</span> m_name = <span class="string">"NoName"</span>,<span class="keyword">double</span> m_balance = <span class="number">0.0</span>,<span class="keyword">double</span> m_loan = <span class="number">0.0</span>,<span class="keyword">double</span> m_charge = <span class="number">0.0</span>)&#123;</span><br><span class="line">        name = m_name;<span class="comment">//构造函数</span></span><br><span class="line">        balance = m_balance;</span><br><span class="line">        loan = m_loan;</span><br><span class="line">        charge = m_charge;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> NAME)</span></span>&#123;<span class="comment">//设置账户名称</span></span><br><span class="line">        name = NAME;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">pay</span><span class="params">()</span></span>&#123;<span class="comment">//还贷操作</span></span><br><span class="line">        <span class="keyword">int</span> temp = charge;</span><br><span class="line">        <span class="keyword">if</span>(loan &lt;= charge) temp = loan;</span><br><span class="line">        <span class="keyword">if</span>(balance &gt; charge) &#123;</span><br><span class="line">            balance -= temp;</span><br><span class="line">            loan -= temp;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">string</span> NewName = name + <span class="string">"(*)"</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;setName(NewName);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    deposit <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;<span class="comment">//后自增</span></span><br><span class="line">        <span class="function">deposit <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</span><br><span class="line">        charge += <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="comment">//访问私有对象</span></span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getBalance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getLoan</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> loan;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getCharge</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> charge;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,deposit t);<span class="comment">//使用友元函数 重载&gt;&gt;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,deposit t)&#123;<span class="comment">//输出格式</span></span><br><span class="line">    out &lt;&lt; setw(<span class="number">10</span>) &lt;&lt; left &lt;&lt; t.getName();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getBalance();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getLoan();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getCharge();</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inputData</span><span class="params">(<span class="built_in">string</span> rfn, <span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;</span><br><span class="line">    <span class="function">ifstream <span class="title">infile</span><span class="params">(rfn,ios::in)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!infile)&#123;<span class="comment">//判断打开文件</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"open file error!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">double</span> balance,loan,charge;</span><br><span class="line">    <span class="keyword">while</span>(infile &gt;&gt; name &gt;&gt; balance &gt;&gt; loan &gt;&gt; charge)&#123;<span class="comment">//读取</span></span><br><span class="line">        <span class="function">deposit <span class="title">temp</span><span class="params">(name,balance,loan,charge)</span></span>;</span><br><span class="line">        vec.push_back(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();<span class="comment">//关闭</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">incData</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;<span class="comment">//还贷金额+100</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        vec[i]++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">outPut</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; vec)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; vec[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">decData</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;<span class="comment">//返回无法还贷数目</span></span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vec[i].pay())<span class="comment">//如果无法还贷 统计数量</span></span><br><span class="line">            cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;deposit&gt; v_acc;</span><br><span class="line">    <span class="built_in">string</span> path = <span class="string">"d:\\account.txt"</span>;</span><br><span class="line">    inputData(path, v_acc);</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    incData(v_acc);</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"can not pay = "</span> &lt;&lt; decData(v_acc) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>学习笔记</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让平凡的日子也散发出光亮</title>
+    <url>/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/</url>
+    <content><![CDATA[<p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
+<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
+<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
+<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
+<p>诗意的世界就借由仪式感来创造。</p>
+<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
+<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
+<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
+<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
+<p>让平凡的日子也散发出光亮。</p>
+]]></content>
+      <categories>
+        <category>我们的思念</category>
+      </categories>
+      <tags>
+        <tag>杂感</tag>
       </tags>
   </entry>
   <entry>
@@ -887,69 +1306,6 @@
       </categories>
       <tags>
         <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[苏州大学C++] 2020春第二次考试</title>
-    <url>/2020/06/07/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<p>题目描述：<br>*<br>请各位考生从课程教学群文件中下载数据文件 account.txt，然后将数据文件<br>手动保存在 D 盘根文件夹下。按要求编写一个 deposit 类，用于存储文件<br>account.txt 中的数据。该文件中每行记录一个账户的信息，包含 4 项数据，以 tab<br>字符分隔，各个字段的信息如下：<br> 第 1 列表示账户名称 name；<br> 第 2 列表示账户存款余额 balance；<br> 第 3 列表示账户贷款余额 loan；<br> 第 4 列表示每次还贷金额 charge；<br>根据 account.txt 文件中的数据，现设计 deposit 类的结构如下，其中包含 4<br>个私有数据成员变量：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deposit</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"> <span class="built_in">string</span> name;</span><br><span class="line"> <span class="keyword">double</span> balance, loan, charge;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>按以下要求编写程序</p>
-<ol>
-<li>deposit类包含构造函数，name默认值为“NoName”，其余参数默认值为0.0。</li>
-<li>deposit 类包含成员函数 setName，用于设置账户名称。</li>
-<li>deposit 类包含成员函数 pay，用于执行还贷操作。正常还贷操作的过程是：<br>balance 减去 charge，loan 减去 charge。如果 loan 大于 charge，则还贷金额<br>为 charge，否则还贷金额为 loan。如果余额 balance 大于还贷金额 charge，<br>则正常还贷，并返回 true，否则不执行还贷操作，并设置账户名称为原名称<br>后面加“(*)”，并返回 false。</li>
-<li>重载后自增运算符++，用于将当前对象的每次还贷金额 charge 增加 100。</li>
-<li>重载流输出运算符，用于显示一个对象的信息。其中，name 占 10 列并左对<br>齐，balance、loan、charge 各占 15 列并精确到小数点后 2 位。</li>
-<li>编写函数 inputData，完成数据的读入，结果存放在向量 v_acc 中。</li>
-<li>编写函数 incData，将 v_acc 中所有账户的还贷金额增加 100。</li>
-<li>编写函数 decData，将 v_acc 中所有账户执行一次还贷操作，返回无法完成<br>还贷的账户数；</li>
-<li>编写函数 outPut，用于把向量 v_acc 中的数据显示输出。显示格式在重载流<br>输出运算符中已有表述。<br>程序的 main 函数（注意：不得修改 main 函数！对 main 函数每修改<br>一处扣 2 分，最多扣 10 分。）</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">vector</span>&lt;deposit&gt; v_acc;</span><br><span class="line"> <span class="built_in">string</span> path = <span class="string">"d:\\account.txt"</span>;</span><br><span class="line"> inputData(path, v_acc);</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> incData(v_acc);</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> <span class="built_in">cout</span> &lt;&lt; <span class="string">"can not pay = "</span> &lt;&lt; decData(v_acc) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> outPut(v_acc);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>*</p>
-<p>解析：<br>实在是没有什么好说的，非常简单的一次考试。班级里没有低于90分的。<br>大概是为了防止出现大面积满分，居然因为函数说明没写够扣分了，真是有够好笑的呢。<br>半个小时不到就写完了。<br>直接附上代码供参考吧。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deposit</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">double</span> balance, loan, charge;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    deposit(<span class="built_in">string</span> m_name = <span class="string">"NoName"</span>,<span class="keyword">double</span> m_balance = <span class="number">0.0</span>,<span class="keyword">double</span> m_loan = <span class="number">0.0</span>,<span class="keyword">double</span> m_charge = <span class="number">0.0</span>)&#123;</span><br><span class="line">        name = m_name;<span class="comment">//构造函数</span></span><br><span class="line">        balance = m_balance;</span><br><span class="line">        loan = m_loan;</span><br><span class="line">        charge = m_charge;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> NAME)</span></span>&#123;<span class="comment">//设置账户名称</span></span><br><span class="line">        name = NAME;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">pay</span><span class="params">()</span></span>&#123;<span class="comment">//还贷操作</span></span><br><span class="line">        <span class="keyword">int</span> temp = charge;</span><br><span class="line">        <span class="keyword">if</span>(loan &lt;= charge) temp = loan;</span><br><span class="line">        <span class="keyword">if</span>(balance &gt; charge) &#123;</span><br><span class="line">            balance -= temp;</span><br><span class="line">            loan -= temp;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">string</span> NewName = name + <span class="string">"(*)"</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;setName(NewName);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    deposit <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;<span class="comment">//后自增</span></span><br><span class="line">        <span class="function">deposit <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</span><br><span class="line">        charge += <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getName</span><span class="params">()</span></span>&#123;<span class="comment">//访问私有对象</span></span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getBalance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> balance;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getLoan</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> loan;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getCharge</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> charge;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,deposit t);<span class="comment">//使用友元函数 重载&gt;&gt;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,deposit t)&#123;<span class="comment">//输出格式</span></span><br><span class="line">    out &lt;&lt; setw(<span class="number">10</span>) &lt;&lt; left &lt;&lt; t.getName();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getBalance();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getLoan();</span><br><span class="line">    out &lt;&lt; setw(<span class="number">15</span>) &lt;&lt; fixed &lt;&lt; right &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; t.getCharge();</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inputData</span><span class="params">(<span class="built_in">string</span> rfn, <span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;</span><br><span class="line">    <span class="function">ifstream <span class="title">infile</span><span class="params">(rfn,ios::in)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!infile)&#123;<span class="comment">//判断打开文件</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"open file error!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">double</span> balance,loan,charge;</span><br><span class="line">    <span class="keyword">while</span>(infile &gt;&gt; name &gt;&gt; balance &gt;&gt; loan &gt;&gt; charge)&#123;<span class="comment">//读取</span></span><br><span class="line">        <span class="function">deposit <span class="title">temp</span><span class="params">(name,balance,loan,charge)</span></span>;</span><br><span class="line">        vec.push_back(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();<span class="comment">//关闭</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">incData</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;<span class="comment">//还贷金额+100</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        vec[i]++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">outPut</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; vec)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; vec[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">decData</span><span class="params">(<span class="built_in">vector</span>&lt;deposit&gt; &amp;vec)</span></span>&#123;<span class="comment">//返回无法还贷数目</span></span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vec[i].pay())<span class="comment">//如果无法还贷 统计数量</span></span><br><span class="line">            cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;deposit&gt; v_acc;</span><br><span class="line">    <span class="built_in">string</span> path = <span class="string">"d:\\account.txt"</span>;</span><br><span class="line">    inputData(path, v_acc);</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    incData(v_acc);</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"-------------------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"can not pay = "</span> &lt;&lt; decData(v_acc) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    outPut(v_acc);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-        <tag>学习笔记</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[苏州大学C++] 大一下C++第二次考试</title>
-    <url>/2020/06/01/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-%E5%A4%A7%E4%B8%80%E4%B8%8BC-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<p>题目如下：<br>请按要求编写一个类Circle，用于描述一个圆形，并用给定的main函数测试Circle类的功能。Circle类的要求如下：</p>
-<ol>
-<li>包含圆形编号、圆心x坐标、圆心y坐标和半径等数据成员。圆形编号为整形。生成第1个圆形对象时编号为1，生成第2个圆形对象时编号为2，以此类推。每构造一个新的圆形，对象编号为当前最大编号加1（如当前最大编号为5，则生成的这个新圆形的编号应该为6）。</li>
-<li>是否需要其它数据成员，可视情况自行决定。提示：建议使用两个静态变量。一个静态变量用于记录当前圆形对象的个数，此变量的值可增大或减小；另一个静态变量用于记录已经生成的圆形对象的最大编号，此变量的值只会增大不会减小。</li>
-<li>1个带有3个参数的构造函数。3个参数分别初始化圆形的圆心x坐标、圆心y坐标和半径等数据成员。提示：圆形对象的编号也需要初始化。</li>
-<li>1个拷贝构造函数。提示：圆形对象的编号不能简单复制。</li>
-<li>1个获取当前圆形对象数量的函数。提示：此函数建议为静态函数。</li>
-<li>前自增运算符，对半径自增1。</li>
-<li>后自增运算符，对半径自增1。</li>
-<li>+运算符，用于将两个圆形加在一起，得到一个新的圆形。新圆形的圆心坐标是两个圆形坐标连线的中点，面积是两个圆形面积的和。提示：需要根据面积反算半径。</li>
-<li>流输出运算，用于显示圆形的编号、圆心x坐标、圆心y坐标和半径、面积、周长。一个圆形的信息占1行。</li>
-<li>析构函数。圆形对象销毁时，需要将当前圆形对象的数量减去1。</li>
-<li>使用给定的main函数测试Circle类的功能。</li>
-</ol>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">///#Author:Rye</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_number;<span class="comment">//当前圆对象的数量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> m_maxCount;<span class="comment">//最大编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m_count = <span class="number">0</span>;<span class="comment">//对象编号</span></span><br><span class="line">    <span class="keyword">double</span> m_x;</span><br><span class="line">    <span class="keyword">double</span> m_y;</span><br><span class="line">    <span class="keyword">double</span> m_r;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> x,<span class="keyword">double</span> y,<span class="keyword">double</span> r)&#123;</span><br><span class="line">        m_x = x;</span><br><span class="line">        m_y = y;</span><br><span class="line">        m_r = r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了构造函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number++;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle(<span class="keyword">const</span> Circle&amp;C)&#123;</span><br><span class="line">        m_x = C.m_x;</span><br><span class="line">        m_y = C.m_y;</span><br><span class="line">        m_r = C.m_r;</span><br><span class="line">        m_count = ++m_maxCount;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了拷贝构造函数"&lt;&lt;C.m_count&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//        m_maxCount++;</span></span><br><span class="line">        m_number++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ~Circle()&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"调用了析构函数"&lt;&lt;endl;</span></span><br><span class="line">        m_number--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">get_num</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_number;</span><br><span class="line">    &#125;</span><br><span class="line">    Circle&amp; <span class="keyword">operator</span>++()&#123;</span><br><span class="line">        m_r++;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"前置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;<span class="comment">//前置++</span></span><br><span class="line">    Circle <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line"><span class="comment">//        cout&lt;&lt;"后置++"&lt;&lt;endl;</span></span><br><span class="line">        <span class="function">Circle <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;<span class="comment">//调用拷贝构造函数</span></span><br><span class="line">        temp.m_count = m_count;</span><br><span class="line">        m_r++;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;<span class="comment">//后置++</span></span><br><span class="line">    <span class="keyword">friend</span> Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b);</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t);<span class="comment">//流输出</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle&amp; operator++(Circle &amp;t)&#123;///友元函数重载</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return t;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Circle operator++(Circle &amp;t,int)&#123;</span></span><br><span class="line"><span class="comment">//    Circle temp(t);//调用拷贝构造函数</span></span><br><span class="line"><span class="comment">//    temp.m_count = t.m_count;</span></span><br><span class="line"><span class="comment">//    Circle::m_maxCount--;</span></span><br><span class="line"><span class="comment">//    Circle::m_number--;</span></span><br><span class="line"><span class="comment">//    t.m_r++;</span></span><br><span class="line"><span class="comment">//    return temp;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">Circle <span class="keyword">operator</span>+(<span class="keyword">const</span> Circle &amp;a,<span class="keyword">const</span> Circle &amp;b)&#123;</span><br><span class="line">    <span class="keyword">double</span> S = PI * (a.m_r * a.m_r + b.m_r * b.m_r);</span><br><span class="line">    <span class="keyword">double</span> R = <span class="built_in">pow</span>(S / PI, <span class="number">0.5</span>);</span><br><span class="line">    <span class="function">Circle <span class="title">NEW</span><span class="params">(a.m_x + b.m_x, a.m_y + b.m_y, R)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> NEW;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out,<span class="keyword">const</span> Circle &amp;t)&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"圆的编号"</span> &lt;&lt; t.m_count &lt;&lt; <span class="string">" x:"</span> &lt;&lt; t.m_x &lt;&lt; <span class="string">" y:"</span> &lt;&lt; t.m_y &lt;&lt; <span class="string">" 周长:"</span> &lt;&lt; <span class="number">2</span> * PI * t.m_r &lt;&lt; <span class="string">" 面积:"</span> &lt;&lt; PI * t.m_r * t.m_r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Circle::m_maxCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> Circle::m_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Circle c1( 1.12, 2.23, 3.34 ), c2( c1 );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1 &lt;&lt; c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Circle c3 = c1 + c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c3;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of circles = "</span> &lt;&lt; Circle::get_num() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ++c2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c1++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实很简单。<br>但是踩了一个坑，今天有同学来问我这道题，有关于静态变量。它的序号莫名其妙增加了。<br>我第一次写的时候也出现了这个问题，后来找到问题所在。<br>如果使用友元函数重载运算符，传入的参数没有使用常引用的时候，就会调用拷贝构造函数。<br>比如你把<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,const Circle &amp;t);</code>写成了<code>friend ostream &amp;operator&lt;&lt;(ostream &amp;out,Circle t);</code><br><img src="https://img-blog.csdnimg.cn/2020060120410313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="调用拷贝构造函数"><br>那么cout &lt;&lt; c1 &lt;&lt; c2 就会调用2次拷贝构造函数和2次析构函数。在不涉及静态变量的时候，常引用和不写引用的方式是没有区别的。但是这道题目中，调用拷贝构造函数会使最大序号增加，而析构函数不会使最大序号减小，所以这种写法就错了。</p>
-<p>常引用能够提高程序运行的效率，也能保护传递给函数的数据不被改变。引用型参数如果可以被定义为const，应该尽量定义为const。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-        <tag>学习笔记</tag>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
