@@ -6,7 +6,7 @@
   <link href="http://rye1024.gitee.io/atom.xml" rel="self"/>
   
   <link href="http://rye1024.gitee.io/"/>
-  <updated>2021-10-19T15:34:30.309Z</updated>
+  <updated>2022-03-16T16:40:03.452Z</updated>
   <id>http://rye1024.gitee.io/</id>
   
   <author>
@@ -15,6 +15,117 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面经整理</title>
+    <link href="http://rye1024.gitee.io/2022/03/17/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/"/>
+    <id>http://rye1024.gitee.io/2022/03/17/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/</id>
+    <published>2022-03-16T16:39:16.000Z</published>
+    <updated>2022-03-16T16:40:03.452Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;求职八股文整理&quot;&gt;&lt;a href=&quot;#求职八股文整理&quot; class=&quot;headerlink&quot; title=&quot;求职八股文整理&quot;&gt;&lt;/a&gt;求职八股文整理&lt;/h1&gt;&lt;h2 id=&quot;C&quot;&gt;&lt;a href=&quot;#C&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="求职" scheme="http://rye1024.gitee.io/tags/%E6%B1%82%E8%81%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>找工作记录</title>
+    <link href="http://rye1024.gitee.io/2022/03/17/%E6%89%BE%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/"/>
+    <id>http://rye1024.gitee.io/2022/03/17/%E6%89%BE%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-03-16T16:38:51.000Z</published>
+    <updated>2022-03-16T16:53:58.098Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;字节 2.22 投递 ——&amp;gt; 2.27笔试（AK） ——&amp;gt; 被转岗 ——&amp;gt; 一面 电商后端面试 3.11 16:00-17:00（通过）——&amp;gt; &lt;strong&gt;二面 3.18 17:00-18:00&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;网易有道</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="求职" scheme="http://rye1024.gitee.io/tags/%E6%B1%82%E8%81%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>退役感言</title>
+    <link href="http://rye1024.gitee.io/2021/12/05/%E9%80%80%E5%BD%B9%E6%84%9F%E8%A8%80/"/>
+    <id>http://rye1024.gitee.io/2021/12/05/%E9%80%80%E5%BD%B9%E6%84%9F%E8%A8%80/</id>
+    <published>2021-12-04T16:33:35.000Z</published>
+    <updated>2022-03-16T16:35:59.695Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;算法竞赛打到今天，大概也有两年多了。大三的区域赛已经全部打完，没进FINAL。我的ACM生涯就到此为止了。&lt;/p&gt;
+&lt;p&gt;好像很少想过自己退役之后是什么样子的。回看这两年走来，真不容易。没有想到最后是以如此惨烈的结局收场。写一些流水账，也算是祭奠我的青春了。&lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
+    
+    <category term="退役感言" scheme="http://rye1024.gitee.io/tags/%E9%80%80%E5%BD%B9%E6%84%9F%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一封信</title>
+    <link href="http://rye1024.gitee.io/2021/09/15/%E4%B8%80%E5%B0%81%E4%BF%A1/"/>
+    <id>http://rye1024.gitee.io/2021/09/15/%E4%B8%80%E5%B0%81%E4%BF%A1/</id>
+    <published>2021-09-14T16:37:30.000Z</published>
+    <updated>2022-03-16T16:38:43.676Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;​        展信佳。一眨眼马上就要到2022年了，大三的生活也要过去一半。第一次给你写信的时候，对于大学生活仍是陌生的，到了今年，我们的本科生涯将走入尾声了，已不得不为将来盘计出路。&lt;/p&gt;
+&lt;p&gt;​       </summary>
+        
+      
+    
+    
+    
+    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    
+    
+    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>沈阳,沈阳</title>
@@ -248,16 +359,19 @@
     <link href="http://rye1024.gitee.io/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/"/>
     <id>http://rye1024.gitee.io/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/</id>
     <published>2020-10-04T14:11:05.000Z</published>
-    <updated>2020-10-04T16:09:10.336Z</updated>
+    <updated>2022-03-16T16:56:19.584Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;王雨，出生于2000年，非典型程序员，现就读于苏州大学计算机科学与技术学院，并且是计科院（可能是全苏大）唯一一个&lt;strong&gt;绿头发&lt;/strong&gt;的长发男生。&lt;/p&gt;
-&lt;p&gt;所以这个人其实很好认。&lt;/p&gt;
-&lt;p&gt;主要编程语言是C++，偶尔使用Python，正在考虑学习</summary>
+    <summary type="html">&lt;p&gt;王雨，男，汉族。&lt;/p&gt;
+&lt;p&gt;一个共产主义者。&lt;/p&gt;
+&lt;p&gt;一个理想主义者。&lt;/p&gt;
+&lt;p&gt;一个碌碌无为、可叹可悲的人。&lt;/p&gt;
+&lt;p&gt;联系方式：&lt;/p&gt;
+&lt;p&gt;Email：&lt;a</summary>
         
       
     
@@ -464,134 +578,6 @@
     
     
     <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[codeforces 1372C] Omkar and Baseball</title>
-    <link href="http://rye1024.gitee.io/2020/07/12/codeforces-1372C-Omkar-and-Baseball/"/>
-    <id>http://rye1024.gitee.io/2020/07/12/codeforces-1372C-Omkar-and-Baseball/</id>
-    <published>2020-07-12T14:28:20.000Z</published>
-    <updated>2020-10-04T14:30:03.808Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;题目: &lt;a href=&quot;https://codeforces.com/problemset/problem/1372/C&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="数学" scheme="http://rye1024.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-    <category term="排序" scheme="http://rye1024.gitee.io/tags/%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[苏州大学C++]2020春第三次考试，及考前三个小练习</title>
-    <link href="http://rye1024.gitee.io/2020/07/05/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%80%83%E8%AF%95%EF%BC%8C%E5%8F%8A%E8%80%83%E5%89%8D%E4%B8%89%E4%B8%AA%E5%B0%8F%E7%BB%83%E4%B9%A0/"/>
-    <id>http://rye1024.gitee.io/2020/07/05/%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6C-2020%E6%98%A5%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%80%83%E8%AF%95%EF%BC%8C%E5%8F%8A%E8%80%83%E5%89%8D%E4%B8%89%E4%B8%AA%E5%B0%8F%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-07-05T14:26:51.000Z</published>
-    <updated>2020-10-04T14:27:46.670Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;说明：CSDN不允许上传附件，所以&lt;strong&gt;我不会把题目放上来&lt;/strong&gt;。写这个博客的主要目的是为了&lt;strong&gt;让同校的学弟学妹们复习的时候有一个参考。当然，都是我自己写的，并不保证答案完全正确&lt;/strong&gt;对本次考试，会简单的做一个解析。其他三次小练</summary>
-        
-      
-    
-    
-    
-    <category term="学习笔记" scheme="http://rye1024.gitee.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="学习笔记" scheme="http://rye1024.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="C++" scheme="http://rye1024.gitee.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>麦田的儿子和海的故事</title>
-    <link href="http://rye1024.gitee.io/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/"/>
-    <id>http://rye1024.gitee.io/2020/06/08/%E9%BA%A6%E7%94%B0%E7%9A%84%E5%84%BF%E5%AD%90%E5%92%8C%E6%B5%B7%E7%9A%84%E6%95%85%E4%BA%8B/</id>
-    <published>2020-06-08T01:39:31.000Z</published>
-    <updated>2020-10-04T01:40:11.227Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;他把灵魂压在锄头底下&lt;/p&gt;
-&lt;p&gt;丰收和饥饿、都埋葬在麦地里&lt;/p&gt;
-&lt;p&gt;他站在破晓之前的田垄上&lt;/p&gt;
-&lt;p&gt;守望着东方&lt;/p&gt;
-&lt;p&gt;等待着白天的生长&lt;/p&gt;
-&lt;p&gt;有一天&lt;/p&gt;
-&lt;p&gt;羽毛落到了他的窗前&lt;/p&gt;
-&lt;p&gt;第一次&lt;/p&gt;
-&lt;p&gt;他看到了鼓动的船帆&lt;/</summary>
-        
-      
-    
-    
-    
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
-    
-    
-    <category term="诗" scheme="http://rye1024.gitee.io/tags/%E8%AF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[codeforces 559B] Equivalent Strings</title>
-    <link href="http://rye1024.gitee.io/2020/06/07/codeforces-559B-Equivalent-Strings/"/>
-    <id>http://rye1024.gitee.io/2020/06/07/codeforces-559B-Equivalent-Strings/</id>
-    <published>2020-06-07T14:25:55.000Z</published>
-    <updated>2020-10-04T14:26:33.329Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;https://codeforces.com/problemset/problem/559/B&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    <category term="思维" scheme="http://rye1024.gitee.io/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-    <category term="排序" scheme="http://rye1024.gitee.io/tags/%E6%8E%92%E5%BA%8F/"/>
-    
-    <category term="递归" scheme="http://rye1024.gitee.io/tags/%E9%80%92%E5%BD%92/"/>
     
   </entry>
   

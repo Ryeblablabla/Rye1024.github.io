@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    面经整理 |  STILL LIVING
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="STILL LIVING" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-面经整理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  面经整理
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/03/17/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/" class="article-date">
+  <time datetime="2022-03-16T16:39:16.000Z" itemprop="datePublished">2022-03-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">13.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">46 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>[TOC]</p>
+<h1 id="求职八股文整理"><a href="#求职八股文整理" class="headerlink" title="求职八股文整理"></a>求职八股文整理</h1><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="1、指针和引用的区别"><a href="#1、指针和引用的区别" class="headerlink" title="1、指针和引用的区别"></a>1、指针和引用的区别</h3><ul>
+<li>指针是一个变量，存储的是一个地址；引用是原来变量的别名。</li>
+<li>指针可以有多级（指针的指针），引用只有一级。</li>
+<li>指针可以为空，引用不能为空且必须初始化。存在指向空值的指针，不存在指向空值的引用。</li>
+<li>指针在初始化后可以改变指向，引用不行。</li>
+<li>sizeof指针得到本指针的大小，sizeof引用得到引用所指变量的大小。</li>
+</ul>
+<h3 id="2、堆和栈的区别"><a href="#2、堆和栈的区别" class="headerlink" title="2、堆和栈的区别"></a>2、堆和栈的区别</h3><ul>
+<li>申请方式不同。栈由系统自动分配，堆是自己申请、释放的。</li>
+<li>申请大小限制不同。栈顶和栈底是之前预设好的。栈向栈底拓展，向下增长，大小固定。堆向高地址拓展，是不连续的内存区域，大小可以灵活调整。</li>
+<li>申请效率不同。栈由系统分配，速度快，不会有碎片。堆由程序员动态分配，速度慢，会有碎片。</li>
+<li>栈默认空间是4M，堆一般是1G - 4G</li>
+</ul>
+<h3 id="3、C-11有哪些新特性？"><a href="#3、C-11有哪些新特性？" class="headerlink" title="3、C++11有哪些新特性？"></a>3、C++11有哪些新特性？</h3><ul>
+<li>nullptr代替NULL</li>
+<li>引入了auto和decltype这两个关键字实现类型推导。<ul>
+<li>auto能让编译器替我们去分析表达式所属的类型。auto必须有初始值。</li>
+<li>decltype选择并返回操作数的数据类型，但不进行实际的计算表达式的值。</li>
+</ul>
+</li>
+<li>Lambda表达式（匿名函数）<ul>
+<li>可以编写内联的匿名函数，用以替换独立函数或函数对象。</li>
+</ul>
+</li>
+<li>右值引用和move语义。</li>
+<li>基于范围的for循环。for（auto&amp; i : res){}</li>
+<li>…</li>
+</ul>
+<h3 id="4、智能指针的原理、常用的智能指针。"><a href="#4、智能指针的原理、常用的智能指针。" class="headerlink" title="4、智能指针的原理、常用的智能指针。"></a>4、智能指针的原理、常用的智能指针。</h3><p>原理：智能指针是一个类，用来存储指向动态分配对象的指针，负责自动释放动态分配的对象，防止堆内存泄漏。类对象声明周期结束时，自动调用析构函数释放资源。</p>
+<p><strong>为了更好地管理堆内存。</strong></p>
+<p>常用的智能指针有（1）shared_ptr，（2）unique_ptr，（3）weak_ptr，（4）auto_ptr</p>
+<p>（1）shared_ptr采用引用计数，每一个shared_ptr的拷贝都指向相同的内容，当最后一个shared_ptr析构的时候，内存被释放。</p>
+<p>代码实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shared_ptr</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 空参构造 空指针</span></span><br><span class="line">    Shared_ptr():count(<span class="number">0</span>), _ptr((T*)<span class="number">0</span>) &#123;&#125;</span><br><span class="line">    <span class="comment">// 构造函数 count必须new出来</span></span><br><span class="line">    Shared_ptr(T* p) : count(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>)), _ptr(p) &#123;&#125;</span><br><span class="line">    <span class="comment">// 拷贝构造函数 使其引用次数加一</span></span><br><span class="line">    Shared_ptr(Shared_ptr&lt;T&gt;&amp; other) : count(&amp;(++ *other.count)), _ptr(other._ptr) &#123;&#125;</span><br><span class="line">    <span class="comment">// 重载operator*和operator-&gt; 实现指针功能</span></span><br><span class="line">    T* <span class="keyword">operator</span>-&gt;() &#123; <span class="keyword">return</span> _ptr; &#125;</span><br><span class="line">    T&amp; <span class="keyword">operator</span>*() &#123; <span class="keyword">return</span> *_ptr; &#125;</span><br><span class="line">    <span class="comment">// 重载operator=</span></span><br><span class="line">    <span class="comment">// 如果原来的Shared_ptr已经有对象，则让其引用次数减一并判断引用是否为0.（是否调用delete）</span></span><br><span class="line">    <span class="comment">// 然后将新的对象引用次数加一。</span></span><br><span class="line">    Shared_ptr&lt;T&gt;&amp; <span class="keyword">operator</span>=(Shared_ptr&lt;T&gt;&amp; other)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;other)</span><br><span class="line">            <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">        </span><br><span class="line">        ++*other.count;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;_ptr &amp;&amp; <span class="number">0</span> == --*<span class="keyword">this</span>-&gt;count)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> count;</span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"delete ptr = "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>-&gt;_ptr = other._ptr;</span><br><span class="line">        <span class="keyword">this</span>-&gt;count = other.count;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//析构函数，使引用次数减一并判断引用是否为0</span></span><br><span class="line">    ~Shared_ptr()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(_ptr &amp;&amp; --*count == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="keyword">delete</span> count;</span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"delete ptr ~"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getRef</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *count; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span>* count;</span><br><span class="line">    T* _ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="5、简要说明C-的内存分区。"><a href="#5、简要说明C-的内存分区。" class="headerlink" title="5、简要说明C++的内存分区。"></a>5、简要说明C++的内存分区。</h3><p>分别有栈、堆、自由存储区、全区/静态存储区、常量存储区和代码区。</p>
+<p><strong>栈</strong>：在执行函数时，函数内局部变量的存储单元可以在栈上创建，函数执行结束时，这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集中，效率高但内存容量有限。</p>
+<p><strong>堆</strong>：由new分配到的内存块，需要手动delete释放。</p>
+<p><strong>自由存储区</strong>：通过new和delete动态分配和释放对象的抽象概念。</p>
+<p><strong>全局/静态存储区</strong>：全局变量和静态变量被分配到同一块内存中。若没有初始化则会自动初始化。</p>
+<p><strong>常量存储区</strong>：存放常量不允许修改。</p>
+<p><strong>代码区</strong>：存放函数体的二进制代码。</p>
+<h3 id="6、什么是内存池"><a href="#6、什么是内存池" class="headerlink" title="6、什么是内存池"></a>6、什么是内存池</h3><p>内存池是一种<strong>内存分配</strong>方式。是在真正使用内存之前，先申请分配一定数量的、大小相等（一般情况下）的内存块留作备用。当有新的内存需求时，就从内存池中分出一部分内存块。若内存块不够再继续申请新的内存。</p>
+<p>避免了内存碎片，使得内存分配效率得到提高。</p>
+<h3 id="7、C-中的重载、重写（覆盖）和隐藏"><a href="#7、C-中的重载、重写（覆盖）和隐藏" class="headerlink" title="7、C++中的重载、重写（覆盖）和隐藏"></a>7、C++中的重载、重写（覆盖）和隐藏</h3><ul>
+<li><p>重载（overload）</p>
+<ul>
+<li>重载是在同一范围定义中的同名成员函数才存在重载关系。主要特点是函数名相同，参数类型和数目有所不同。返回值也可以不同。</li>
+</ul>
+</li>
+<li><p>重写（覆盖）（override）</p>
+<ul>
+<li>重写指的是在派生类中覆盖基类中的同名函数。重写就是重写函数体，函数必须是虚函数且与基类的虚函数有相同的参数个数、类型、返回值。</li>
+</ul>
+</li>
+<li><p>隐藏（hide）</p>
+<ul>
+<li>隐藏指的是某些情况下，派生类中的函数屏蔽了基类中的同名函数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8、深拷贝和浅拷贝的区别"><a href="#8、深拷贝和浅拷贝的区别" class="headerlink" title="8、深拷贝和浅拷贝的区别"></a>8、深拷贝和浅拷贝的区别</h3><ul>
+<li>浅拷贝<ul>
+<li>浅拷贝只是拷贝一个指针，并没有新开辟一个地址，拷贝的指针和原来的指针指向同一块地址，如果原来的指针所指向的资源释放了，那么再释放浅拷贝的指针的资源就会出现错误。</li>
+</ul>
+</li>
+<li>深拷贝<ul>
+<li>深拷贝不仅拷贝值，还开辟一块新空间来存放新的值。即使原来的对象被释放掉内存也不会影响深拷贝得到的值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、面向对象的三大特性（字节1）"><a href="#9、面向对象的三大特性（字节1）" class="headerlink" title="9、面向对象的三大特性（字节1）"></a>9、面向对象的三大特性（字节1）</h3><p>面向对象的思想是从客观存在的事物出发来构造软件系统，以事物为中心来思考问题，认识问题，这样子构建起来的系统才符合现实世界的本来面目。</p>
+<p>面向对象对应的是面向过程。面向对象不围绕功能来构造系统。</p>
+<p>三大特性：继承、封装和多态</p>
+<p><strong>（1）继承</strong></p>
+<p><strong>让某种类型对象获得另一个类型对象的属性和方法。</strong></p>
+<p>可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行拓展：</p>
+<p>继承有三种方式：</p>
+<ol>
+<li>实现继承：指使用基类的属性和方法而无需额外编码的能力</li>
+<li>接口继承：指仅使用属性的方法和名称、但是子类必须提供实现</li>
+<li>可视继承：指子窗体（类）使用基窗体（类）的外观和实现代码</li>
+</ol>
+<p><strong>（2）封装</strong></p>
+<p>数据和代码捆绑在一起，避免外界干扰和不确定访问。</p>
+<p>封装，也就是<strong>把客观事物封装成抽象的类</strong>。</p>
+<p><strong>（3）多态</strong></p>
+<p>允许将父对象设置成和一个或更多的子对象相等的技术。</p>
+<p>将子类类型的指针赋值给父类类型的指针。</p>
+<p>实现多态：覆盖（override），重载（overload）</p>
+<h3 id="10、虚函数（字节1）"><a href="#10、虚函数（字节1）" class="headerlink" title="10、虚函数（字节1）"></a>10、虚函数（字节1）</h3><p>虚函数主要是为了实现多态的机制。</p>
+<p>在基类的函数前面加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。</p>
+<p>存在虚函数的类内部有一个一维的虚函数表叫做虚表，虚表存放着该类所有的虚函数对应的函数指针，指明了实际需要调用的函数。</p>
+<p>纯虚函数是在基类中生命的虚函数，要求派生类去定义自己的实现方法。虚函数加载上一个 = 0。抽象类是指包括至少一个纯虚函数的类。抽象类必须在子类实现这个函数，现有名称，没有内容，在派生类实现内容。</p>
+<h3 id="11、构造函数有几种"><a href="#11、构造函数有几种" class="headerlink" title="11、构造函数有几种"></a>11、构造函数有几种</h3><ul>
+<li>默认构造函数</li>
+<li>初始化构造函数<ul>
+<li>默认构造函数和初始化构造函数，在定义类的对象的时候，完成对象的初始化工作。</li>
+</ul>
+</li>
+<li>拷贝构造函数<ul>
+<li>默认实现浅拷贝。</li>
+<li>只定义析构函数，就会生成拷贝构造函数和默认构造函数。</li>
+</ul>
+</li>
+<li>移动构造函数<ul>
+<li>用于将其他类型的变量，隐式转换为本类对象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="12、一个类默认会生成哪些函数"><a href="#12、一个类默认会生成哪些函数" class="headerlink" title="12、一个类默认会生成哪些函数"></a>12、一个类默认会生成哪些函数</h3><ul>
+<li>无参的构造函数</li>
+<li>拷贝构造函数</li>
+<li>赋值运算符</li>
+<li>析构函数</li>
+</ul>
+<h3 id="13、类的初始化顺序"><a href="#13、类的初始化顺序" class="headerlink" title="13、类的初始化顺序"></a>13、类的初始化顺序</h3><p>父类构造函数——&gt;成员类对象构造函数——&gt;自身构造函数</p>
+<h3 id="14、什么是内存泄漏？内存泄漏怎么检测"><a href="#14、什么是内存泄漏？内存泄漏怎么检测" class="headerlink" title="14、什么是内存泄漏？内存泄漏怎么检测"></a>14、什么是内存泄漏？内存泄漏怎么检测</h3><p>申请了一块内存空间，使用完之后没有释放掉。</p>
+<p>（1）new和malloc申请资源使用后，没有用delete和free释放。</p>
+<p>（2）子类继承父类时，父类析构函数不是虚函数</p>
+<p>（3）Windows句柄资源使用后没有释放</p>
+<p><strong>怎么检测？</strong></p>
+<p>1.人工检测：养成良好的编码习惯，使用完毕之后用函数释放</p>
+<p>2.使用智能指针</p>
+<p>3.用一些工具插件</p>
+<h3 id="15、malloc和new的区别（字节1）"><a href="#15、malloc和new的区别（字节1）" class="headerlink" title="15、malloc和new的区别（字节1）"></a>15、malloc和new的区别（字节1）</h3><p><strong>malloc</strong></p>
+<p>开辟一块长度为size的连续内存空间，返回类型为void的指针。开辟失败返回NULL。</p>
+<p><strong>new</strong></p>
+<p>返回所分配的内存单元的起始地址，需要把返回值保存在一个指针变量中。</p>
+<ol>
+<li>malloc/free是标准库函数，new/delete是c++运算符</li>
+<li>malloc失败返回空，new失败抛出异常</li>
+<li>new/delete会调用构造析构函数，malloc/free不会，所以他们无法满足动态对象的要求。</li>
+<li>new返回有类型的指针，malloc返回无类型的指针。</li>
+<li>malloc从堆上动态分配内存，new从自由存储区为对象分配内存。自由存储区不仅可以为堆，还可以是静态存储。</li>
+</ol>
+<h3 id="16、C-volatile关键字"><a href="#16、C-volatile关键字" class="headerlink" title="16、C++ volatile关键字"></a>16、C++ volatile关键字</h3><p>类型修饰符，指示说明对它所修饰的对象不应该执行优化。如果没有volatile，没有办法在多线程并行中使用到基本变量。</p>
+<p>如果一个基本变量被volatile修饰，编译器不会把它保存到寄存器中，而是每一次都去访问内存中实际保存该变量的位置，可以避免变量在多线程读写中因为编译器优化所导致的问题。</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="1、进程和线程和协程的比较（字节1）"><a href="#1、进程和线程和协程的比较（字节1）" class="headerlink" title="1、进程和线程和协程的比较（字节1）"></a>1、进程和线程和协程的比较（字节1）</h3><p>1、<strong>进程是资源调度的基本单位，线程是程序执行的基本单位。</strong>协程是微线程。</p>
+<p>2、<strong>线程</strong>的启动速度快，轻量级，系统开销小。<strong>进程</strong>系统开销大。</p>
+<p>3、一个线程从属于一个进程，一个进程可以包含多个线程。</p>
+<p>4、<strong>进程</strong>在执行时拥有独立的内存单元。</p>
+<p>​      多个<strong>线程</strong>共享进程的内存，如代码段，数据段等，但拥有自己的栈段和寄存器组。线程需要处理数据一致性的问题。</p>
+<p>5、通信方式不一样。进程通信需要借助操作系统，线程可以直接读写进程数据段（如全局变量）来通信。</p>
+<p>6、进程切换需要刷新TLB并获取新的地址空间，然后切换硬件上下文和内核栈。线程切换只需要切换硬件上下文和内核栈。</p>
+<p>进程：进程是程序的运行实例，包括程序计数器、寄存器和变量。</p>
+<p>线程：微进程，一个进程里包含多个线程并发执行任务。</p>
+<p>协程：协程是微线程，在子程序的内部执行，可以在子程序内部中断，转而执行别的子程序，在适当的时侯回来接着执行。协程上下文切换非常快，效率快。</p>
+<h3 id="2、进程通信方式？"><a href="#2、进程通信方式？" class="headerlink" title="2、进程通信方式？"></a>2、进程通信方式？</h3><p>在不同的操作系统下，进程有不同的通信方式。</p>
+<p>Linux下进程通信方式：</p>
+<ul>
+<li>管道<ul>
+<li>无名管道（内存文件）：管道是一种<strong>半双工</strong>的通信方式，数据只能单向流动，只能在有<strong>亲缘关系</strong>的进程之间使用。</li>
+<li>有名管道（FIFO文件，借助文件系统）：有名管道也是半双工的通信方式，但是允许在没有亲缘关系的进程之间使用，先进先出。</li>
+<li>实现原理：在内核中开辟一块缓冲区用于通信。管道本质是一种文件。</li>
+</ul>
+</li>
+<li>共享内存：映射一段能被其它进程访问的内存。往往与信号量配合使用来实现进程的同步和通信。</li>
+<li>消息队列：消息队列是有消息的链表，存放在内核中，并由消息队列标识符标识。消息队列克服了信号传递少、管道只能承载无格式字符流以及缓冲区大小等缺点。</li>
+<li>套接字：适用于不同机器间进程通信，在本地也可作为两个进程通信的方式。</li>
+<li>信号：用于通知接收进程某个事件已经发生，比如按下ctrl + C就是信号。</li>
+<li>信号量：信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，实现进程、线程的对临界区的同步及互斥访问。</li>
+</ul>
+<h3 id="3、系统中具有快表后，地址的转换过程变成什么样了？"><a href="#3、系统中具有快表后，地址的转换过程变成什么样了？" class="headerlink" title="3、系统中具有快表后，地址的转换过程变成什么样了？"></a>3、系统中具有快表后，地址的转换过程变成什么样了？</h3><p>① CPU给出逻辑地址，由某个硬件算得页号、页内偏移量，将页号与快表中的所有页号进行比较。</p>
+<p>② 如果找到匹配的页号，说明要访问的页表项在快表中有副本，则直接从中取出该页对应的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。因此，若快表命中，则访问某个逻辑地址仅需一次访存。</p>
+<p>③ 如果没有找到匹配的页号，则需要访问内存中的页表，找到对应页表项，得到页面存放的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。</p>
+<p>​    若快表未命中，则需要两次访存。</p>
+<h3 id="4、内存交换和覆盖有什么区别？"><a href="#4、内存交换和覆盖有什么区别？" class="headerlink" title="4、内存交换和覆盖有什么区别？"></a>4、内存交换和覆盖有什么区别？</h3><p>交换技术主要是在不同进程（或作业）之间进行，而覆盖则用于同一程序或进程中。</p>
+<h3 id="5、动态分区算法有哪几种？"><a href="#5、动态分区算法有哪几种？" class="headerlink" title="5、动态分区算法有哪几种？"></a>5、动态分区算法有哪几种？</h3><p>1、首次适应算法</p>
+<p>算法思想：每次都从低地址开始查找，找到第一个能满足大小的空闲分区。</p>
+<p>2、最佳适应算法</p>
+<p>算法思想：优先使用更小的空闲区，尽可能多地留下大片的空闲区。</p>
+<p>3、最坏适应算法</p>
+<p>算法思想：每次分配时优先使用最大的连续空闲区。</p>
+<p>4、邻近适应算法</p>
+<p>算法思想：每次都从上次查找结束的位置开始检索。</p>
+<h3 id="6、进程状态的切换-进程的生命周期"><a href="#6、进程状态的切换-进程的生命周期" class="headerlink" title="6、进程状态的切换/进程的生命周期"></a>6、进程状态的切换/进程的生命周期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">1[就绪态]</span><br><span class="line">2[运行态]</span><br><span class="line">3[阻塞态]</span><br><span class="line">4[创建态]</span><br><span class="line">5[终止态]</span><br><span class="line">4--创建--&gt;1</span><br><span class="line">1--调度--&gt;2</span><br><span class="line">2--I&#x2F;O或者等待事件--&gt;3</span><br><span class="line">3--I&#x2F;O或者事件完成--&gt;1</span><br><span class="line">2--打断--&gt;1</span><br><span class="line">2--退出--&gt;5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建状态（created）：需要获取系统资源创建进程管理块（PCB：Process Control Block）完成资源分配。</li>
+<li>就绪状态（ready）：等待被调度。在创建状态完成后，已经准备好，但还没获得处理器资源无法运行。</li>
+<li>运行状态（running）：获取处理器资源，被系统调度。</li>
+<li>阻塞状态（waiting）：在运行状态过程中，如果进行了阻塞的操作，如耗时的I/O操作，导致该进程暂时无法操作就进入阻塞状态。在这些操作完成后进入就绪状态再次等待获取处理器资源。</li>
+<li>终止状态（dead）：进程结束或者被系统终止。</li>
+</ul>
+<h3 id="7、程序从开始到结束的完整过程"><a href="#7、程序从开始到结束的完整过程" class="headerlink" title="7、程序从开始到结束的完整过程"></a>7、程序从开始到结束的完整过程</h3><p>（1）<strong>预编译：</strong>处理源代码文件中以“#”开头的预编译指令。包括删除#define展开宏定义，处理预编译指令，删除注释等。</p>
+<p>（2）<strong>编译：</strong>进行词法分析、语法分析、语义分析和优化后，生成汇编代码文件。</p>
+<p>（3）<strong>汇编：</strong>将汇编代码转变为机器可以执行的指令（机器码文件）。</p>
+<p>（4）<strong>链接：</strong>将不同的源文件产生的目标文件进行链接，从而形成一个可以执行的程序。链接分为静态链接和动态链接。</p>
+<h3 id="8、虚拟内存的目的是什么？"><a href="#8、虚拟内存的目的是什么？" class="headerlink" title="8、虚拟内存的目的是什么？"></a>8、虚拟内存的目的是什么？</h3><p>虚拟内存是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。</p>
+<p>为了更好地管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，被分成多个页。页被映射到物理内存中，但不需要映射到连续的物理内存，也不需要所有页都在物理内存中。</p>
+<p>例如有一台计算机可以产生16位地址，那么一个程序的地址空间范围是0~64K。该计算机只有32KB的物理内存，虚拟内存技术允许该计算机运行一个64K大小的程序。</p>
+<h3 id="9、死锁产生的原因"><a href="#9、死锁产生的原因" class="headerlink" title="9、死锁产生的原因"></a>9、死锁产生的原因</h3><p>四个必要条件，缺一不可。</p>
+<p>1、<strong>互斥条件</strong>：进程对所需求的资源具有排他性，若有其他进程请求该资源，请求进程只能等待。</p>
+<p>2、<strong>非抢占条件</strong>：进程在所获得的资源未释放前，不能被其他进程强行夺走，只能自己释放。</p>
+<p>3、<strong>请求和保持条件</strong>：进程当前所拥有的资源在请求其他新资源时，由该进程继续占有。</p>
+<p>4、<strong>循环等待条件</strong>：存在一种进程资源循环等待链，链中每个进程已获得的资源同时被链中下一个进程所请求。</p>
+<p>解决死锁的对策：</p>
+<ol>
+<li><p>完全不管。</p>
+</li>
+<li><p>银行家算法，死锁避免</p>
+</li>
+<li><p>在检测到死锁之后剥夺资源</p>
+</li>
+</ol>
+<h3 id="10、线程通信-同步的方式有哪些？"><a href="#10、线程通信-同步的方式有哪些？" class="headerlink" title="10、线程通信/同步的方式有哪些？"></a>10、线程通信/同步的方式有哪些？</h3><p>包括读写锁、信号量、条件变量、互斥量、临界区。</p>
+<ul>
+<li>临界区：每个线程中访问临界资源的代码片段。必须互斥地访问。</li>
+<li>互斥量：只有拥有互斥对象的线程才可以访问。也称互斥锁。其实就是一个bool变量。</li>
+<li>信号量：计数器，允许多个线程同时访问同一个资源。有P(sv)操作和V(sv)操作。</li>
+<li>条件变量：通过条件变量通知操作的方式来保持多线程同步。</li>
+<li>读写锁：与互斥量类似，互斥量要么是加锁、要么是不加锁。读写锁一次只允许一个线程写，但允许一次多个进程读。</li>
+</ul>
+<h3 id="11、Linux的fork的作用"><a href="#11、Linux的fork的作用" class="headerlink" title="11、Linux的fork的作用"></a>11、Linux的fork的作用</h3><p>fork函数用来创建一个子进程。对于父进程，fork()函数返回新创建的子进程的PID。对于子进程，fork()函数调用成功会返回0。如果创建出错，fork()函数返回-1.</p>
+<h3 id="12、什么是孤儿进程、什么是僵尸进程，如何解决僵尸进程"><a href="#12、什么是孤儿进程、什么是僵尸进程，如何解决僵尸进程" class="headerlink" title="12、什么是孤儿进程、什么是僵尸进程，如何解决僵尸进程"></a>12、什么是孤儿进程、什么是僵尸进程，如何解决僵尸进程</h3><ul>
+<li>孤儿进程：是指一个父进程退出后，它的一个或多个子进程还在运行，那么这些子进程将成为孤儿进程。</li>
+<li>是指一个进程使用fork函数创建子进程，如果子进程退出，而父进程没有调用wait()或waitpid()系统调用取得子进程的终止状态，那么子进程的进程描述符仍然保存在系统中，占用系统资源，这种进程称为僵尸进程。</li>
+</ul>
+<p>如何解决僵尸进程：</p>
+<p>​    在fork子进程之后即时使用wait系统调用；</p>
+<p>​    使用kill命令。</p>
+<h3 id="13、内核态和用户态"><a href="#13、内核态和用户态" class="headerlink" title="13、内核态和用户态"></a>13、内核态和用户态</h3><p>用户态和内核态的区别：</p>
+<p>（1）用户态和内核态是操作系统的两种运行级别。大部分用户直接面对的程序都运行在用户态上。当程序运行在0级特权级时，可以称之为运行在内核态。</p>
+<p>（2）运行在用户态的程序不能直接访问操作系统内核。</p>
+<p>（3）处于用户态运行时，进程所能访问的内存空间和对象受到限制，占有的处理机可以被抢占。</p>
+<p>​          处于核心态运行中的进程，可以访问所有的内存空间和对象，所占有的处理机不允许被抢占。</p>
+<p>导致用户态到内核态的切换：</p>
+<p>（1）系统调用（主动）</p>
+<p>（2）异常（被动）</p>
+<p>（3）外围设备的中断（被动）</p>
+<h3 id="14、进程调度算法有哪些？"><a href="#14、进程调度算法有哪些？" class="headerlink" title="14、进程调度算法有哪些？"></a>14、进程调度算法有哪些？</h3><ol>
+<li><p>先来先服务调度算法</p>
+</li>
+<li><p>短作业优先调度算法</p>
+</li>
+<li><p>高优先级优先调度算法</p>
+</li>
+<li><p>时间片轮转法</p>
+</li>
+<li><p>多级队列反馈/多级队列调度</p>
+<p>有抢占式和非抢占式的区别。</p>
+</li>
+</ol>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="1、OSI的七层模型分别是？各自的功能是什么？TCP-IP四层模型是什么？"><a href="#1、OSI的七层模型分别是？各自的功能是什么？TCP-IP四层模型是什么？" class="headerlink" title="1、OSI的七层模型分别是？各自的功能是什么？TCP/IP四层模型是什么？"></a>1、OSI的七层模型分别是？各自的功能是什么？TCP/IP四层模型是什么？</h3><p><strong>OSI七层模型</strong></p>
+<ul>
+<li><strong>应用层</strong>：各种应用软件，包括Web应用。</li>
+<li><strong>表示层</strong>：数据格式标识，基本压缩加密功能。</li>
+<li><strong>会话层</strong>：控制应用程序之间会话能力，如不同软件数据分发给不同软件。</li>
+<li><strong>传输层</strong>：端到端传输数据的基本功能，如TCP、UDP。传输层数据称为<strong>段</strong>（Segments）</li>
+<li><strong>网络层</strong>：定义IP编址，定义路由功能，如不同设备的数据转发。网络层数据称为<strong>包</strong>（Packages）</li>
+<li><strong>数据链路层</strong>：定义数据的基本格式，如何传输，如何标识，如网卡MAC地址。数据链路层数据称为<strong>帧</strong>（Frames）</li>
+<li><strong>物理层</strong>：底层数据传输，如网线，网卡标准。数据称为比特流（Bits）</li>
+</ul>
+<p><strong>TCP/IP五层模型</strong></p>
+<ul>
+<li><strong>应用层</strong>：对应OSI参考模型的应用、表示、会话层。处理应用程序的逻辑。DNS协议。</li>
+<li><strong>传输层</strong>：为两台主机上的应用程序提供端到端的通信。TCP协议，UDP协议。</li>
+<li><strong>网络层</strong>：实现数据包的选路和转发。核心的协议是IP协议（因特网协议），ICMP协议（因特网控制报文协议）。</li>
+<li><strong>数据链路层</strong>：实现了网卡接口的网络驱动程序，处理数据在物理媒介上的传输。</li>
+<li><strong>物理层</strong>（如果是四层就没有这一层）</li>
+</ul>
+<p>分层的好处：独立，灵活，低耦合，让每一层专注其功能，减少各层的依赖。</p>
+<h3 id="2、说一下一次完整的HTTP请求过程包括哪些内容？"><a href="#2、说一下一次完整的HTTP请求过程包括哪些内容？" class="headerlink" title="2、说一下一次完整的HTTP请求过程包括哪些内容？"></a>2、说一下一次完整的HTTP请求过程包括哪些内容？</h3><ul>
+<li><p>建立起客户机和服务器连接。</p>
+</li>
+<li><p>建立连接后，客户机发送一个请求给服务器。</p>
+</li>
+<li><p>服务器收到请求给予响应信息。</p>
+</li>
+<li><p>客户端浏览器将返回的内容解析并呈现，断开连接。</p>
+<p>HTTP请求方法有：GET、HEAD、POST、PUT、DELETE等</p>
+</li>
+</ul>
+<h3 id="3、-在浏览器中输入URL地址后显示主页的过程？"><a href="#3、-在浏览器中输入URL地址后显示主页的过程？" class="headerlink" title="3、 在浏览器中输入URL地址后显示主页的过程？"></a>3、 在浏览器中输入URL地址后显示主页的过程？</h3><ul>
+<li>根据域名，进行DNS域名解析。</li>
+<li>拿到解析的IP地址，建立TCP连接。</li>
+<li>向IP地址，发送HTTP请求。</li>
+<li>服务器处理请求。</li>
+<li>返回响应结果。</li>
+<li>关闭TCP连接。</li>
+<li>浏览器渲染HTML；</li>
+<li>浏览器布局渲染。</li>
+</ul>
+<h3 id="4、HTTPS和HTTP的区别"><a href="#4、HTTPS和HTTP的区别" class="headerlink" title="4、HTTPS和HTTP的区别"></a>4、HTTPS和HTTP的区别</h3><p>1、HTTP协议是超文本传输协议，传输的数据都是未加密的明文数据，因此HTTP比较不安全。</p>
+<p>​    HTTPS是由HTTP+SSL协议构建的可进行加密传输、身份认证的网络协议，更安全。</p>
+<p>​    SSL代表安全套接字层，是用于加密和验证应用程序和Web服务器之间发送的数据的协议。非对称加密，公钥公开。</p>
+<p>2、HTTPS协议需要申请证书，需要一定费用。</p>
+<p>3、HTTPS的端口是443，HTTP的端口是80.二者使用的连接方式不一样。</p>
+<h3 id="5、简述TCP和UDP的区别"><a href="#5、简述TCP和UDP的区别" class="headerlink" title="5、简述TCP和UDP的区别"></a>5、简述TCP和UDP的区别</h3><p>1、TCP协议是有连接的，在数据开始传送之前需要通过三次握手建立连接，会话结束之后要结束连接。UDP是无连接的。</p>
+<p>2、TCP协议保证数据按序发送，按序到达，提供超时重传来保证可靠性；UDP不保证可靠性。</p>
+<p>3、TCP头部需要20字节，UDP只需要8个字节。TCP速度慢，UDP速度快。TCP发送是重量级，UDP发送是轻量级。</p>
+<p>4、TCP有拥塞控制和流量控制，UDP没有，网络拥堵不影响发送效率。</p>
+<p>5、TCP是一对一的连接，UDP支持一对一，多对多，一对多的通信。</p>
+<p>6、TCP面向的是字节流的服务，UDP面向的是报文的服务。TCP不保存数据边界，UDP保证。</p>
+<p>7、TCP适用于金融领域等，UDP使用在游戏和娱乐场所。</p>
+<p>基于TCP协议的：Telnet，FTP和SMTP；</p>
+<p>基于UDP协议的：DHCP，DNS，SNMP，TFTP，BOOTP；</p>
+<h3 id="6、三次握手、四次挥手（TCP连接和关闭的具体步骤）"><a href="#6、三次握手、四次挥手（TCP连接和关闭的具体步骤）" class="headerlink" title="6、三次握手、四次挥手（TCP连接和关闭的具体步骤）"></a>6、三次握手、四次挥手（TCP连接和关闭的具体步骤）</h3><p>三次握手的目的：连接服务器指定端口，建立TCP连接，并同步连接双方的序列号和确认号，并交换TCP窗口大小信息。</p>
+<p><strong>三次握手建立连接：</strong></p>
+<p>（1）第一次握手：建立连接时，客户端向服务器发送SYN包（seq=x），请求建立连接，等待确认。</p>
+<p>（2）第二次握手：服务端收到客户端的SYN包，回一个ACK包（ACK=x+1）确认收到，同时发送一个SYN包（seq=y）给客户端。</p>
+<p>（3）第三次握手：客户端收到SYN+ACK包，再回一个ACK（ACK=y+1）告诉服务端已经收到。</p>
+<p>（4）三次握手完成，成功建立连接，开始传输数据。</p>
+<p><strong>四次挥手关闭连接：</strong></p>
+<p>（1）客户端发送FIN包给服务端，告诉它自己的数据已经发送完毕，请求终止连接。此时客户端不发送数据，但还能接收数据。</p>
+<p>（2）服务端收到FIN包，回一个ACK包给客户端告诉它已经收到包了。此时没有断开socket连接，而是等待剩下的数据传输完毕。</p>
+<p>（3）服务端等待数据传输完毕后，向客户端发送FIN包，表示可以断开连接。</p>
+<p>（4）客户端收到后，回一个ACK包表示确认收到。等待一段时间确保服务端不再发送数据过来然后彻底断开连接。</p>
+<p>（服务端）close wait: 客户端不发送数据，服务端仍然接收数据，直到服务端发送关闭请求（半双工状态）</p>
+<p>（客户端）time wait: 等待2倍的最长报文段寿命的时间，以接收服务端最后的报文</p>
+<p><strong>为什么要四次挥手</strong></p>
+<p>因为客户端想断开连接的时候，服务端可能还有消息传，如果改成三次，客户端可能会因为迟迟等不到确认而再次发送关闭请求。</p>
+<p><strong>三次握手每次握手信息没收到怎么办：</strong></p>
+<p>（1）第一次握手消息丢失，第二次握手消息丢失，都收不到ACK消息，会超时重传。</p>
+<p>（2）第三次握手消息丢失，Server端在TCP连接的状态为SYN_RECV，并且会根据TCP的超时重传机制，等待3秒，6秒，12秒后重新发送SYN+ACK包。</p>
+<p><strong>状态转移</strong></p>
+<p><strong>三次握手</strong></p>
+<ol>
+<li>CLOSED：起始点，在超时或者链接关闭时候进入此状态，并不是一个真正的状态，而是这个状态图的假想起点和终点。</li>
+<li>LISTEN：服务端等待连接的状态。服务器经过socket，bind，listen函数之后进入此状态，开始监听客户端发过来的连接请求。</li>
+<li>SYN_SENT：第一次握手发生阶段，客户端发起连接。客户端调用connect，发送SYN给服务端，然后进入SYN_SENT状态，等待服务端确认。如果服务端不能连接，进入CLOSED状态。</li>
+<li>SYN_RCVD：第二次握手发生阶段，跟 3 对应，这里是服务端收到了客户端的SYN，此时服务器由LISTEN进入SYN_RCVD状态，同时服务端回应一个ACK，再发送一个SYN即SYN+ACK给客户端。</li>
+<li>ESTABLISTHED：第三次握手发生阶段，客户端收到服务端的ACK包之后，也会发送一个ACK确认包。客户端进入ESTABLISTHED状态，表示客户端这边已经准备好。服务端接收到客户端的ACK之后会从SYN_RCVD状态转移到ESTABLISHED状态，表明服务端也准备好进行数据传输了。</li>
+</ol>
+<p><strong>四次挥手</strong></p>
+<ol>
+<li><p>FIN_WAIT_1：第一次挥手。主动关闭的一方（可以是客户端也可以是服务端）终止连接时发送FIN给对方，然后等待对方返回ACK。调用close()，第一次挥手就进入此状态。</p>
+</li>
+<li><p>CLOSE_WAIT：接收到FIN之后，被动关闭的一方进入此状态。</p>
+</li>
+<li><p>FIN_WAIT_2：主动端先执行主动关闭发送FIN，然后接收到被动方返回的ACK后进入此状态。</p>
+</li>
+<li><p>LAST_ACK：被动方发起关闭请求，由状态2进入此状态。</p>
+</li>
+<li><p>CLOSING：两边同时发起关闭请求时（即主动方发送FIN，等待被动方返回ACK；同时被动方也发送了FIN，主动方接收到FIN之后发送ACK给被动方）。主动方会由FIN_WAIT_1进入此状态，然后等待被动方返回ACK。</p>
+</li>
+<li><p>TIME_WAIT：经过这个状态进入CLOSED状态。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">graph </span><br><span class="line">CLOSED(CLOSED)</span><br><span class="line">LISTEN(LISTEN)</span><br><span class="line">SYN_RCVD(SYN_RCVD)</span><br><span class="line">SYN_SENT(SYN_SENT)</span><br><span class="line">ESTABLISTHED(ESTABLISTHED)</span><br><span class="line">CLOSE_WAIT(CLOSE_WAIT)</span><br><span class="line">LAST_ACK(LAST_ACK)</span><br><span class="line">FIN_WAIT_1(FIN_WAIT_1)</span><br><span class="line">CLOSING(CLOSING)</span><br><span class="line">FIN_WAIT_2(FIN_WAIT_2)</span><br><span class="line">TIME_WAIT(TIME_WAIT)</span><br><span class="line">CLOSED-.被动打开.-&gt;LISTEN</span><br><span class="line">LISTEN-.收到SYN,发送SYN,ACK.-&gt;SYN_RCVD</span><br><span class="line">SYN_RCVD-.收到ACK.-&gt;ESTABLISTHED</span><br><span class="line">ESTABLISTHED-.收到FIN,发送ACK.-&gt;CLOSE_WAIT</span><br><span class="line">CLOSE_WAIT-.关闭发送FIN.-&gt;LAST_ACK</span><br><span class="line">LISTEN--关闭--&gt;CLOSED</span><br><span class="line">SYN_RCVD--收到RST--&gt;LISTEN</span><br><span class="line">SYN_SENT--收到SYN,发送SYN,ACK同时打开--&gt;SYN_RCVD</span><br><span class="line">LISTEN--发送SYN--&gt;SYN_SENT</span><br><span class="line">CLOSED&#x3D;&#x3D;主动打开,发送SYN&#x3D;&#x3D;&gt;SYN_SENT</span><br><span class="line">SYN_SENT&#x3D;&#x3D;&gt;ESTABLISTHED</span><br><span class="line">ESTABLISTHED&#x3D;&#x3D;关闭,发送FIN&#x3D;&#x3D;&gt;FIN_WAIT_1</span><br><span class="line">SYN_RCVD--关闭发送ACK--&gt;FIN_WAIT_1</span><br><span class="line">FIN_WAIT_1--收到FIN,发送ACK--&gt;CLOSING</span><br><span class="line">CLOSING--收到ACK--&gt;TIME_WAIT</span><br><span class="line">FIN_WAIT_1--收到FIN,ACK,发送ACK--&gt;TIME_WAIT</span><br><span class="line">FIN_WAIT_1&#x3D;&#x3D;收到ACK&#x3D;&#x3D;&gt;FIN_WAIT_2</span><br><span class="line">FIN_WAIT_2&#x3D;&#x3D;收到FIN,发送ACK&#x3D;&#x3D;&gt;TIME_WAIT</span><br><span class="line">TIME_WAIT&#x3D;&#x3D;定时经过两倍报文段长度后&#x3D;&#x3D;&gt;CLOSED</span><br><span class="line">SYN_SENT--关闭或超时--&gt;CLOSED</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="7、MAC地址和IP地址"><a href="#7、MAC地址和IP地址" class="headerlink" title="7、MAC地址和IP地址"></a>7、MAC地址和IP地址</h3><p>（1）IP地址是逻辑地址，MAC地址是物理地址。MAC地址定义网络设备的位置。</p>
+<p>（2）IP地址分配根据的是网络的拓扑结构。</p>
+<p>（3）计算机之间的通信最终都表现为将数据包从某种形式的链路上的初始节点出发，从一个节点传递到另一个节点，最终传送到目的节点。数据包在这些节点之间的移动都是由ARP负责将IP地址映射到MAC地址上来完成的。</p>
+<h3 id="8、两次握手行不行"><a href="#8、两次握手行不行" class="headerlink" title="8、两次握手行不行"></a>8、两次握手行不行</h3><ul>
+<li>不行。TCP协议的通信双方必须维护序列号来标识发送的数据包中哪些是对方已经收到的。</li>
+<li>如果只是两次握手，只有连接发起方的序列号能被确认，另一方的序列号没办法被确认。</li>
+</ul>
+<h3 id="9、TCP如何保证有序-超时重传"><a href="#9、TCP如何保证有序-超时重传" class="headerlink" title="9、TCP如何保证有序/超时重传"></a>9、TCP如何保证有序/超时重传</h3><p>​    主机每次发送数据时，TCP给每个数据包分配一个序列号，并且在特定的时间内等待接收主机对分配的这个序列号进行确认。</p>
+<p>​    如果发送主机在一个特定时间内没有收到接收主机的确认，发送主机就会重传这个数据。</p>
+<p>​    接收主机利用序列号对接收的数据进行确认，以便检测对方发送的数据是否有丢失或者乱序。</p>
+<p>​    接收主机将这些数据按正确的顺序重组成数据流并传递到高层进行处理。</p>
+<h3 id="10、Cookie和Session的关系和区别"><a href="#10、Cookie和Session的关系和区别" class="headerlink" title="10、Cookie和Session的关系和区别"></a>10、Cookie和Session的关系和区别</h3><ul>
+<li>Cookie和Session都是会话的一种方式。</li>
+<li>Cookie数据存放在客户的浏览器上，Session存放在服务器上。</li>
+<li>Cookie不是很安全，别人可以分析本地的Cookie进行Cookie欺骗，Session比较安全。</li>
+<li>Session会在一定时间内保存在服务器上，当访问增多会占用服务器资源。</li>
+<li>单个Cookie保存的数据不能超过4k，一个站点一般最多保存20个Cookie。</li>
+</ul>
+<h3 id="11、简述HTTPS的加密与认证的过程"><a href="#11、简述HTTPS的加密与认证的过程" class="headerlink" title="11、简述HTTPS的加密与认证的过程"></a>11、简述HTTPS的加密与认证的过程</h3><p><strong>加密</strong>：客户端在浏览器输入一个https网址，然后链接到服务器的443端口。采用https协议的服务器必须有一套数字证书（一套公钥和密钥）。</p>
+<p>​    首先服务器将公钥传送到客户端，客户端解析证书验证成功，就会生成一个随机数（私钥），并用证书将该随机数加密后传回服务器。服务器对其进行解密后，获取这个随机值，然后将要传输的信息和私钥通过某种加密算法混合在一起传到客户端。客户端根据之前的私钥随机数来解密。</p>
+<p><strong>认证</strong>：首先浏览器会从内置的证书列表中索引，找到服务器下发证书对应的机构。如果没有找到就会提示该证书不可信任。如果找到了就取出该机构颁发的公钥。</p>
+<p>用机构的证书公钥解密得到证书的内容和证书签名，内容包括网站的网址、公钥、证书的有效期。浏览器先验证证书签名的合法性。</p>
+<p>签名通过后，浏览器验证证书记录的网址和当前网址是否一致，不一致的话会提示用户。然后检查证书有效期，证书过期了也会提示用户。</p>
+<p>都通过认证后，浏览器就可以安全使用证书中的网站公钥。</p>
+<h3 id="12、TCP可靠性保证"><a href="#12、TCP可靠性保证" class="headerlink" title="12、TCP可靠性保证"></a>12、TCP可靠性保证</h3><p>TCP提供了检验和、序列号/确认应答、超时重传、最大消息长度、滑动窗口控制等方法实现了可靠性传输。</p>
+<ul>
+<li><p>检验和</p>
+<ul>
+<li>通过检验和可以检测数据是否有差错和异常。计算检验和的时候，会在TCP首部加上12字节的伪首部。</li>
+</ul>
+</li>
+<li><p>序列号/确认应答</p>
+<ul>
+<li>发送端发送信息给接收端，接收端会回应一个包。如果接收到没有回应确认包（ACK包）就会重发。接收端的应答包发送端没有收到也会重发。</li>
+</ul>
+</li>
+<li><p>超时重传</p>
+<ul>
+<li>发送出去的数据包到接受到确认包之间的时间，如果超过了就会被认为是丢包了需要重传。</li>
+</ul>
+</li>
+<li><p>最大消息长度</p>
+<ul>
+<li>在建立TCP连接的时候，双方约定一个最大的长度作为发送的单位，理想情况下该长度的数据刚好不被网络层分块。</li>
+</ul>
+</li>
+<li><p>滑动窗口控制</p>
+<ul>
+<li><p>滑动窗口协议是接收方通告发送方自己的窗口大小，从而控制发送方的发送速度。</p>
+</li>
+<li><p>窗口的大小就是在无需等待确认包的情况下，发送端还能发送的最大数据量。</p>
+</li>
+<li><p>滑动窗口过小就会导致需要不停地对数据进行确认。</p>
+</li>
+</ul>
+</li>
+<li><p>拥塞控制</p>
+<ul>
+<li>慢开始-&gt;拥塞避免 -&gt; 快重传/快恢复：一旦收到三个相同的冗余ACK，就知道传输丢失，立刻重传丢失的分组, 阈值降为窗口的一半，重新开始拥塞避免阶段</li>
+</ul>
+</li>
+</ul>
+<pre><code>慢开始，拥塞窗口一开始指数增长，超过一定阈值后变线性增长，进入拥塞避免阶段。
+
+遇到阻塞，会重新开始，且慢开始的阈值变成当前窗口的一半（快恢复）</code></pre><h3 id="13、网络编程"><a href="#13、网络编程" class="headerlink" title="13、网络编程"></a>13、网络编程</h3><p>网络变成对信息的发送接收，通过操作相应API调度计算机资源硬件，并且利用管道（网线）进行数据交互的过程。</p>
+<p>套接字、数据包、网络模型。</p>
+<p>Socket：简单来说是ip地址与端口的结合协议。一种地址与端口的结合描述协议。是网络API的集合实现。</p>
+<p>Socket的组成与作用：在网络传输中用于唯一标识两个端点的链接。端点包括（ip+port）。</p>
+<h3 id="14、HTTP状态码"><a href="#14、HTTP状态码" class="headerlink" title="14、HTTP状态码"></a>14、HTTP状态码</h3><ul>
+<li><p>1XX：信息类状态码（表示接受请求状态处理）</p>
+</li>
+<li><p>2XX：成功状态码（表示请求正常处理完毕）</p>
+</li>
+<li><p>3XX：重定向（表示需要进行附加操作，已完成请求）</p>
+<ul>
+<li>301：跳转，代表永久性重定向（请求的资源已被分配了新的URL）</li>
+<li>302：临时性重定向（请求的资源已经分配了新的URL，希望用户能使用新的URL来进行访问。）</li>
+</ul>
+</li>
+<li><p>4XX：客户端错误（表示服务器无法处理请求）</p>
+<ul>
+<li>404：服务器上无法找到请求的资源</li>
+</ul>
+</li>
+<li><p>5XX：服务器错误状态码（表示服务器处理请求的时候出错）</p>
+</li>
+</ul>
+<h3 id="15、HTTP-1-0-1-1-2-0的主要区别"><a href="#15、HTTP-1-0-1-1-2-0的主要区别" class="headerlink" title="15、HTTP 1.0,1.1,2.0的主要区别"></a>15、HTTP 1.0,1.1,2.0的主要区别</h3><p>http/1.0：</p>
+<ul>
+<li>默认不支持长连接，需要设置 keep-alive 参数指定</li>
+<li>强缓存expired，协商缓存 last-modified\if-modified-since 有一定缺陷。</li>
+</ul>
+<p>http/1.1：</p>
+<ul>
+<li>默认长连接（keep-alive），http请求可以复用TCP连接，但是同一时间只能对应一个http请求。</li>
+<li>增加了强缓存cache-control，协商缓存etag\if-none-match 是对http/1.0 缓存的优化</li>
+</ul>
+<p>http/2.0：</p>
+<ul>
+<li>多路复用，一个TCP中多个http请求是并行的。</li>
+<li>二进制格式编码传输。</li>
+<li>服务端推送。</li>
+<li>使用HPACK算法做header压缩。</li>
+</ul>
+<h3 id="16、说说GET请求和POST请求的区别"><a href="#16、说说GET请求和POST请求的区别" class="headerlink" title="16、说说GET请求和POST请求的区别"></a>16、说说GET请求和POST请求的区别</h3><p>（1）GET请求在URL中传送的参数是有长度限制的，而POST没有。</p>
+<p>（2）GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</p>
+<p>（3）GET参数通过URL传递，POST放在Request body中。</p>
+<p>（4）GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</p>
+<p>（5）GET请求只能进行URL编码，而POST支持多种编码方式。</p>
+<p>（6）GET请求会被浏览器主动cache，而POST不会，除非手动设置。</p>
+<p>（7）GET产生的URL地址可以被Bookmark，而POST不可以。</p>
+<p>（8）GET在浏览器回退时是无害的，而POST会再次提交请求。</p>
+<h3 id="17、对称加密和非对称加密"><a href="#17、对称加密和非对称加密" class="headerlink" title="17、对称加密和非对称加密"></a>17、对称加密和非对称加密</h3><p>对称加密：对称加密和解密使用同一个密钥。</p>
+<p>非对称加密：使用不同的密钥。</p>
+<p>安全性不同：对称加密有可能被窃听，非对称加密只有公钥公开，解密需要用私钥，更安全。</p>
+<h2 id="数据库-MySQL"><a href="#数据库-MySQL" class="headerlink" title="数据库(MySQL)"></a>数据库(MySQL)</h2><h3 id="1、关系型和非关系型数据库的区别你了解多少？"><a href="#1、关系型和非关系型数据库的区别你了解多少？" class="headerlink" title="1、关系型和非关系型数据库的区别你了解多少？"></a>1、关系型和非关系型数据库的区别你了解多少？</h3><ul>
+<li>关系型数据库的优点<ul>
+<li>容易理解。采用关系模型来组织数据。</li>
+<li>可以保持数据的一致<ul>
+<li>·性。</li>
+</ul>
+</li>
+<li>数据更新的开销比较小。</li>
+<li>支持复杂查询（带where子句的查询）</li>
+</ul>
+</li>
+<li>非关系型数据库的优点（NoSQL not only SQL）<ul>
+<li>不需要经过SQL层的解析，读写效率高。</li>
+<li>基于键值对，数据的拓展性很好。</li>
+<li>可以支持多种类型数据的存储，如图片，文档等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、数据库隔离级别"><a href="#2、数据库隔离级别" class="headerlink" title="2、数据库隔离级别"></a>2、数据库隔离级别</h3><ul>
+<li><strong>读未提交</strong>，事务中发生了修改，即使没有提交，其他事务也可见。<strong>可能会导致脏读、幻读、不可重复读。</strong></li>
+<li><strong>读已提交</strong>，一个事务从开始直到提交之前，所做的修改是其他事务不可见的。执行两次SQL语句可能导致查询结果不同。<strong>可以阻止脏读，但是有可能会导致幻读或者不可重复读。</strong>这个是大多数数据库的隔离级别。</li>
+<li><strong>可重复读</strong>，（MySQL InnoDB默认支持的隔离级别。但是使用了间隙锁算法，可以避免幻读。通过MVCC（多版本并发控制）来解决不可重复读。）对一个记录读取多次的结果是相同的。<strong>可以阻止脏读和不可重复读，有可能会导致幻读。</strong></li>
+<li><strong>可串行化</strong>，在并发情况下和串行化读取结果一致。<strong>可以防止脏读、不可重复读和幻读。</strong></li>
+<li>隔离级别越低，性能越高，越不安全。隔离级别越高，性能越差，越安全。</li>
+</ul>
+<h3 id="3、数据库并发事务会带来那些问题？"><a href="#3、数据库并发事务会带来那些问题？" class="headerlink" title="3、数据库并发事务会带来那些问题？"></a>3、数据库并发事务会带来那些问题？</h3><ul>
+<li><strong>脏读</strong>：读取到了其他事务未提交的数据。在第一个修改事务和读取事务进行的时候，修改某一值，但是第二个事务读取到该值时，前一个事务因为某种原因比如事务一致性撤销了对该值的修改。</li>
+<li><strong>不可重复读</strong>：前后多次读取，数据内容不一致。在一个事务内，最开始读到的数据和事务结束前的任意时刻读到的同一批数据出现不一致的情况。</li>
+<li><strong>幻读</strong>：前后多次读取，数据总量不一致。T1在某个范围内进行新增或删除，T2读取该范围导致读到的数据是修改之间的。<ul>
+<li>解决幻读：串行化，可重复读+间隙锁</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、MySQL索引主要使用的两种数据结构是什么？"><a href="#4、MySQL索引主要使用的两种数据结构是什么？" class="headerlink" title="4、MySQL索引主要使用的两种数据结构是什么？"></a>4、MySQL索引主要使用的两种数据结构是什么？</h3><ul>
+<li>哈希索引，底层的数据结构是哈希表。</li>
+<li>B+Tree索引。</li>
+</ul>
+<h3 id="5、事务的四大特性。"><a href="#5、事务的四大特性。" class="headerlink" title="5、事务的四大特性。"></a>5、事务的四大特性。</h3><p>ACID四大特性：</p>
+<ul>
+<li><strong>原子性</strong>：事务包含的所有操作要么全部成功，要么全部失败回滚。<ul>
+<li>实现方式：利用Innodb的undo log（回滚日志），记录回滚需要的信息，当事务执行失败的时候，可以回滚到修改之前的样子。</li>
+</ul>
+</li>
+<li><strong>一致性</strong>：事务开始前和结束后，数据库的完整性约束没有被破坏。<ul>
+<li>通过其他三个特性来保证一致性。</li>
+</ul>
+</li>
+<li><strong>隔离性</strong>：多个并发事务相互隔离，每个事务不被其他事务的操作所干扰。<ul>
+<li>通过锁机制或者MVCC来实现隔离性。</li>
+</ul>
+</li>
+<li><strong>持久性</strong>：事务一旦被提交了，对数据的改变是永久性的。<ul>
+<li>利用Innodb的redo log（重写日志）。当做数据修改的时候，不仅在内存中操作，还会在redo log中记录这次操作。当数据库宕机重启的时候，会将redo log中的内容恢复到数据库中。</li>
+<li>刷盘效率比数据页刷盘高。redo log是顺序IO。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6、数据库设计的范式"><a href="#6、数据库设计的范式" class="headerlink" title="6、数据库设计的范式"></a>6、数据库设计的范式</h3><p>关系数据库有六种范式，一般来说，数据库满足第三范式（3NF）就足够了。</p>
+<ul>
+<li>第一范式（1NF）：是指在关系模型中，对于添加的一个规范要求，所有的域都应该是原子性的。即数据库表的每一列都是不可分割的原子数据项，而不能是集合、数组、记录等非原子数据项。即实体中的某个属性有多个值时，必须拆分为不同的属性。<strong>属性不能再分割。</strong></li>
+<li>第二范式（2NF）：在1NF的基础上，非码属性必须完全依赖于候选码。（<strong>消除非主属性对主码的部分函数依赖</strong>）。</li>
+<li>第三范式（3NF）：在2NF基础上，任何非主属性不依赖于其他非主属性。（在2NF基础上<strong>消除非主属性对码的传递依赖</strong>）。</li>
+<li>BCNF：消除主属性对码的部分和传递函数依赖。</li>
+</ul>
+<h3 id="7、说说你对redo-log、undo-log、binlog的了解"><a href="#7、说说你对redo-log、undo-log、binlog的了解" class="headerlink" title="7、说说你对redo log、undo log、binlog的了解"></a>7、说说你对redo log、undo log、binlog的了解</h3><ul>
+<li>binlog（Binary Log）：<ul>
+<li>二进制日志文件就是常说的binlog。记录了MySQL所有修改数据库的操作，还包括每条语句所执行的时间和所消耗的资源。</li>
+</ul>
+</li>
+<li>redo log：<ul>
+<li>重写日志，用来实现事务的持久性。由两部分组成，一是内存中的重写日志缓冲（redo log buffer），易失；二是重写日志文件（redo log file），是持久的。redo log基本是顺序写的。</li>
+<li>当事务提交时，必须将该事务的日志写入到重做日志（redo log+undo log）文件中进行持久化，该事务的COMMIT操作才算完成。</li>
+</ul>
+</li>
+<li>undo log：<ul>
+<li>redo log进行重做，undo log进行回滚。undo log是需要进行随机读写的。undo log存放在数据库内部的一个特殊段（segment）中，称为undo 段。</li>
+</ul>
+</li>
+<li>relay log</li>
+</ul>
+<h3 id="8、谈谈你对MVCC的了解。"><a href="#8、谈谈你对MVCC的了解。" class="headerlink" title="8、谈谈你对MVCC的了解。"></a>8、谈谈你对MVCC的了解。</h3><p>​    MVCC全程Multi-Version-Concurrency Control，多版本的并发控制协议。最大的优点是读不加锁，读写不冲突，并发性能好。</p>
+<p>​    InnoDB实现MVCC，主要基于以下技术和数据结构：</p>
+<ul>
+<li>隐藏列，包含本行事务的事务id，指向undo log的指针。</li>
+<li>基于undo log的版本链：每行数据的隐藏列中包含了指向undo log的指针，而undo log也会指向更早版本的undo log，形成一条版本链。</li>
+<li>ReadView：通过隐藏列和版本链，MySQL可以将数据恢复到指定版本。但是具体要恢复到哪个版本，需要根据ReadView来确定。</li>
+</ul>
+<h3 id="9、MySQL主从同步是如何实现的？"><a href="#9、MySQL主从同步是如何实现的？" class="headerlink" title="9、MySQL主从同步是如何实现的？"></a>9、MySQL主从同步是如何实现的？</h3><p>分为以下三个步骤：</p>
+<p>（1）主服务器，把数据更改记录到二进制日志（binlog）中。</p>
+<p>（2）从服务器，把主服务器的二进制日志复制到自己的中继日志（relay log）中。</p>
+<p>（3）从服务器，重做中继日志中的日志，把更改应用到自己的数据库上，以达成数据的一致性。</p>
+<p>​    复制是异步实时。</p>
+<h3 id="10、你知道哪些数据库结构优化的手段？"><a href="#10、你知道哪些数据库结构优化的手段？" class="headerlink" title="10、你知道哪些数据库结构优化的手段？"></a>10、你知道哪些数据库结构优化的手段？</h3><ul>
+<li>范式优化：消除冗余。</li>
+<li>反范式优化：适当加冗余（减少join）</li>
+<li>限定数据的范围：禁止不带任何限制数据范围的查询语句。</li>
+<li>读/写分离：经典的数据库拆分方案，主库负责写，从库负责读。</li>
+<li>拆分表：分为垂直拆分和水平拆分。分区将数据在物理上分隔开来。</li>
+<li>建立索引</li>
+</ul>
+<h3 id="11、锁"><a href="#11、锁" class="headerlink" title="11、锁"></a>11、锁</h3><p>innodb支持行级锁和表级锁</p>
+<p>表级锁：对当前操作的整张表加锁，不会死锁，资源消耗小，并发低</p>
+<p>行级锁：对当前操作的行加锁，会死锁，并发高，资源消耗大</p>
+<p>算法：记录锁，间隙锁，临键锁</p>
+<p>记录锁：只锁数据本身</p>
+<p>间隙锁：锁一段区间，不锁记录本身</p>
+<p>行级锁：共享锁（读锁），排他锁（写锁）</p>
+<p>表级别锁：意向共享，意向排他</p>
+<p>意向锁与自己和行锁之间不冲突</p>
+<p>意向锁：就是，比如我上一个行 排他锁，就要也上一个意向排他锁，告诉表锁，我这个表里面有排他锁</p>
+<p>解决表锁要整个遍历行锁的问题</p>
+<p><strong>死锁</strong>：两个事务争抢资源导致相互等待</p>
+<p>InnoDB减少死锁：</p>
+<ul>
+<li>自动死锁检测，优先回滚小事务。</li>
+<li>超时设置</li>
+<li>尽快提交事务，小事务不容易发生死锁</li>
+<li>减少扫描/锁范围，降低概率</li>
+</ul>
+<p>乐观锁：每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据</p>
+<p>悲观锁：每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁。</p>
+<h3 id="12、索引"><a href="#12、索引" class="headerlink" title="12、索引"></a>12、索引</h3><p>是帮助MySQL高效获取数据的一种数据结构，存储在磁盘文件里。</p>
+<p>数据结构：B树，B+树，hash</p>
+<p>B+：叶子节点放数据，叶子有个指针，形成有序链表</p>
+<p>B：内部节点也放数据</p>
+<p>主键索引：以主键建立索引，innodb默认6byte的自增主键</p>
+<p>辅助索引：叶子节点存主键，通过其他的字段去查主键</p>
+<p>辅助索引的类别：</p>
+<p>唯一索引：表示唯一的，不允许重复的字段。主键自动有唯一索引。</p>
+<p>普通索引：数据允许重复</p>
+<p>前缀索引：字符串</p>
+<p>全文索引：检测大文本数据中的关键字。检索长文本效果较好。</p>
+<p>如何添加索引：</p>
+<ol>
+<li>图形界面操作</li>
+<li>通过SQL语句创建</li>
+</ol>
+<p>索引失效：最佳左前缀法则</p>
+<p>索引失效主要针对联合索引。</p>
+<p>最左有序，其他相对有序。</p>
+<p>聚集索引：数据索引放一起（主键索引）</p>
+<p>非聚集索引：数据索引分开存</p>
+<p>覆盖索引：索引与值一样，无需回表</p>
+<h3 id="13、B树、B-树、红黑树"><a href="#13、B树、B-树、红黑树" class="headerlink" title="13、B树、B+树、红黑树"></a>13、B树、B+树、红黑树</h3><p><strong>B+树是B树的一种变形形式</strong>，B+树的叶子结点存储关键字以及相应记录的地址，叶子结点以上作为索引使用。一棵m阶的B+树定义如下：</p>
+<p>（1）每个结点至多有m个子女。</p>
+<p>（2）除根结点外，每个结点至少有[m/2]个子女，根结点至少有两个子女。</p>
+<p>（3）有k个子女的结点必有k个关键字。</p>
+<p>当索引部分某个结点关键字与所查关键字相等时，并不停止查找，继续沿着这个关键字左边的指针向下，一直找到该关键字所在的叶子结点。</p>
+<p><strong>为什么不能用二叉查找树：</strong></p>
+<p>索引存在磁盘上，数据量比较大的时候，索引大小可能有很多G，没办法全部加载到内存，只能逐一加载磁盘页。需要减少高度。</p>
+<p>B+树比B树的好处：</p>
+<p>所有叶子结点形成有序链表，便于范围查询。</p>
+<p>所有查询都需要查询到叶子结点，性能稳定。</p>
+<p>单一结点存储更多的元素，树变得矮胖，查询IO次数更少。</p>
+<p><strong>红黑树</strong>是一种自平衡二叉树，有以下性质：</p>
+<p>（1）结点是红色或者黑色</p>
+<p>（2）根节点是黑色</p>
+<p>（3）所有叶子结点都是黑色</p>
+<p>（4）每个红色结点的子结点都是黑色</p>
+<p>（5）从任一结点到其每个结点的所有路径都包含相同数目的黑色结点</p>
+<p>关键性质：从根到叶子的最长的可能路径不多于最短的可能路径的两倍。</p>
+<h3 id="14、银行家算法"><a href="#14、银行家算法" class="headerlink" title="14、银行家算法"></a>14、银行家算法</h3><p>银行家算法是死锁避免算法。</p>
+<p>在系统中设置四个数据结构，用来描述系统中可利用的资源，进程对资源的最大需求，系统中的资源分配，以及所有进程还需要多少资源的情况。</p>
+<p>当一个进程申请使用资源的时候，银行家算法通常先试探分配给该进程的资源，然后通过安全性算法判断分配后的系统是否处于安全状态，若不安全则试探分配作废，让该进程继续等待。</p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>c写的内存形数据库</p>
+<p>作用：分布式缓存（能提高并发量），分布式锁，消息队列</p>
+<p>基本数据结构：string list hash set sorted_set bitmap</p>
+<p>redis如何保证持久化：快照（创建副本），追加文件（记录操作的指令）</p>
+<p>缓存击穿：缓存没有，大量查找数据库（也没有）</p>
+<p>解决：对于无效key写入缓存告诉无效，或者布隆过滤器</p>
+<p>缓存雪崩：缓存失效，导致大量请求落在数据库上</p>
+<p>解决：redis集群</p>
+<p>如何保证数据库与缓存一致：</p>
+<p>数据库更新触发缓存更新，缓存更新失败触发缓存更新重试机制</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="1、什么是单例设计模式，如何实现"><a href="#1、什么是单例设计模式，如何实现" class="headerlink" title="1、什么是单例设计模式，如何实现"></a>1、什么是单例设计模式，如何实现</h3><p>1、单例模式定义</p>
+<p>​    保证一个类仅有一个实例，并提供一个访问它的全局访问点，该实例被所有程序模块共享。</p>
+<p>​    保证：（1）该类不能被复制。（2）该类不能被公开的创造。</p>
+<p>​    在C++中，它的构造函数，拷贝构造函数和复制函数都不能被公开调用。</p>
+<p>2、单例模式实现方式</p>
+<p>​    分为懒汉式单例和饿汉式单例。</p>
+<p>​    懒汉模式：特点是延迟加载。比如配置文件。采取懒汉式的方法，配置文件的实例直到用到的时候才会加载，不到万不得已就不会去实例化类。</p>
+<p>​        a. 静态指针 + 用到时初始化</p>
+<p>​        b. 局部静态变量</p>
+<p>​    饿汉模式：</p>
+<p>​        a. 直接定义静态对象</p>
+<p>​        b. 静态指针 + 类外初始化时new空间 实现 </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://rye1024.gitee.io/2022/03/17/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B1%82%E8%81%8C/" rel="tag">求职</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/03/17/%E6%89%BE%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">找工作记录</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'bThBFvtl3LX1tgeFxA0mDRq8-gzGzoHsz',
+        app_key: 'BK7m5GuXrJ1msA3Q7kiEp144',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2022
+        <i class="ri-heart-fill heart_icon"></i> Rye
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="STILL LIVING"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/10/04/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['在我们脚下，风在摸索船帆，而群星强烈地搏动。', '在告别的内部是悲剧。正如一切事情的内部，时间昭然可见', '若相遇是可以期待的，告别何以谓之告别。'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=571339491&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

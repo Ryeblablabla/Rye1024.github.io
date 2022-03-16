@@ -81,6 +81,334 @@
     
     
     
+    <article id="post-HDU6536-Hello-XTCPC" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/24/HDU6536-Hello-XTCPC/"
+    >[HDU6536] Hello XTCPC</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/24/HDU6536-Hello-XTCPC/" class="article-date">
+  <time datetime="2020-05-24T14:16:51.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-codeforces-1355A-Sequence-with-Digits" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/24/codeforces-1355A-Sequence-with-Digits/"
+    >[codeforces 1355A] Sequence with Digits</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/24/codeforces-1355A-Sequence-with-Digits/" class="article-date">
+  <time datetime="2020-05-24T14:14:43.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-让平凡的日子也散发出光亮" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/"
+    >让平凡的日子也散发出光亮</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/" class="article-date">
+  <time datetime="2020-04-23T01:45:14.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
+<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
+<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
+<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
+<p>诗意的世界就借由仪式感来创造。</p>
+<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
+<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
+<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
+<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
+<p>让平凡的日子也散发出光亮。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-拉普拉斯妖，你知道吗？" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/"
+    >拉普拉斯妖，你知道吗？</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/30/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%A6%96%EF%BC%8C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97%EF%BC%9F/" class="article-date">
+  <time datetime="2020-03-30T01:47:54.000Z" itemprop="datePublished">2020-03-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>世间万物的运行都有其规律，在人生的不同阶段对于世界都会有着不同的认知。</p>
+<p>我记得我二年级的时候为了寻找为什么夏天热而冬天冷，提出了在冬天太阳距离地球远而在夏天太阳距离地球近的观点——还把这个想法发在了当时我自己的儿童博客上。后来我才知道1月份的近日点反而是一年中最冷的时候。这样的论点当然在今天看来很可笑，但于当时的我，已经是穷尽所有想象力能为这个世界找到的最科学解释了。</p>
+<p>如果一个小球的抛出点和初速度是固定的，力是固定的，重力已知，方向已知……在这样的情况下，小球的运动轨迹是可以计算的。那么，是否一切活动，都是遵循一定的规律的呢？是否只要知道所有的参数，就可以了解过去，现在，和未来呢？</p>
+<p>相信一切是被决定着的，这种观点被称作决定论。由此而诞生的一个概念就是拉普拉斯妖，一位全知全能的妖精。说远了，不提。</p>
+<p>哲学上而言，我并非不支持自由意志的观点，我认为人的主观能动性是客观存在的。但是，了解一定的规律仍然有利于我们做出更好的选择。</p>
+<p>就像我二年级时认为太阳的远近是导致温度差异的原因一样，我只能用自己有限的知识在这个无垠的世界里寻找答案，或许永不可即，但追求知识的脚步是不会停下的。</p>
+<p>由最近的学习内容产生了一些感想，记录如下。</p>
+<p>本人才疏学浅，言论如有不当之处，还请各位多多包涵。</p>
+<p>电影《美丽心灵》介绍了博弈论的奠基人，二十世纪伟大的数学家、经济学家约翰·纳什的一生。纳什因为其对博弈论的贡献，获得了诺贝尔经济学奖。他最重要的理论之一就是提出了纳什均衡，通俗的来说，就是指在一场博弈中的两个当事人都停留在对自己最有利的一个位置的平衡状态。这两个人如果做任何的决策，都会导致局面对自己不利。</p>
+<p>这个理论的提出意味着博弈问题是有解的，因此博弈论才有了研究的价值。</p>
+<p>在我们计算机算法设计的领域，最著名也是最简单的算法莫过于贪心算法。也即是每次行动都作出目前条件下的最优解，那么将得到最好的效果。显而易见，不是什么情况都能应用贪心算法的，因此，是否能运用贪心是需要证明的。（当然，实际运用的时候，我们并不会去证明，只是觉得好像可以用，然后敲一遍看看答案对不对。）</p>
+<p>贪心算法当然和博弈论搭不着边，但是贪心策略却是很重要的一环。</p>
+<p>生物的本性是自私的，生物的本能会促使我们做出对自己最有利的选择。</p>
+<p>经济学中的“理性人”是指，每次行动都追求自身最大的利益而不管别人的死活。这是合理的。</p>
+<p>那么设想一下这样一个情况：两个囚徒被关在监狱里，互相隔离。他们都是理性人。狱警和他们说，如果他们都不检举对方的罪行，他们都会被关押一年。如果一位检举而另一位不检举，那么检举的将被释放，另一位被关押十年；如果两位都坦白，他们各自被关押五年。</p>
+<p>这种情况下，对于囚徒A来说，检举对方是最优解。</p>
+<p>如果B不检举，那么A就溜之大吉了。如果B检举了而他不检举，那么他将被关押十年。如果B也检举了，那么他被关押五年——也比十年更好。</p>
+<p>于是，两个人达成的纳什平衡是互相背叛。此时，任何一个人作出合作的举动都会导致他陷入更差的境地。然而，这并不是最优解。最优解是两个人互相合作。</p>
+<p>在电影《少年的你》中小北和陈念被审问的时候，他们没有承认。这就是合作的一种行为。这是感性的一种行为。</p>
+<p>如果人们不去考虑对自己的利益最大化，始终抱着合作意愿，那么反而将得到囚徒困境的最优解。</p>
+<p>再设想这样一种情况，让人们从1~100报一个数，最接近平均数的三分之二那个人将得到奖品，最优解是多少？首先设想所有人的数均匀分布，那么均值是50，答案是33。显然，你不应该猜超过33的数。如果所有人都这么想，那么你不该猜超过22的数……继续，继续，继续……最后，你应该猜1。如果所有人都是这样理性驱动，猜1，大家都有奖品。</p>
+<p>但是如果其中有一个人没有考虑这么多，胡乱猜了一个数字呢？</p>
+<p>美好的局面就被破坏掉了。最美的结局建立在所有人都是绝对理性的情况下，这样的情况是不稳定的。感性会破坏最优解。</p>
+<p>生物的进化正源自于此。如果所有人都是怀揣着恶意的，那么这个族群就会在互相攻讦中毁灭。如果所有人都是利他的，他们通过合作可以取得更大的利益，但是一旦这个族群中突变出了一个利己主义者，那么所有的利他行为者都会变成待宰的小白羊被收割。</p>
+<p>如何破解囚徒困境？说来很简单，一报还一报。</p>
+<p>先尝试合作，接下来每次行为都模仿对方上次的行为。这样需多次重复之后，即使对方的行为是不确定的，坐牢的年数总和也是最少的。</p>
+<p>利他和利己，感性和理性，二者之间都是彼此不可分割的。</p>
+<p>贪心算法是有助于解决实际问题的，因为对象只有一个。</p>
+<p>而当问题变成非零和博弈的时候，即使是最理性的人作出的最理性的选择也未必是最优解。人与人之间交互的神奇之处就在于此了。</p>
+<p>今天上课的时候讲到人工智能，绝对理性的人工智能能摆脱囚徒困境吗？恐怕未必比小北和陈念做得更好吧。人们的相处，是不能用什么理论去预料的呀。拉普拉斯妖，你能知道吗？</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%B2%E6%80%9D/" rel="tag">哲思</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-山石巴" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -736,132 +1064,13 @@
 
 </article>
     
-    <article id="post-黄昏之诗" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/"
-    >黄昏之诗</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/" class="article-date">
-  <time datetime="2020-01-01T01:36:31.000Z" itemprop="datePublished">2020-01-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>在架柱桥高处令人神迷的翼翅上最后而漫长的行程</p>
-<p>在我们脚下，风在摸索船帆</p>
-<p>而群星强烈地搏动</p>
-<p>夜的滋味我们仔细品尝，为阴影所穿透的夜，重又成为我们肉体的一个习惯。</p>
-<p>我们交谈的最后一夜，在海上的距离将我们隔断之前</p>
-<p>宁静还是我们的</p>
-<p>嗓音在其中草地般闪烁</p>
-<p>黎明还是一只鸟，迷失在</p>
-<p>这世上最为遥远的卑鄙之中</p>
-<p>最后一夜，它受到你保卫</p>
-<p>免遭缺席的大风劲吹</p>
-<p>在告别的内部是悲剧</p>
-<p>正如一切事情的内部，时间昭然可见</p>
-<p>难以忍受的是认识到</p>
-<p>我们并不拥有相同的星空</p>
-<p>当暮色在我的院子里成为宁静</p>
-<p>清晨会从你的纸页里升起</p>
-<p>我的寒冬将是你盛夏的阴影</p>
-<p>而你的光明将是我阴影的荣誉</p>
-<p>我们理应团结在一起</p>
-<p>两副嗓音理应和如一</p>
-<p>正如日落西山时的强烈与温馨</p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>太阳坠下地平线</p>
-<p>江水的波涛隔断了我们声嘶力竭的呼喊</p>
-<p>群星不再闪烁</p>
-<p>宁静不再属于你我</p>
-<p>温暖的草皮变得冰冷</p>
-<p>未曾告别，已迎来永夜</p>
-<p>你仔细品尝</p>
-<p>夜的滋味，是我的阴影被揉碎</p>
-<p>我的血，我的骨，我的心髓</p>
-<p>我们曾经团结在一起</p>
-<p>纠结在彼此的掌纹中</p>
-<p>品悦着辛波斯卡的诗集</p>
-<p>道不完琐碎与短长</p>
-<p>若相遇是可以期待的</p>
-<p>告别何以谓之告别</p>
-<p>我不曾保卫最后那一夜</p>
-<p>它本就不属于你我</p>
-<p>我要还给你黎明</p>
-<p>还给你阴影的荣耀</p>
-<p>让我的塑像碎裂在那一个冬夜的星辰里</p>
-<p>让云朵倒流，让月亮坠下</p>
-<p>让表达者挣脱被误解的枷锁</p>
-<p>让倾听者刺破了澄澈的双眼</p>
-<p>然后让我的肉体埋葬在秋的落叶下</p>
-<p>土地里，浇筑着我的心头血</p>
-<p>春天的樱花还会开得绚烂</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%97/" rel="tag">诗</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
   </nav>
   
 </section>
@@ -872,7 +1081,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2021
+        2020-2022
         <i class="ri-heart-fill heart_icon"></i> Rye
       </li>
     </ul>
