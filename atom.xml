@@ -6,7 +6,7 @@
   <link href="http://rye1024.gitee.io/atom.xml" rel="self"/>
   
   <link href="http://rye1024.gitee.io/"/>
-  <updated>2022-03-16T16:40:03.452Z</updated>
+  <updated>2022-07-12T11:59:45.324Z</updated>
   <id>http://rye1024.gitee.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EVE</title>
+    <link href="http://rye1024.gitee.io/2022/07/12/EVE/"/>
+    <id>http://rye1024.gitee.io/2022/07/12/EVE/</id>
+    <published>2022-07-12T11:58:04.000Z</published>
+    <updated>2022-07-12T11:59:45.324Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;昨晚，没有睡好。&lt;/p&gt;
+&lt;p&gt;这并不是由于失眠，或者精神衰弱。仅仅是甘于沉溺在精神鸦片营造的虚拟里。&lt;/p&gt;
+&lt;p&gt;窗帘渐渐泛起亮光的时候，我意识到不得不睡了。&lt;/p&gt;
+&lt;p&gt;凌晨两点收拾行李的时候，我带了一条空调被，严实地压缩在一半的行李箱空间里；从抽屉里拿了半抽屉的衣</summary>
+        
+      
+    
+    
+    
+    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    
+    
+    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我和我的世界</title>
+    <link href="http://rye1024.gitee.io/2022/04/24/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/"/>
+    <id>http://rye1024.gitee.io/2022/04/24/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C/</id>
+    <published>2022-04-23T17:27:08.000Z</published>
+    <updated>2022-04-24T14:33:42.193Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;十年回忆录，我和我的世界。深夜有所感想，所以想写些东西，聊以自娱。多年来记忆已经模糊，如有错漏之处，还请谅解。不知道我的经历是否会引起你的共鸣，也让你回想起最初面对一个波澜壮阔的世界时的感动呢？&lt;/p&gt;
+&lt;p&gt;最近，我又开始玩Minecraft。&lt;/p&gt;
+&lt;p&gt;第一次接触这</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>面经整理</title>
@@ -524,60 +575,6 @@
     <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
     <category term="构造" scheme="http://rye1024.gitee.io/tags/%E6%9E%84%E9%80%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>南京扬州游记</title>
-    <link href="http://rye1024.gitee.io/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/"/>
-    <id>http://rye1024.gitee.io/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/</id>
-    <published>2020-07-31T01:22:06.000Z</published>
-    <updated>2020-10-04T01:34:33.048Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;闲云小院&quot;&gt;&lt;a href=&quot;#闲云小院&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="我们的旅行" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/"/>
-    
-    
-    <category term="摄影" scheme="http://rye1024.gitee.io/tags/%E6%91%84%E5%BD%B1/"/>
-    
-    <category term="旅行" scheme="http://rye1024.gitee.io/tags/%E6%97%85%E8%A1%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>田野也消失了</title>
-    <link href="http://rye1024.gitee.io/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/"/>
-    <id>http://rye1024.gitee.io/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/</id>
-    <published>2020-07-17T01:47:08.000Z</published>
-    <updated>2020-10-04T01:47:34.256Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;又是一年，回到太高，思绪已逐渐遥远。&lt;/p&gt;
-&lt;p&gt;我们也有了一些变化、正如太高也有了一些变化。可对我来说，最大的改变竟不是在太高，而是太高东面的田野上——建起了一栋栋整齐的商品房。&lt;/p&gt;
-&lt;p&gt;原本位于南郊，被戏称为乡下学校，百草丰茂，是虫豸的乐园。清晨走出宿舍时，能看</summary>
-        
-      
-    
-    
-    
-    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
-    
-    
-    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
     
   </entry>
   
