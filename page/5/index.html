@@ -81,6 +81,160 @@
     
     
     
+    <article id="post-codeforces-1355A-Sequence-with-Digits" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/24/codeforces-1355A-Sequence-with-Digits/"
+    >[codeforces 1355A] Sequence with Digits</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/24/codeforces-1355A-Sequence-with-Digits/" class="article-date">
+  <time datetime="2020-05-24T14:14:43.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>题目见：<a href="https://codeforces.com/problemset/problem/1355/A" target="_blank" rel="noopener">1355A</a><br>题意：一个数a1，进行K次操作，每次加上a1各个位置上最大的数和最小的数的乘积。<br>思路：K有可能取到很大，如果单纯模拟绝对会超时。观察题目可以发现，a1进行有限次操作后，各个位置上最小数会变成0，这个时候答案就是不变的了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db cout&lt;&lt;<span class="meta-string">"where"</span>&lt;&lt;endl;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a,n;</span><br><span class="line">        <span class="built_in">string</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            b=to_string(a);</span><br><span class="line">            <span class="keyword">char</span> MAX=<span class="string">'0'</span>,MIN=<span class="string">'9'</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(b[i]&lt;MIN)</span><br><span class="line">                    MIN=b[i];</span><br><span class="line">                <span class="keyword">if</span>(b[i]&gt;MAX)</span><br><span class="line">                    MAX=b[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> MAXX=MAX-<span class="string">'0'</span>,MINN=MIN-<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span>(MINN==<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            a+=MAXX*MINN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag">模拟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-让平凡的日子也散发出光亮" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/"
+    >让平凡的日子也散发出光亮</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/23/%E8%AE%A9%E5%B9%B3%E5%87%A1%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%9F%E6%95%A3%E5%8F%91%E5%87%BA%E5%85%89%E4%BA%AE/" class="article-date">
+  <time datetime="2020-04-23T01:45:14.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>所谓仪式，是在一件本来没有价值甚至劳民伤财的事件上注入了感情和美好的祝愿，赋予其意义和存在的必要。所以古时候杀猪牛羊，本来是浪费食物，如果说用去祭祀天地，那就是良好的祝福。</p>
+<p>所谓仪式感，指的就是这种生活的态度。就像《小王子》中说的，是使这一天与其他的日子不同，这一刻与其他的时刻不同。</p>
+<p>一定要把一个单调寻常的东西变得特殊，这是不是自作多情？你别说，我们的生命里有的时候还真就是需要这种自作多情。</p>
+<p>一个人只拥有此生此世是不够的，他还需要拥有诗意的世界。</p>
+<p>诗意的世界就借由仪式感来创造。</p>
+<p>想象一下这样的场景：落叶纷飞的秋天，云的颜色阴沉沉的，路人们都戴着口罩和帽子，低着头脚步匆匆。你也走在大街上，这时你看到了一片银杏落叶。所有的银杏落叶都是金黄色的小扇子，长着细密的纹理，但这一片不一样。这一片不一样在什么地方？它在小扇子的边缘处，边缘的中间，缺了一个小口。这使它看上去不像是一把小扇子，反像是一颗小爱心了。你轻轻地蹲下，是蹲下而不是弯腰，因为你想离得更近一些，再温柔一些地把它捡起来。你把它放到大衣的口袋里，又怕走着走着被压碎了，于是捏着柄拿在手上。回到住所，你第一件做的事就是打开最心爱的那本厚厚的日记本，把它夹在里面。</p>
+<p>再想像一下这样的场景吧：一个平平常常的午后，硬要说有什么特别不平常的地方，那就是西边的云比平常多了两朵。温柔的阳光照在你的书桌上，正像所有好天气的冬日下午两点钟一样。你看了看表，两点半，是时候泡一杯咖啡了。卡布奇诺，一定是卡布奇诺，在上面要有图案精美的拉花。可能是一棵树，可能是一朵花，但更多时候是爱心。品着咖啡，静静地读一本书，上周是《百年孤独》，那么这周是《病隙碎笔》，感受到了吗？温暖的阳光，温暖的咖啡，在你的体内酝酿着，在繁忙的日常中无所安放的灵魂也在这样的时刻被安抚了。</p>
+<p>有些人说自己日子单调枯燥，生活无趣乏味。其实每个人的生活都是日复一日地重复。他想象的精彩是什么样子？每天都去不同的地方旅行？如果天天如此，那么在他这里，不也仍然难逃乏味二字吗？米饭九分平淡，但若细细品尝，也有一分甘甜。所以我觉得，没有无趣的生活，只有无趣的人。</p>
+<p>生活中的仪式感，它是对生命本身的敬畏，也是对生活本身的热爱。</p>
+<p>让平凡的日子也散发出光亮。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-拉普拉斯妖，你知道吗？" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -973,7 +1127,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020-2022
+        2020-2023
         <i class="ri-heart-fill heart_icon"></i> Rye
       </li>
     </ul>
