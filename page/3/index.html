@@ -81,6 +81,225 @@
     
     
     
+    <article id="post-codeforces-1417C-k-Amazing-Numbers" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/14/codeforces-1417C-k-Amazing-Numbers/"
+    >[codeforces 1417C] k-Amazing Numbers</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/10/14/codeforces-1417C-k-Amazing-Numbers/" class="article-date">
+  <time datetime="2020-10-14T07:25:54.000Z" itemprop="datePublished">2020-10-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://codeforces.com/contest/1417/problem/C" target="_blank" rel="noopener">1417C</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn],last[maxn],f[maxn],ans[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);<span class="built_in">cout</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            last[i] = f[i] = <span class="number">0</span>;</span><br><span class="line">            ans[i] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];</span><br><span class="line">            f[x] = max(f[x], i - last[x]);</span><br><span class="line">            last[x] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i] = max(f[i], n - last[i] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = f[i]; j &lt;= n &amp;&amp; ans[j] == <span class="number">-1</span>;j++)</span><br><span class="line">                ans[j] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-codeforces-1430D-String-Deletion" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/14/codeforces-1430D-String-Deletion/"
+    >[codeforces 1430D] String Deletion</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/10/14/codeforces-1430D-String-Deletion/" class="article-date">
+  <time datetime="2020-10-14T07:25:13.000Z" itemprop="datePublished">2020-10-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>题目：<a href="https://codeforces.com/problemset/problem/1430/D" target="_blank" rel="noopener">1430D</a><br>题意：<br>给定一个由0和1组成的字符串，每次你必须执行如下两步操作：<br>1.选择一个位置i并且删除这个位置上面的字符<br>2.由相同字符组成的最大长度的连续前缀会被删除<br>要求最大化操作次数</p>
+<p>思路：<br>题目要求我们最大化操作次数，不难发现：<br>当由相同字符组成的前缀的长度&gt;=2的时候，不管选不选它，这段前缀都会被删除；<br>而如果不选择它，我们就需要删除后面的一个字符，这样的话可能会减少操作次数。<br>因此我们应该贪心地选择它，以便增多操作次数。<br>当由相同字符组成的前缀的长度为1，即开头不出现连续字符的时候，我们应该从最前面的有至少两个相同字符组成的块中删除一个字符。<br>否则，我们的操作次数可能就会变少。</p>
+<p>当字符串全部是左右不相同的字符组成的时候，比如10101010，我们可以确定删除的次数必定是[n/2]</p>
+<p>我们可以给每一段由相同字符组成的字符子串打上标记，<br>比如1110010110<br>标记为0001123445<br>使用队列储存，以方便确认最前面的数据。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>,ans = <span class="number">0</span>,deleted = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]!=s[i<span class="number">-1</span>])</span><br><span class="line">                cur++;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;s[i]==s[i<span class="number">-1</span>])</span><br><span class="line">                q.push(cur);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            q.pop();</span><br><span class="line">            deleted++;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty()&amp;&amp;i==q.front())</span><br><span class="line">            &#123;</span><br><span class="line">                q.pop();</span><br><span class="line">                deleted++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            deleted++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += (n - deleted + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag">贪心</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-扬州旅行计划书" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/"
+    >扬州旅行计划书</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/" class="article-date">
+  <time datetime="2020-10-09T03:37:30.000Z" itemprop="datePublished">2020-10-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/">我们的旅行</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>是七月末的时候去扬州和南京旅行之前做的攻略，<br>本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。<br>去南京玩的时候酒店就选的太远了，准备不足。<br><a href="扬州旅行计划书.pdf" title="下载">点击下载</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-2019CCPC哈尔滨-F-Fixing-Banners" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -679,276 +898,13 @@
 
 </article>
     
-    <article id="post-南京扬州游记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/"
-    >南京扬州游记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/07/31/%E5%8D%97%E4%BA%AC%E6%89%AC%E5%B7%9E%E6%B8%B8%E8%AE%B0/" class="article-date">
-  <time datetime="2020-07-31T01:22:06.000Z" itemprop="datePublished">2020-07-31</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/">我们的旅行</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="闲云小院"><a href="#闲云小院" class="headerlink" title="闲云小院"></a>闲云小院</h2><p>在扬州住的地方，名为闲云小院。</p>
-<p>沿着皮市街的小巷子走百米，转三个方向，才能寻到这处藏在闹市之中的小院子。</p>
-<p>院子虽小，五脏俱全。有一水池，游动着几只肥美的金鱼。有竹，簇拥在院子的东南角，一竹成林，在那角落里肆意地生长着。挂着几只常亮的红灯笼，在晚上便有微光。房主人爱茶，于是有茶室。大堂里摆放着古筝，红木的八仙桌和太师椅。</p>
-<p>寻到一处清净是难得的，唯独蚊虫蚂蚁实在过多，亦是不堪其扰了。<br><img src="https://pic.imgdb.cn/item/5f788062160a154a67173416.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f78804c160a154a67172dcd.jpg" alt=""></p>
-<h2 id="二十四桥仍在"><a href="#二十四桥仍在" class="headerlink" title="二十四桥仍在"></a>二十四桥仍在</h2><p>去瘦西湖的那一天，天气并不好。阴云密布，已不见蓝天。闷热潮湿，却也盼不到落雨。五亭桥是最惹眼的景观，乘凉倒是不错。</p>
-<p>美自然是美的。扬州园林的精致小巧，在这里可见一斑了。</p>
-<p>只是斧凿的痕迹重了，为我不喜。</p>
-<p>扬大瘦西湖校区便在旁边，大学生进此处是免票的，扬州大学的学生，晚上来此漫步，岂不妙哉。</p>
-<p>高中同桌便在扬大读书。印象里，他是一个有些腼腆而温柔的男孩。我和他都不是擅长维系关系的人，毕业之后于是联系减少了。离别多是这样的。</p>
-<p>此去扬州，他已回家，便没能再见，也是有些可惜的。<br><img src="https://pic.imgdb.cn/item/5f787be8160a154a6715ed37.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787bc3160a154a6715e0be.jpg" alt=""></p>
-<h2 id="热闹喧嚣"><a href="#热闹喧嚣" class="headerlink" title="热闹喧嚣"></a>热闹喧嚣</h2><p>似乎每个城市都有这样一条仿古建筑的步行街。苏州之平江路、山塘街，北京的南锣鼓巷，成都的宽窄巷子，就连太仓都有沙溪、陆渡古镇。扬州的皮市街和东关街便是这样了。</p>
-<p>东关街的尽头是一处高大的城门，再往外便是古运河。古运河的一段，异常狭窄，见过了之后大失所望，比之太仓的新浏河或许还要不如。然而转念一想，一条河的历史意义，难道由宽窄而决定吗？于是释然了，转而心生敬佩了。</p>
-<p>河滩，有一位唱着民谣的流浪歌手。而他的词却与原作者有所不同。</p>
-<p>比如赵雷的《成都》，是这样唱的“你会挽着我的衣袖，我会把手揣进裤兜”，而他是这样唱的“你会挽着他的衣袖，我会把手揣进裤兜”。</p>
-<p>最是情字最伤人。</p>
-<p>我们竟回到闲云小院撸串喝酒，若是房东知道了，怕是要气的七窍生烟，这几个不懂风雅的俗人！</p>
-<p>酒未竟，心已醉。放声高歌，而四人都不在调子上，戏称“跑调合唱团”。</p>
-<p>热闹之后，在院子里喂鱼。向后走几步，便看见月亮从屋檐上跑了出来。</p>
-<p>扬州是赏月的好地方。<br><img src="https://pic.imgdb.cn/item/5f79252b160a154a67379d17.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792547160a154a6737a2be.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f7925a2160a154a6737b33e.jpg" alt=""></p>
-<h2 id="天下文枢"><a href="#天下文枢" class="headerlink" title="天下文枢"></a>天下文枢</h2><p>夫子庙是游客来南京必去的景点。南京本地的同学都说，此处商业化气息过重，十分坑人。</p>
-<p>在一处古色古香的街道看见美特斯邦威的灯箱确实有些煞风景。（没有看不起美特斯邦威的意思，我很喜欢买他家的衣服）</p>
-<p>然而只需花九元买一个讲解服务，忘掉那些购物，便能欣赏到夫子庙的另一面。</p>
-<p>走进夫子庙，便了解了孔子的一生。游历诸国，讲学天下……你会发现他其实和你想的不太一样。并不是一个冥顽的老学究，他相当幽默。并不是一个文弱的书生，他身高九尺六寸（换算成今天就是2米2），孔武有力。</p>
-<p>后人不仅神化了孔子，还把孔子的学说作为统治人民乃至奴役人民的工具。于是孔子成为封建文化的代言人，这是相当可悲的。<br><img src="https://pic.imgdb.cn/item/5f787fb5160a154a67170b4a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f792593160a154a6737b04e.jpg" alt=""></p>
-<h2 id="秦淮"><a href="#秦淮" class="headerlink" title="秦淮"></a>秦淮</h2><p>夜游秦淮，秦淮两岸的灯光是精心布置的，称得上流光溢彩。水拍打着船，不知不觉心静下来了。听秦淮八艳的故事，感叹古时女子命运的悲戚。</p>
-<p>顾横波、董小宛、卞玉京、李香君、寇白门、马湘兰、柳如是，陈圆圆。</p>
-<p>色艺超群，德才双馨。侠肝义胆，忧国忧民。有的曾是明末将军的千金，有的做了青灯古佛的尼姑。秦淮八绝都是风尘女子，然而其民族气节比之位高权重的名门望族又如何呢？</p>
-<p>只是不见了两岸的才子佳人，听不到了商女《后庭花》。才知道过往种种已不可寻。<br><img src="https://pic.imgdb.cn/item/5f78802b160a154a67172625.jpg" alt=""></p>
-<h2 id="人生当如鸿鹄鸟"><a href="#人生当如鸿鹄鸟" class="headerlink" title="人生当如鸿鹄鸟"></a>人生当如鸿鹄鸟</h2><p>我最爱的是站在高楼俯瞰大地。</p>
-<p>以居高临下的角度，能用一种不同于平时的视野看这世界。《死亡诗社》中Caption就让他的学生站在讲台上看这教室，于是能有不同的感受。</p>
-<p>我在太仓拍过夜景，蹲在群星花园二十四楼的最高层，守候着日落。也去过苏大凌云楼最高处，发现古城的夜色朦胧和金鸡湖的流光溢彩。南京的紫峰大厦，是我去过的最高处。那电梯不是以楼层，而是以高度亮灯。</p>
-<p>288.6米，是观光层的高度。</p>
-<p>于是玄武湖、紫金山尽收眼底。在陆地上要走很久的路，变得近如咫尺；飞驰的汽车，如同蚂蚁爬行；层叠的楼房，像是土地上生长出的钢铁植物；云雾缭绕间，隐约看到远方的长江大桥……</p>
-<p>人生当如鸿鹄鸟，不临九天不丈夫。<br><img src="https://pic.imgdb.cn/item/5f787d70160a154a67166886.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787f5d160a154a6716f252.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787df8160a154a67168c5a.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f787c9d160a154a67162dba.jpg" alt=""></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-田野也消失了" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/"
-    >田野也消失了</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/07/17/%E7%94%B0%E9%87%8E%E4%B9%9F%E6%B6%88%E5%A4%B1%E4%BA%86/" class="article-date">
-  <time datetime="2020-07-17T01:47:08.000Z" itemprop="datePublished">2020-07-17</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>又是一年，回到太高，思绪已逐渐遥远。</p>
-<p>我们也有了一些变化、正如太高也有了一些变化。可对我来说，最大的改变竟不是在太高，而是太高东面的田野上——建起了一栋栋整齐的商品房。</p>
-<p>原本位于南郊，被戏称为乡下学校，百草丰茂，是虫豸的乐园。清晨走出宿舍时，能看见操场上款款行走的白鸟。晚上晚自习，能在一节课拍死二十只蚊子，又好事者把它们排成一列，粘在纸上，曝尸示众。倒也不觉得残忍，人向来冷酷。因为此般丰富的物种，再加上那一条流淌而过的臭水沟，又把学校呼作“生态沟”。</p>
-<p>高一刚入学时，最喜欢趴在东面的走廊上吹风。凝望着远方，那是一个少年对于未来的全部渴望。常记得冬天的清晨六点，薄薄的淡雾，在地上只是一层，弥漫在树林和田野里。雾中，依稀见到初升的太阳，然后橙黄色的阳光渐渐晕染了水汽，那幅景象静谧而玄奇。那时我也十六岁，隐约觉得那就是“希望”。</p>
-<p>校外的东南角有一栋孤独的老房子。不大的院墙里生长着一棵雄壮的银杏树，每至秋天，叶子落满了院落的地面，曾隔门相望，里面像是一个神秘的世界。那棵银杏树，在学校的走廊里也是能看见的。我最爱银杏的叶子。</p>
-<p>高二高三时，田野变成了建筑工地，工程机械整日不停地轰鸣，午睡时常常不堪其扰。直到今日再回校，才发现楼盘已经紧凑地布列在那里了——那原来是田野、树林和老院落的地方。</p>
-<p>今天的同学们，若是再像我当时那样，喜欢趴在栏杆上吹风，喜欢眺望远方，想必已经是看不到那时的风景了。</p>
-<p>时隔一年，如历半生，恍惚间仿佛还看见自己曾经的身影。然而过去种种苦乐酸甜，已随着时间酿成了清冽的甜酒，当是能够释怀了。只有那些如囚笼般的钢铁森林，让我尤为不喜。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-codeforces-1372C-Omkar-and-Baseball" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/12/codeforces-1372C-Omkar-and-Baseball/"
-    >[codeforces 1372C] Omkar and Baseball</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/07/12/codeforces-1372C-Omkar-and-Baseball/" class="article-date">
-  <time datetime="2020-07-12T14:28:20.000Z" itemprop="datePublished">2020-07-12</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>题目: <a href="https://codeforces.com/problemset/problem/1372/C" target="_blank" rel="noopener">1372C</a><br>题意：给定一个从1~n的顺序不定的数组，定义一种排序操作：区间[L,R]，操作后里面的所有数都不在原来的位置上。求几次操作可以把数组变成1,2,3,..n的顺序。<br>思路：<br>没有经过严格的论证，但是造了几个数据发现如下规律：</p>
-<p>1.排序操作最多进行两次。<br>把所有在正确位置的数记为1，不正确位置的数记为0；<br>比如52341  (01110)<br>如果对于区间[1,5]排序，所有对1的操作都必须把1变成0；所有对0的操作一定可以把0变成1；<br>无论是怎么样的乱序，都可以通过一次操作变成全部0；<br>所以52341 -&gt; 43512 (00000) (答案不唯一)<br>然后00000全部翻成11111，也就是12345答案。</p>
-<p>2.位于首、尾的1可以忽略。比如12435(11001)，那么12和5的位置我们就不要动了，直接对[3,4]进行操作。</p>
-<p>我们可以在输入数据的时候就把位置正确的记为1，不正确的记为0.<br>然后，直接对数组进行unique去重。将得到以下几种情况。<br>全部为1的情况下<em>(len == 1 &amp;&amp; a[0] == 1)</em>，需要进行0次操作。<br>000001111或者111000或者1110001111，我们可以忽略首尾的1，将他们视作0000，这种情况下需要1次操作。<br>len&gt;=2的情况下，进行2次操作。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span>;</span><br><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"><span class="keyword">int</span> b[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">            <span class="keyword">if</span>(a[i] == i+<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                b[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                b[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = unique(b,b+n) - b;</span><br><span class="line">        <span class="keyword">if</span>(len == <span class="number">1</span>&amp;&amp;b[<span class="number">0</span>]==<span class="number">1</span>)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">2</span>||(len==<span class="number">1</span>&amp;&amp;b[<span class="number">0</span>]==<span class="number">0</span>))</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(b[<span class="number">0</span>]==<span class="number">0</span>)</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="number">2</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">2</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>代码写的有点乱。<br>这大概是第一次做出DIV2的C题，虽然分数只有1500.<br>结果没有计算rating，失去了一个上分机会……</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
   </nav>
   
 </section>

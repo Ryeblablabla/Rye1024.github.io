@@ -81,6 +81,239 @@
     
     
     
+    <article id="post-位运算简单原理-用点阵显示汉字" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/"
+    >[位运算简单原理] 用点阵显示汉字</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/30/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86-%E7%94%A8%E7%82%B9%E9%98%B5%E6%98%BE%E7%A4%BA%E6%B1%89%E5%AD%97/" class="article-date">
+  <time datetime="2020-05-30T14:19:18.000Z" itemprop="datePublished">2020-05-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>参考：<a href="https://www.cnblogs.com/hshy/articles/7839785.html" target="_blank" rel="noopener">HZK16汉字16*16点阵字库的使用及示例程序</a><br>今天课上老师让我们写一个用16*16的点阵字库显示汉字的程序，给了一个HZK16字库。但是奈何本人太过愚钝，上课时候没怎么听懂，只能在网上借鉴了大神的博客。</p>
+<p>我们想要显示一个汉字的16×16的样子，就需要先明白这个原理。<br>在HZK16字库中，用二进制的形式存储了很多汉字的形状。一个汉字使用32个字节储存。其中0代表空白（白色方块），1代表有笔画/墨水的黑色方块。<br><img src="https://img-blog.csdnimg.cn/20200530222417448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J5ZWJsYWJsYWJsYQ==,size_16,color_FFFFFF,t_70" alt="啊字"></p>
+<p>比如这个“啊”字。<br>一字节(byte)对应着8位(bit)，8位中的每一位都代表着一个0或者1，这就是计算机最底层的存储。<br>也就是说，一个字节能够保存的数字，换算成16进制也就是0x00-0xFF。<br>上面说了，每一个0或者1都分别代表着空白或者有笔画，所以，我们用一个字节(byte)可以存储8个方块。<br>16×16就可以被分割为16×2×8，也就是32个字节。<br>比如第一行，我们把白色方块变成0，黑色方块变成1，8个为一组分开，将会是这样：<br>0b00000000=0x00;0b00000100=0x04<br>第二行，就是这样：<br>0b00101111=0x2F;0b01111110=0x7E<br>所以存储这个“啊”字的32个字节分别是：00 04 2F 7E ……</p>
+<p>我们想要打印这个汉字，只要找到这32个字节，然后分别将每一个位置上的0或者1用别的形式打印出来。<br>那么怎么将一个二进制数字的每一位都取出来呢？这就需要运用位运算。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag = buffer[k*<span class="number">2</span>+j]&amp;key[i];</span><br></pre></td></tr></table></figure>
+<p>也就是这一行。<br>比如0x2F<br>二进制形式是0b00101111，想要取出他每一位上的数字，分别和0b10000000(也就是十进制的128，十六进制的0x80)、0x40，0x20…进行&amp;运算，就可以得到结果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> key[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0x80</span>,<span class="number">0x40</span>,<span class="number">0x20</span>,<span class="number">0x10</span>,<span class="number">0x08</span>,<span class="number">0x04</span>,<span class="number">0x02</span>,<span class="number">0x01</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这也是最开始定义key数组的原因。</p>
+<p>那么怎么在字库中找到这个汉字的位置呢？</p>
+<p>老师的PPT中给了一个字形码计算的公式：word[1]-0xA1+94×(word[0]-0xb0)+15×94<br>这个公式其实等价于：(94×(区码-1)+(位码-1))<br>如果有对区码和位码的概念不清楚的同学可以参考上面的博客。</p>
+<p>但是这个公式并不能用来找到一个汉字在字库中的位置，需要乘以32，可能是因为一个汉字用32个字节显示。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset = (<span class="number">94</span>*(<span class="keyword">unsigned</span> <span class="keyword">int</span>)(word[<span class="number">0</span>]<span class="number">-0xa1</span>)+(word[<span class="number">1</span>]<span class="number">-0xa1</span>))*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> offset2 = (word[<span class="number">1</span>]<span class="number">-0xA1</span>+<span class="number">94</span>*(word[<span class="number">0</span>]<span class="number">-0xb0</span>)+<span class="number">15</span>*<span class="number">94</span>)*<span class="number">32</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这两种都是正确的。</p>
+<p>最后，注意字库文件应该用二进制形式打开。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-codeforces-1360D-Buying-Shovels" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/28/codeforces-1360D-Buying-Shovels/"
+    >[codeforces 1360D] Buying Shovels</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/28/codeforces-1360D-Buying-Shovels/" class="article-date">
+  <time datetime="2020-05-28T14:17:35.000Z" itemprop="datePublished">2020-05-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>题目见: <a href="https://codeforces.com/problemset/problem/1360/D" target="_blank" rel="noopener">1360D</a><br>题意：给n把铁锹和一个数k，可以选择任意一个数1&lt;= t &lt;= k，每次都购买t个铁锹，求最少的购买次数。<br>思路：求n的最大的但不大于k的因数,n除以这个因数就是答案。可以想到的是：1.在k&gt;=n的情况下，只需要购买1次。2.正常来说，为了找到1到k范围内n的最大的因数，我们需要遍历1到k，但是这样很容易导致超时。优化的方法是：遍历1<del>√k，如果能找到一个数x被n整除，这说明它是其因数。并且，n/x也是其因数。<br>例如第一组样例n=8,k=7<br>如果遍历1</del>7则是：<br>x=1, n%1=0, 8/1=8;<br>x=2, n%2=0, 8/2=4;<br>x=3..<br>x=4, n%4=0, 8/4=2;<br>n=5..6..7..<br>其中最大的因数是4,故而ans = 2;<br>但是如果遍历1~√7则是<br>x=1, n%1=0, 8/1=8, 8/(8/1)=1 (8&gt;7 不成立);<br>x=2, n%2=0, 8/2=4, 8/(8/2)=2;<br>可以看到，当我们遍历到最小的因数的时候，其实也获得了对应的最大的因数。<br>只要这个相对小的因数对应的相对大的因数不大于k，我们就可以认为它对应的相对大的因数是最终的答案。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">if</span>(b &gt;= a )&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = a;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i * i &lt;= a; i++)&#123;</span><br><span class="line"><span class="comment">//                cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                <span class="keyword">if</span>(a % i == <span class="number">0</span> )&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt;= b)</span><br><span class="line">                        ans = min(a/i,ans);</span><br><span class="line">                    <span class="keyword">if</span>(a / i &lt;= b)</span><br><span class="line">                        ans = min(ans, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-HDU6536-Hello-XTCPC" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/24/HDU6536-Hello-XTCPC/"
+    >[HDU6536] Hello XTCPC</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/24/HDU6536-Hello-XTCPC/" class="article-date">
+  <time datetime="2020-05-24T14:16:51.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="https://vjudge.net/problem/HDU-6536" target="_blank" rel="noopener">题目</a><br>题意：给一个字符串，寻找最多个数“xtCpc”的子串，有大小写区别。<br>思路：对于队列不太熟悉，一开始用数组，自己造的数据死活过不了，交了两次也就没写了。用队列保存每个字母出现的下标，然后由x开始检索，查找符合条件的下标大于前一个字母下标的对象，不符合条件的，后面的也不可能成立，于是pop。查完到‘c’的时候，答案+1；如果超出就结束。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> @Author : Rye Wang</span></span><br><span class="line"><span class="comment"> @Version : 1.0</span></span><br><span class="line"><span class="comment"> @E-mail : Rye10000010000@hotmail.com</span></span><br><span class="line"><span class="comment"> @Site: Rye1024.gitee.io</span></span><br><span class="line"><span class="comment"> @Time : 2020-05-24-19.05.11</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dbug cout &lt;&lt; <span class="meta-string">"Where?"</span> &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; x;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; C;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; p;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>( ! x.empty())</span><br><span class="line">            x.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! t.empty())</span><br><span class="line">            t.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! C.empty())</span><br><span class="line">            C.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! p.empty())</span><br><span class="line">            p.pop();</span><br><span class="line">        <span class="keyword">while</span>( ! c.empty())</span><br><span class="line">            c.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'x'</span>) x.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'t'</span>) t.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'C'</span>) C.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'p'</span>) p.push(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">'c'</span>) c.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x.size())&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = x.front();</span><br><span class="line">            x.pop();</span><br><span class="line">            <span class="keyword">while</span>(t.size() &amp;&amp; t.front() &lt; pos) t.pop();</span><br><span class="line">            <span class="keyword">if</span>(t.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = t.front();</span><br><span class="line">            t.pop();</span><br><span class="line">            <span class="keyword">while</span>(C.size() &amp;&amp; C.front() &lt; pos) C.pop();</span><br><span class="line">            <span class="keyword">if</span>(C.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = C.front();</span><br><span class="line">            C.pop();</span><br><span class="line">            <span class="keyword">while</span>(p.size() &amp;&amp; p.front() &lt; pos) p.pop();</span><br><span class="line">            <span class="keyword">if</span>(p.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = p.front();</span><br><span class="line">            p.pop();</span><br><span class="line">            <span class="keyword">while</span>(c.size() &amp;&amp; c.front() &lt; pos) c.pop();</span><br><span class="line">            <span class="keyword">if</span>(c.empty()) <span class="keyword">break</span>;</span><br><span class="line">            pos = c.front();</span><br><span class="line">            c.pop();</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-codeforces-1355A-Sequence-with-Digits" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -802,321 +1035,13 @@
 
 </article>
     
-    <article id="post-当我拿起相机" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/"
-    >当我拿起相机</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/01/11/%E5%BD%93%E6%88%91%E6%8B%BF%E8%B5%B7%E7%9B%B8%E6%9C%BA/" class="article-date">
-  <time datetime="2020-01-11T01:57:33.000Z" itemprop="datePublished">2020-01-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>从2018年6月1日我买了尼康D5600为第一台单反开始，到现在已经马上接近一年又六个月了，前些天，学校有一个学生书画摄影大赛，我有意参加，在挑选符合要求的照片时却没有办法找到令人满意的可以成为作品的照片，最终陷入了深深的自我怀疑当中。</p>
-<p>曾向佳琪抱怨过这个问题，说，自己拍照片的举动始终是无意识的。佳琪安慰我说“你学摄影才多久呀，就想拍出多好的照片。”我深以为然。但是现在看来，这段时间其实已经不短了。在这期间，我进步了多少呢，我学习了多少呢？我在2019年之初定下一年目标的时候，曾经写下“按下第五千次快门”。这个目标现在已经达到了，但是这五千次快门中真正能被称作是看的过去的照片不超过两百张，而这两百张具有审美意义的，在我看来不超过两张。而这两张勉强可以称之为作品的照片，亦是缺乏内涵的。为什么缺乏内涵呢？因为拍下他们时，相机背后的我是无意识而被动地拍照，我缺乏主观的表达意愿也缺乏用相机表达我意愿的能力。</p>
-<p>我们不应该否认相机作为相机本来的功能，也即是“记录”的功效，但是摄影不同于拍照的最大一个特点，也正是摄影之所以可以自诩为艺术的原因，和绘画，和音乐，和雕塑和其他一切美学意义上的途径相同，摄影应该作为一种“表达”创作者想法的途径。</p>
-<p>我的作品缺乏这种表达。</p>
-<p>即使这一年半以来我看了很多很多的书，我了解了构图，我学会了后期，我知道前期的各种参数，我知道什么条件下该使用怎么样的快门速度曝光度和光圈，我可以使用三脚架和滤镜，但是我依然称不上得其门道。说到底，我缺乏系统化的学习，但是这不是问题的关键。我看了很多很多的照片，从糖水片到大师的作品，或多或少确实提升了一定的审美能力，但仍然缺乏本质上对美的敏锐，否则我又为何对于创造美这一件事感到无力呢？</p>
-<p>我买了第二个镜头，可正如人们所说，摄影重要的不是相机前面那个头，而是相机后面那个头。造成这一切的根本原因是因为我在按下快门的时候缺乏思考。</p>
-<p>也有摄影师说过，“我拍照片只是想看看这些东西拍成照片是什么样子。”但是这不是按下快门的时候不经过脑子的理由。摄影之不同于拍照就在于它不是看到了什么就拍，而是想好了拍成什么样才拍，所谓胸有成竹是也。没有思考，这个相机的感光原件与光线反应的瞬间就不配称之为摄影。没有思考，相机后面的那个脑袋的主人就不配被称为摄影师。</p>
-<p>在今天，手机的拍照性能越来越强大，在光线好的时候，因为其像素高，甚至可以媲美微单。我想起我最开始，也正是因为我用手机随手拍的几张夕阳，被妈妈盛赞，于是便自傲不已地认为自己有摄影上的天赋。那时的照片是无意识的，而到今天，我拍的照片仍然没有摆脱这样的范畴，这一年半以来，我的长进寥寥。在圈外人看来，或许可以冠绝朋友圈，收获一大批赞赏和好评，但是在真正懂摄影的人看来，却是太过乏味而无趣了。</p>
-<p>正如安塞尔亚当斯所说，“You don’t make a photograph just with a camera.You bring to the act of photography all the pictures you have seen,the books you have read,the music you have heard,the people you have loved.”安塞尔亚当斯以其风光摄影作品而闻名，并不是只有人文主题的照片可以拍出思想的，风光，或是其他，也照样可以。我始终没有以靠摄影为生的想法，只是把它当做一个兴趣爱好，虽说与此，但我的初衷并不单单是为了“记录”和拍照。在我眼里相机不应该只是用来截取时间以供回忆，因为回忆是太私人化的体验。它还要让时间长河里那些独属于我的美好变得熠熠生辉，让它人能感知到其美和其珍贵，这样，那个瞬间才能真正变为永恒，对于这个多彩的世界的爱才能被真正传达到。</p>
-<p>以此自勉，我将用一生追逐光透过叶子的缝隙洒在地上的影子的瞬间，追逐西边的太阳把云彩映成橘红色的瞬间，追逐水滴落下溅起浪花和涟漪的瞬间，追逐美，自由和爱。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%B2%E6%80%9D/" rel="tag">哲思</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E6%84%9F/" rel="tag">杂感</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-南昌杂记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/05/%E5%8D%97%E6%98%8C%E6%9D%82%E8%AE%B0/"
-    >南昌杂记</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/01/05/%E5%8D%97%E6%98%8C%E6%9D%82%E8%AE%B0/" class="article-date">
-  <time datetime="2020-01-05T01:51:35.000Z" itemprop="datePublished">2020-01-05</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/">我们的旅行</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>有的人带着思念回家，有的人陪着自己出走。</p>
-<p>——记我的第一次独自旅行</p>
-<h2 id="1-绿皮火车"><a href="#1-绿皮火车" class="headerlink" title="1.绿皮火车"></a>1.绿皮火车</h2><p>早在暑假之时，就有独自出走的想法，而终于在今天，借由探望同学的借口得以实现。<br>第一次坐上绿皮火车，脏，几只苍蝇在车厢内纷飞。挤，即使是一个人在过道中也难以通过。<br>算来，已经有几个小时没有上厕所。一个人带了个大箱子，背着个大背包，最担心的是回来之后自己的行李不翼而飞。</p>
-<p>肚子已经开始有些咕噜叫，中午吃了什么呢？有些不记得了。同行的旅客都拿出自己的干粮，我只带了一瓶农夫山泉。<br>躺在最上铺的我没有办法直起身子，也看不到外面的风景。</p>
-<p>但是这一切，却不成为我抱怨的理由。我不想抱怨，因为，我喜欢这个慢吞吞的小车厢。</p>
-<p>我喜欢听坐在窗边的陌生人互相攀谈，聊到自己的故乡。他们一个已有了许多白发，一个打扮时髦，看上去不比我大几岁。他们一个说话带着许多口音，另一个的普通话说的比北京人还溜。他们或许从未相遇，今后也再不碰面，但是在此刻他们相谈甚欢。这样神奇的缘分，这种人世间的因果令我着迷。</p>
-<p>看不见窗外的风景，却能看到铁轨。夕阳的余晖洒落在铁轨上，周围的一切快速倒退直至模糊而不可辨。渐渐地，黑夜来临。车窗上显示出拥挤的车厢内的反光，似乎这拥挤的空间凭空扩大了一倍。这梦幻的光景令我着迷。</p>
-<p>那些孩子撒娇的言语，方便面的香气，打电话的声音，那好奇的打量着周边人的眼光。这一切让我确凿万分地感受到自己生活在人间，以及自己确实活着这一事实。这烟火气让我着迷。</p>
-<p>飞机太快，而优质的空乘服务似乎更加深了人与人之间的隔阂。人与人之间总是来不及熟悉，就已经分道扬镳。</p>
-<p>过客始终是过客，只是相比于匆匆一面就别离的过客，能够聊上两句自己的经历的过客，这样的关系更让我觉得浪漫。</p>
-<p>那一瞬间，在这个小小的绿皮车厢里，一群从不同的地方走来的陌生人，他们的生命在此时此刻汇聚在一个点上，有过小小的缠绕。这小小的交叉会在他们生命中留下小小的痕迹，即使那终将被忘记，但它曾经是那么美丽。然后，他们再匆匆奔向自己的人生，并且，不再重叠。</p>
-<p>这就是过客的含义。</p>
-<p>老人说，他喜欢绿皮火车。</p>
-<p>我也是。<br><img src="https://pic.imgdb.cn/item/5f788713160a154a671900a1.jpg" alt=""></p>
-<h2 id="2-缺憾寄付余生"><a href="#2-缺憾寄付余生" class="headerlink" title="2.缺憾寄付余生"></a>2.缺憾寄付余生</h2><p>遗憾于我们没能坐上曾是第一高的摩天轮</p>
-<p>手挽着手，狂热的游人</p>
-<p>吐出的气息灼热了我们的体温</p>
-<p>难忘于我们一前一后蹬着脚踏车</p>
-<p>柏油马路上，翻滚的双轮</p>
-<p>是我们最好的青春</p>
-<p>那些未能完成的缺憾</p>
-<p>我请求将他们、寄付余生<br><img src="https://pic.imgdb.cn/item/5f78878b160a154a67191f86.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f788780160a154a67191c95.jpg" alt=""></p>
-<h2 id="3-老友"><a href="#3-老友" class="headerlink" title="3.老友"></a>3.老友</h2><p>那是五年前的一个夏天，我和他坐在操场旁的木椅上。我是班里的尖子生，有望考上当地最好的高中，而他当时的成绩却够不上沙高的分数线。</p>
-<p>“如果中考的时候，我考差一点，你考好一点，或许我们能一起去沙高做舍友。”那样的话，我们就可以继续在一起了。心里如是想到。</p>
-<p>幸运的是，我们一起去了省太高。</p>
-<p>四年后，一个炎热的夏天。高考结束，他去了南昌的学校，我留在苏州读书。那个暑假是我们最快乐的暑假，没有作业的束缚，没有考试的压力，拉上三五好友，三天两头聚一聚，常常在群中连麦到夜半三更。</p>
-<p>我们的群叫做“老友”，而把我们这群初中时候的老友紧密联系在一起的竟然是游戏。从球球大作战到王者荣耀……也正是通过这个纽带，我们到今天仍然是很好的朋友。反而是高中的伙伴，在上了大学之后渐渐听不到他们的消息了。</p>
-<p>初中时候曾一起去的lim’s coffee已经在高一的暑假关了，之后，我们就去KFC。南洋广场的角角落落里布满了我们的足迹。</p>
-<p>陆懿斌在2019年的暑假找了女朋友，张雨芊。也是太高的同学，拥有相同的交友圈。在我眼里，愿意将自己的伴侣介绍给自己朋友们，接纳他进入自己的社交圈，这是一种坦诚和信任。<br>2019年12月30日，老友们送给我许多礼物。出生以来第一次收到过这么多的祝福竟然是在离开家乡后。</p>
-<p>友谊之珍贵，后来我终于确切地感受到这一点。</p>
-<h2 id="4-南昌"><a href="#4-南昌" class="headerlink" title="4.南昌"></a>4.南昌</h2><p>说到南昌，是什么带给我最深的印象呢？</p>
-<p>去的地方不多。滕王阁，八一纪念馆，八一广场，699文化创意园，南昌之星摩天轮……</p>
-<p><img src="https://pic.imgdb.cn/item/5f7886b3160a154a6718e6ce.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f788690160a154a6718dd7e.jpg" alt=""></p>
-<p>这座城市有着红色的基因，有着历史的积淀，然而正如所有的省会城市一样，也不缺少高楼大厦和车水马龙。</p>
-<p><img src="https://pic.imgdb.cn/item/5f78873d160a154a67190b52.jpg" alt=""><br><img src="https://pic.imgdb.cn/item/5f788753160a154a67191101.jpg" alt=""></p>
-<p>这不是一个旅游业非常发达的城市，也因此，行程不那么匆忙。去过成都，成都人引以为傲的慢节奏的生活，我在南昌也能找到。傍晚，夕阳西下，总有些小巷子里，摆着桌椅，坐着几位老人，摇着纸扇，用南昌的语言在说一些他们的家长里短。</p>
-<p>那不是我的故事，但那是确实发生的。在那一瞬间他们走进我的生命里了。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%91%84%E5%BD%B1/" rel="tag">摄影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-黄昏之诗" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/"
-    >黄昏之诗</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/01/01/%E9%BB%84%E6%98%8F%E4%B9%8B%E8%AF%97/" class="article-date">
-  <time datetime="2020-01-01T01:36:31.000Z" itemprop="datePublished">2020-01-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/">我们的思念</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>在架柱桥高处令人神迷的翼翅上最后而漫长的行程</p>
-<p>在我们脚下，风在摸索船帆</p>
-<p>而群星强烈地搏动</p>
-<p>夜的滋味我们仔细品尝，为阴影所穿透的夜，重又成为我们肉体的一个习惯。</p>
-<p>我们交谈的最后一夜，在海上的距离将我们隔断之前</p>
-<p>宁静还是我们的</p>
-<p>嗓音在其中草地般闪烁</p>
-<p>黎明还是一只鸟，迷失在</p>
-<p>这世上最为遥远的卑鄙之中</p>
-<p>最后一夜，它受到你保卫</p>
-<p>免遭缺席的大风劲吹</p>
-<p>在告别的内部是悲剧</p>
-<p>正如一切事情的内部，时间昭然可见</p>
-<p>难以忍受的是认识到</p>
-<p>我们并不拥有相同的星空</p>
-<p>当暮色在我的院子里成为宁静</p>
-<p>清晨会从你的纸页里升起</p>
-<p>我的寒冬将是你盛夏的阴影</p>
-<p>而你的光明将是我阴影的荣誉</p>
-<p>我们理应团结在一起</p>
-<p>两副嗓音理应和如一</p>
-<p>正如日落西山时的强烈与温馨</p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>太阳坠下地平线</p>
-<p>江水的波涛隔断了我们声嘶力竭的呼喊</p>
-<p>群星不再闪烁</p>
-<p>宁静不再属于你我</p>
-<p>温暖的草皮变得冰冷</p>
-<p>未曾告别，已迎来永夜</p>
-<p>你仔细品尝</p>
-<p>夜的滋味，是我的阴影被揉碎</p>
-<p>我的血，我的骨，我的心髓</p>
-<p>我们曾经团结在一起</p>
-<p>纠结在彼此的掌纹中</p>
-<p>品悦着辛波斯卡的诗集</p>
-<p>道不完琐碎与短长</p>
-<p>若相遇是可以期待的</p>
-<p>告别何以谓之告别</p>
-<p>我不曾保卫最后那一夜</p>
-<p>它本就不属于你我</p>
-<p>我要还给你黎明</p>
-<p>还给你阴影的荣耀</p>
-<p>让我的塑像碎裂在那一个冬夜的星辰里</p>
-<p>让云朵倒流，让月亮坠下</p>
-<p>让表达者挣脱被误解的枷锁</p>
-<p>让倾听者刺破了澄澈的双眼</p>
-<p>然后让我的肉体埋葬在秋的落叶下</p>
-<p>土地里，浇筑着我的心头血</p>
-<p>春天的樱花还会开得绚烂</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%97/" rel="tag">诗</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
   
 </section>

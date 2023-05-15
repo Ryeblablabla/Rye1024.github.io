@@ -6,7 +6,7 @@
   <link href="http://rye1024.gitee.io/atom.xml" rel="self"/>
   
   <link href="http://rye1024.gitee.io/"/>
-  <updated>2023-02-06T15:56:03.180Z</updated>
+  <updated>2023-05-15T13:15:45.665Z</updated>
   <id>http://rye1024.gitee.io/</id>
   
   <author>
@@ -15,6 +15,88 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>和青春说再见了</title>
+    <link href="http://rye1024.gitee.io/2023/05/15/%E5%92%8C%E9%9D%92%E6%98%A5%E8%AF%B4%E5%86%8D%E8%A7%81%E4%BA%86/"/>
+    <id>http://rye1024.gitee.io/2023/05/15/%E5%92%8C%E9%9D%92%E6%98%A5%E8%AF%B4%E5%86%8D%E8%A7%81%E4%BA%86/</id>
+    <published>2023-05-15T13:37:36.000Z</published>
+    <updated>2023-05-15T13:15:45.665Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;很多次的出走，是在夜里。&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    
+    
+    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再见昨天</title>
+    <link href="http://rye1024.gitee.io/2023/05/15/%E5%86%8D%E8%A7%81%E6%98%A8%E5%A4%A9/"/>
+    <id>http://rye1024.gitee.io/2023/05/15/%E5%86%8D%E8%A7%81%E6%98%A8%E5%A4%A9/</id>
+    <published>2023-05-15T13:16:24.000Z</published>
+    <updated>2023-05-15T13:34:09.791Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;再见昨天，来不及说的告别。&lt;/p&gt;
+&lt;p&gt;我第一次听到这首歌，是在十八岁的夏天。天好像刚刚下了一场大雨，乌云还没有完全散去，路面上的水极迅速地蒸发着，空气中氤氲着湿润泥土和青草香。&lt;/p&gt;
+&lt;p&gt;回学校毕业答辩的时候，朱老师请我们吃饭，说起大一的时候我们参加省赛的事情。那年</summary>
+        
+      
+    
+    
+    
+    <category term="我们的思念" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%80%9D%E5%BF%B5/"/>
+    
+    
+    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如果你累了，就休息吧</title>
+    <link href="http://rye1024.gitee.io/2023/02/16/%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%B4%AF%E4%BA%86%EF%BC%8C%E5%B0%B1%E4%BC%91%E6%81%AF%E5%90%A7/"/>
+    <id>http://rye1024.gitee.io/2023/02/16/%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%B4%AF%E4%BA%86%EF%BC%8C%E5%B0%B1%E4%BC%91%E6%81%AF%E5%90%A7/</id>
+    <published>2023-02-16T15:53:48.000Z</published>
+    <updated>2023-05-15T13:12:52.318Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;如果你累了，就休息吧。&lt;/p&gt;
+&lt;p&gt;洗一个热水澡，钻进温暖的被子里吧。&lt;/p&gt;
+&lt;p&gt;已经那么晚了，就不要再想工作的事情了。&lt;/p&gt;
+&lt;p&gt;你应该喝一杯热水，然后看一会儿书，&lt;/p&gt;
+&lt;p&gt;或者是什么也不想。&lt;/p&gt;
+&lt;p&gt;如果你累了，就休息吧。&lt;/p&gt;
+&lt;p&gt;昨晚又做了</summary>
+        
+      
+    
+    
+    
+    
+    <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>23岁杂感</title>
@@ -490,92 +572,6 @@
     
     
     <category term="杂感" scheme="http://rye1024.gitee.io/tags/%E6%9D%82%E6%84%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[codeforces 1417C] k-Amazing Numbers</title>
-    <link href="http://rye1024.gitee.io/2020/10/14/codeforces-1417C-k-Amazing-Numbers/"/>
-    <id>http://rye1024.gitee.io/2020/10/14/codeforces-1417C-k-Amazing-Numbers/</id>
-    <published>2020-10-14T07:25:54.000Z</published>
-    <updated>2020-10-14T08:19:03.698Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1417/problem/C&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;1417C&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[codeforces 1430D] String Deletion</title>
-    <link href="http://rye1024.gitee.io/2020/10/14/codeforces-1430D-String-Deletion/"/>
-    <id>http://rye1024.gitee.io/2020/10/14/codeforces-1430D-String-Deletion/</id>
-    <published>2020-10-14T07:25:13.000Z</published>
-    <updated>2020-10-14T08:08:45.038Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;题目：&lt;a href=&quot;https://codeforces.com/problemset/problem/1430/D&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="ACM" scheme="http://rye1024.gitee.io/tags/ACM/"/>
-    
-    <category term="题解" scheme="http://rye1024.gitee.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="字符串" scheme="http://rye1024.gitee.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    <category term="贪心" scheme="http://rye1024.gitee.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="双指针" scheme="http://rye1024.gitee.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>扬州旅行计划书</title>
-    <link href="http://rye1024.gitee.io/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/"/>
-    <id>http://rye1024.gitee.io/2020/10/09/%E6%89%AC%E5%B7%9E%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B9%A6/</id>
-    <published>2020-10-09T03:37:30.000Z</published>
-    <updated>2020-10-09T03:43:23.907Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;是七月末的时候去扬州和南京旅行之前做的攻略，&lt;br&gt;本来是要做两个城市的，但是因为时间太紧，只做了扬州的攻略。&lt;br&gt;去南京玩的时候酒店就选的太远了，准备不足。&lt;br&gt;&lt;a href=&quot;扬州旅行计划书.pdf&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="我们的旅行" scheme="http://rye1024.gitee.io/categories/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%85%E8%A1%8C/"/>
-    
-    
-    <category term="旅行" scheme="http://rye1024.gitee.io/tags/%E6%97%85%E8%A1%8C/"/>
     
   </entry>
   
